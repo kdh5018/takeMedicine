@@ -13,6 +13,8 @@
 		762EFE212993728F009E55D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 762EFE1F2993728F009E55D1 /* Main.storyboard */; };
 		762EFE2329937290009E55D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 762EFE2229937290009E55D1 /* Assets.xcassets */; };
 		762EFE2629937290009E55D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 762EFE2429937290009E55D1 /* LaunchScreen.storyboard */; };
+		7697F40329937CF80092D3F9 /* MedicineData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7697F40229937CF80092D3F9 /* MedicineData.swift */; };
+		76CAF71D299392EF0039DE1B /* MedicineNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CAF71C299392EF0039DE1B /* MedicineNameCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		762EFE2229937290009E55D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		762EFE2529937290009E55D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		762EFE2729937290009E55D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7697F40229937CF80092D3F9 /* MedicineData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineData.swift; sourceTree = "<group>"; };
+		76CAF71C299392EF0039DE1B /* MedicineNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineNameCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,12 +63,22 @@
 				762EFE192993728F009E55D1 /* AppDelegate.swift */,
 				762EFE1B2993728F009E55D1 /* SceneDelegate.swift */,
 				762EFE1D2993728F009E55D1 /* ViewController.swift */,
+				7697F40229937CF80092D3F9 /* MedicineData.swift */,
 				762EFE1F2993728F009E55D1 /* Main.storyboard */,
+				76CAF71E2993944C0039DE1B /* TableCell */,
 				762EFE2229937290009E55D1 /* Assets.xcassets */,
 				762EFE2429937290009E55D1 /* LaunchScreen.storyboard */,
 				762EFE2729937290009E55D1 /* Info.plist */,
 			);
 			path = takeMedicine;
+			sourceTree = "<group>";
+		};
+		76CAF71E2993944C0039DE1B /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				76CAF71C299392EF0039DE1B /* MedicineNameCell.swift */,
+			);
+			path = TableCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +152,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76CAF71D299392EF0039DE1B /* MedicineNameCell.swift in Sources */,
+				7697F40329937CF80092D3F9 /* MedicineData.swift in Sources */,
 				762EFE1E2993728F009E55D1 /* ViewController.swift in Sources */,
 				762EFE1A2993728F009E55D1 /* AppDelegate.swift in Sources */,
 				762EFE1C2993728F009E55D1 /* SceneDelegate.swift in Sources */,
@@ -301,9 +317,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rlaehgns745.takeMedicine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -328,9 +347,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rlaehgns745.takeMedicine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
