@@ -13,8 +13,10 @@
 		762EFE212993728F009E55D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 762EFE1F2993728F009E55D1 /* Main.storyboard */; };
 		762EFE2329937290009E55D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 762EFE2229937290009E55D1 /* Assets.xcassets */; };
 		762EFE2629937290009E55D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 762EFE2429937290009E55D1 /* LaunchScreen.storyboard */; };
+		7655E0232994C14400DECB16 /* MedicineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7655E0222994C14400DECB16 /* MedicineTableViewCell.swift */; };
 		7697F40329937CF80092D3F9 /* MedicineData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7697F40229937CF80092D3F9 /* MedicineData.swift */; };
-		76CAF71D299392EF0039DE1B /* MedicineNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CAF71C299392EF0039DE1B /* MedicineNameCell.swift */; };
+		76CAF7202994B7640039DE1B /* PlusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CAF71F2994B7640039DE1B /* PlusViewController.swift */; };
+		76CAF7222994BDB00039DE1B /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CAF7212994BDB00039DE1B /* EditViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,8 +28,10 @@
 		762EFE2229937290009E55D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		762EFE2529937290009E55D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		762EFE2729937290009E55D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7655E0222994C14400DECB16 /* MedicineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineTableViewCell.swift; sourceTree = "<group>"; };
 		7697F40229937CF80092D3F9 /* MedicineData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineData.swift; sourceTree = "<group>"; };
-		76CAF71C299392EF0039DE1B /* MedicineNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineNameCell.swift; sourceTree = "<group>"; };
+		76CAF71F2994B7640039DE1B /* PlusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusViewController.swift; sourceTree = "<group>"; };
+		76CAF7212994BDB00039DE1B /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				762EFE192993728F009E55D1 /* AppDelegate.swift */,
 				762EFE1B2993728F009E55D1 /* SceneDelegate.swift */,
 				762EFE1D2993728F009E55D1 /* ViewController.swift */,
+				76CAF71F2994B7640039DE1B /* PlusViewController.swift */,
+				76CAF7212994BDB00039DE1B /* EditViewController.swift */,
 				7697F40229937CF80092D3F9 /* MedicineData.swift */,
 				762EFE1F2993728F009E55D1 /* Main.storyboard */,
 				76CAF71E2993944C0039DE1B /* TableCell */,
@@ -76,7 +82,7 @@
 		76CAF71E2993944C0039DE1B /* TableCell */ = {
 			isa = PBXGroup;
 			children = (
-				76CAF71C299392EF0039DE1B /* MedicineNameCell.swift */,
+				7655E0222994C14400DECB16 /* MedicineTableViewCell.swift */,
 			);
 			path = TableCell;
 			sourceTree = "<group>";
@@ -152,11 +158,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76CAF71D299392EF0039DE1B /* MedicineNameCell.swift in Sources */,
 				7697F40329937CF80092D3F9 /* MedicineData.swift in Sources */,
+				76CAF7202994B7640039DE1B /* PlusViewController.swift in Sources */,
+				7655E0232994C14400DECB16 /* MedicineTableViewCell.swift in Sources */,
 				762EFE1E2993728F009E55D1 /* ViewController.swift in Sources */,
 				762EFE1A2993728F009E55D1 /* AppDelegate.swift in Sources */,
 				762EFE1C2993728F009E55D1 /* SceneDelegate.swift in Sources */,
+				76CAF7222994BDB00039DE1B /* EditViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,12 +29,13 @@ extension ViewController : UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "MyCell")
+        let cell : MedicineTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MedicineTableViewCell
 
         let cellData : MedicineData = medicineDataList[indexPath.row]
 
-        cell.textLabel?.text = cellData.title
-        cell.detailTextLabel?.text = cellData.date
+//        cell.medicineName?.text = cellData.title
+//        cell.medicineDate?.text = cellData.date
+//        cell.medicineTime1?.text = cellData.time
 
         return cell
     }
@@ -42,6 +43,7 @@ extension ViewController : UITableViewDataSource {
 
 extension ViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 테이블셀 누르면 수정하기/삭제하기 버튼 보이고 숨기고 기능 넣기
         print(#fileID, #function, #line, "- indexPath: \(indexPath.row)")
     }
 }
