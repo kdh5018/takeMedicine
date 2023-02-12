@@ -40,8 +40,10 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="MbT-e3-J4w" secondAttribute="trailing" constant="10" id="ImR-yh-Xas"/>
                                     <constraint firstItem="q64-V2-gf7" firstAttribute="leading" secondItem="aIM-rr-Fyu" secondAttribute="leading" constant="20" id="Kbj-bb-X2K"/>
+                                    <constraint firstItem="MbT-e3-J4w" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="q64-V2-gf7" secondAttribute="trailing" constant="8" symbolic="YES" id="Ta5-79-7Bn"/>
                                     <constraint firstAttribute="height" constant="50" id="eZN-C3-GMU"/>
                                     <constraint firstItem="MbT-e3-J4w" firstAttribute="centerY" secondItem="aIM-rr-Fyu" secondAttribute="centerY" id="eqB-QC-xw9"/>
+                                    <constraint firstAttribute="width" constant="390" id="fey-z3-8zs"/>
                                     <constraint firstItem="q64-V2-gf7" firstAttribute="centerY" secondItem="aIM-rr-Fyu" secondAttribute="centerY" id="i1e-EM-8jn"/>
                                 </constraints>
                             </view>
@@ -56,56 +58,68 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="208" id="tlk-Da-A75" customClass="MedicineNameCell" customModule="takeMedicine" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="390" height="208"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tlk-Da-A75" id="O0q-re-3tl" customClass="MedicineTableViewCell" customModule="cell">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tlk-Da-A75" id="O0q-re-3tl" customClass="MedicineTableViewCell" customModule="takeMedicine" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="208"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="Nes-2P-OwE">
-                                                    <rect key="frame" x="69" y="10" width="311" height="110"/>
+                                                    <rect key="frame" x="70" y="10" width="308" height="110"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="44" translatesAutoresizingMaskIntoConstraints="NO" id="Wnh-ie-yIt">
-                                                            <rect key="frame" x="0.0" y="0.0" width="150" height="110"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Wnh-ie-yIt">
+                                                            <rect key="frame" x="0.0" y="0.0" width="158" height="110"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUX-fq-9cP" userLabel="약 이름">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="42"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="158" height="50"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="150" id="tOQ-2d-7Aa"/>
+                                                                        <constraint firstAttribute="height" constant="50" id="3JC-jd-KU5"/>
+                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="170" id="j0d-24-aqI"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJz-W1-BFZ" userLabel="복용 기간">
-                                                                    <rect key="frame" x="0.0" y="86" width="150" height="24"/>
+                                                                    <rect key="frame" x="0.0" y="80" width="158" height="30"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="150" id="PJJ-i4-Fms"/>
+                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="HGy-Fd-Ab3"/>
+                                                                        <constraint firstAttribute="height" constant="30" id="M66-Cg-CAT"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="bottom" secondItem="PJz-W1-BFZ" secondAttribute="bottom" id="757-jC-esK"/>
+                                                                <constraint firstAttribute="trailing" secondItem="PJz-W1-BFZ" secondAttribute="trailing" id="H8d-bd-fwf"/>
+                                                                <constraint firstItem="xUX-fq-9cP" firstAttribute="top" secondItem="Wnh-ie-yIt" secondAttribute="top" id="LIH-5e-Pmt"/>
+                                                                <constraint firstItem="PJz-W1-BFZ" firstAttribute="leading" secondItem="Wnh-ie-yIt" secondAttribute="leading" id="fuw-GR-ABA"/>
+                                                                <constraint firstItem="PJz-W1-BFZ" firstAttribute="top" secondItem="xUX-fq-9cP" secondAttribute="bottom" constant="30" id="jqc-hf-K5e"/>
+                                                                <constraint firstAttribute="trailing" secondItem="xUX-fq-9cP" secondAttribute="trailing" id="pbH-q6-G2a"/>
+                                                                <constraint firstItem="PJz-W1-BFZ" firstAttribute="top" secondItem="xUX-fq-9cP" secondAttribute="bottom" constant="30" id="xQe-Or-4vB"/>
+                                                                <constraint firstItem="xUX-fq-9cP" firstAttribute="leading" secondItem="Wnh-ie-yIt" secondAttribute="leading" id="yLQ-da-ZRW"/>
+                                                            </constraints>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5iw-Sn-kJ7">
-                                                            <rect key="frame" x="200" y="0.0" width="111" height="110"/>
+                                                            <rect key="frame" x="208" y="0.0" width="100" height="110"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ihQ-SL-P6j" userLabel="복용 시간1">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="111" height="30"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="111" id="y7R-DK-12k"/>
+                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="Os2-60-xaI"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7e-S5-tk7" userLabel="복용 시간2">
-                                                                    <rect key="frame" x="0.0" y="40" width="111" height="30"/>
+                                                                    <rect key="frame" x="0.0" y="40" width="100" height="30"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f0o-IY-oLa" userLabel="복용 시간3">
-                                                                    <rect key="frame" x="0.0" y="80" width="111" height="30"/>
+                                                                    <rect key="frame" x="0.0" y="80" width="100" height="30"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -114,13 +128,12 @@
                                                         </stackView>
                                                     </subviews>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="JmH-d5-5D2">
-                                                    <rect key="frame" x="12" y="153" width="368" height="45"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="JmH-d5-5D2">
+                                                    <rect key="frame" x="12" y="153" width="366" height="45"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V1b-zK-Tth">
-                                                            <rect key="frame" x="0.0" y="0.0" width="175" height="45"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="174" height="45"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="175" id="p4S-O1-JeX"/>
                                                                 <constraint firstAttribute="height" constant="45" id="vNa-Cj-AGN"/>
                                                             </constraints>
                                                             <state key="normal" title="Button"/>
@@ -130,7 +143,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tqS-Gy-3VH">
-                                                            <rect key="frame" x="193" y="0.0" width="175" height="45"/>
+                                                            <rect key="frame" x="192" y="0.0" width="174" height="45"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" title="삭제하기"/>
                                                         </button>
@@ -138,8 +151,13 @@
                                                 </stackView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="JmH-d5-5D2" firstAttribute="top" secondItem="Nes-2P-OwE" secondAttribute="bottom" constant="33" id="AdM-On-0Av"/>
+                                                <constraint firstItem="JmH-d5-5D2" firstAttribute="leading" secondItem="O0q-re-3tl" secondAttribute="leading" constant="12" id="Pxu-NW-U8H"/>
                                                 <constraint firstItem="Nes-2P-OwE" firstAttribute="top" secondItem="O0q-re-3tl" secondAttribute="top" constant="10" id="Qun-FL-QFg"/>
-                                                <constraint firstAttribute="trailing" secondItem="Nes-2P-OwE" secondAttribute="trailing" constant="10" id="od5-gM-u0e"/>
+                                                <constraint firstItem="Nes-2P-OwE" firstAttribute="leading" secondItem="O0q-re-3tl" secondAttribute="leading" constant="70" id="UNo-zX-DmA"/>
+                                                <constraint firstAttribute="trailing" secondItem="JmH-d5-5D2" secondAttribute="trailing" constant="12" id="Zsi-6A-X9q"/>
+                                                <constraint firstAttribute="trailing" secondItem="Nes-2P-OwE" secondAttribute="trailing" constant="12" id="ahT-Ri-c3t"/>
+                                                <constraint firstAttribute="bottom" secondItem="JmH-d5-5D2" secondAttribute="bottom" constant="10" id="eKH-6a-zaJ"/>
                                             </constraints>
                                             <connections>
                                                 <outlet property="medicineDate" destination="PJz-W1-BFZ" id="RuK-1g-GES"/>
@@ -158,8 +176,8 @@
                         <constraints>
                             <constraint firstItem="gpI-zq-9K3" firstAttribute="bottom" secondItem="BvZ-L7-duP" secondAttribute="bottom" constant="38" id="8lB-0X-0jG"/>
                             <constraint firstItem="gpI-zq-9K3" firstAttribute="trailing" secondItem="aIM-rr-Fyu" secondAttribute="trailing" id="G1l-Eh-Q9S"/>
+                            <constraint firstItem="BvZ-L7-duP" firstAttribute="leading" secondItem="aIM-rr-Fyu" secondAttribute="leading" id="SBf-U3-mzO"/>
                             <constraint firstItem="aIM-rr-Fyu" firstAttribute="leading" secondItem="gpI-zq-9K3" secondAttribute="leading" id="YrH-zK-cUz"/>
-                            <constraint firstItem="BvZ-L7-duP" firstAttribute="centerX" secondItem="DUU-rb-eAb" secondAttribute="centerX" id="eNR-gW-azO"/>
                             <constraint firstItem="aIM-rr-Fyu" firstAttribute="top" secondItem="gpI-zq-9K3" secondAttribute="top" id="lfJ-FP-3I8"/>
                         </constraints>
                     </view>
@@ -216,7 +234,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="VTh-jY-VGy"/>
                                     <constraint firstItem="RSm-Zt-kKM" firstAttribute="centerY" secondItem="Tyr-yz-FVN" secondAttribute="centerY" id="dCi-LL-OIS"/>
-                                    <constraint firstItem="RSm-Zt-kKM" firstAttribute="leading" secondItem="Tyr-yz-FVN" secondAttribute="leading" constant="20" id="f5a-8A-wNN"/>
+                                    <constraint firstAttribute="trailing" secondItem="RSm-Zt-kKM" secondAttribute="trailing" constant="206.33333333333334" id="e6J-jK-q7h"/>
+                                    <constraint firstItem="RSm-Zt-kKM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Tyr-yz-FVN" secondAttribute="leading" symbolic="YES" id="f5a-8A-wNN"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="kxX-Ks-G4A">
@@ -243,61 +262,55 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="UWF-0m-ciP">
-                                <rect key="frame" x="122" y="110" width="180" height="335"/>
+                                <rect key="frame" x="122" y="110" width="185" height="335"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="복용하는 약을 입력해 주세요" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="S6k-zt-Ns8" userLabel="약 이름 텍스트필드">
-                                        <rect key="frame" x="0.0" y="0.0" width="180" height="35"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="185" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="JVV-81-LRR"/>
-                                            <constraint firstAttribute="width" constant="180" id="MPH-X1-euT"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="MPH-X1-euT"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="namePhonePad" textContentType="name"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="매일" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pqk-Dc-qCS" userLabel="복용 기간 텍스트필드">
-                                        <rect key="frame" x="0.0" y="75" width="180" height="35"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="매일" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pqk-Dc-qCS" userLabel="복용 기간 텍스트필드">
+                                        <rect key="frame" x="0.0" y="75" width="185" height="35"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="180" id="gkN-VO-dht"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="gkN-VO-dht"/>
                                             <constraint firstAttribute="height" constant="35" id="jnN-GE-wrN"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="date-time"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="원하는 시간을 설정해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kqu-A9-43m" userLabel="복용 시간1 텍스트필드">
-                                        <rect key="frame" x="0.0" y="150" width="180" height="35"/>
+                                        <rect key="frame" x="0.0" y="150" width="185" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="Svi-9X-CDs"/>
-                                            <constraint firstAttribute="width" constant="180" id="Vqi-ox-olH"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="Vqi-ox-olH"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="date-time"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="원하는 시간을 설정해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0i2-o2-7um" userLabel="복용 시간2 텍스트필드">
-                                        <rect key="frame" x="0.0" y="225" width="180" height="35"/>
+                                        <rect key="frame" x="0.0" y="225" width="185" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="ns8-7w-RGo"/>
-                                            <constraint firstAttribute="width" constant="180" id="xYY-YE-Pxi"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="xYY-YE-Pxi"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="date-time"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="원하는 시간을 설정해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gwo-R5-Ptg" userLabel="복용 시간3 텍스트필드">
-                                        <rect key="frame" x="0.0" y="300" width="180" height="35"/>
+                                        <rect key="frame" x="0.0" y="300" width="185" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="gmT-Tu-lsK"/>
-                                            <constraint firstAttribute="width" constant="180" id="xf1-zb-f1n"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="xf1-zb-f1n"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="date-time"/>
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="crp-v7-sVL">
-                                <rect key="frame" x="310" y="184" width="47" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="🗓"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0QI-Hs-NxS">
                                 <rect key="frame" x="314" y="261" width="40" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -309,12 +322,12 @@
                                 <buttonConfiguration key="configuration" style="plain"/>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="ZYk-19-NCC">
-                                <rect key="frame" x="11" y="692" width="368" height="45"/>
+                                <rect key="frame" x="11" y="712" width="368" height="45"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="awH-eh-k7A">
                                         <rect key="frame" x="0.0" y="0.0" width="175" height="45"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="175" id="0Ll-BJ-M8i"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="175" id="0Ll-BJ-M8i"/>
                                             <constraint firstAttribute="height" constant="45" id="sDg-42-PVP"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
@@ -345,14 +358,19 @@
                             <constraint firstItem="UWF-0m-ciP" firstAttribute="top" secondItem="Tyr-yz-FVN" secondAttribute="bottom" constant="60" id="0n8-0n-bj6"/>
                             <constraint firstItem="ZYk-19-NCC" firstAttribute="leading" secondItem="RF2-zU-fST" secondAttribute="leading" constant="11" id="9VQ-8c-7HF"/>
                             <constraint firstAttribute="trailing" secondItem="Tyr-yz-FVN" secondAttribute="trailing" id="e2A-vb-QMu"/>
+                            <constraint firstItem="ZYk-19-NCC" firstAttribute="top" secondItem="UWF-0m-ciP" secondAttribute="bottom" constant="267" id="hsQ-tj-MxJ"/>
                             <constraint firstItem="kxX-Ks-G4A" firstAttribute="leading" secondItem="RF2-zU-fST" secondAttribute="leading" constant="30" id="lUy-jp-XEI"/>
                             <constraint firstItem="UWF-0m-ciP" firstAttribute="leading" secondItem="RF2-zU-fST" secondAttribute="leading" constant="122" id="lkc-27-McU"/>
                             <constraint firstItem="kxX-Ks-G4A" firstAttribute="top" secondItem="Tyr-yz-FVN" secondAttribute="bottom" constant="65" id="nE1-fy-eZp"/>
                             <constraint firstItem="Tyr-yz-FVN" firstAttribute="top" secondItem="rPI-73-UnU" secondAttribute="top" id="nJ3-UU-iiU"/>
                             <constraint firstItem="Tyr-yz-FVN" firstAttribute="leading" secondItem="rPI-73-UnU" secondAttribute="leading" id="oa1-cH-SaD"/>
-                            <constraint firstItem="RF2-zU-fST" firstAttribute="bottom" secondItem="ZYk-19-NCC" secondAttribute="bottom" constant="50" id="pns-bs-BI8"/>
+                            <constraint firstItem="RF2-zU-fST" firstAttribute="bottom" secondItem="ZYk-19-NCC" secondAttribute="bottom" constant="30" id="pns-bs-BI8"/>
+                            <constraint firstItem="RF2-zU-fST" firstAttribute="trailing" secondItem="ZYk-19-NCC" secondAttribute="trailing" constant="11" id="s68-5H-6L4"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textFieldDatePicker" destination="Pqk-Dc-qCS" id="Dda-FO-8Ex"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qz9-MW-klQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

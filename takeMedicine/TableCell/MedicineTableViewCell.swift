@@ -16,9 +16,6 @@ class MedicineTableViewCell: UITableViewCell {
     @IBOutlet weak var medicineTime3: UILabel!
     
     
-    
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -29,13 +29,15 @@ extension ViewController : UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell : MedicineTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MedicineTableViewCell
+        guard let cell : MedicineTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? MedicineTableViewCell else {
+            return UITableViewCell()
+        }
 
         let cellData : MedicineData = medicineDataList[indexPath.row]
 
-//        cell.medicineName?.text = cellData.title
-//        cell.medicineDate?.text = cellData.date
-//        cell.medicineTime1?.text = cellData.time
+        cell.medicineName?.text = cellData.title
+        cell.medicineDate?.text = cellData.date
+        cell.medicineTime1?.text = cellData.time
 
         return cell
     }
