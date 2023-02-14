@@ -8,19 +8,11 @@
 import Foundation
 
 struct MedicineData {
-    
 
     let title: String
     let date: String
-    let time: String
+    let morningTime: String
+    let dayTime: String
+    let nightTime: String
     
-    init() {
-        self.title = "약 이름"
-        self.date = "복용 날짜"
-        self.time = "복용 시간"
-    }
-    
-    static func getMedicine(_ count: Int = 100) -> [MedicineData] {
-        return (1...count).map{ _ in MedicineData() }
-    }
 }

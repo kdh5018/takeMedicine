@@ -11,9 +11,10 @@ class MedicineTableViewCell: UITableViewCell {
 
     @IBOutlet weak var medicineName: UILabel!
     @IBOutlet weak var medicineDate: UILabel!
-    @IBOutlet weak var medicineTime1: UILabel!
-    @IBOutlet weak var medicineTime2: UILabel!
-    @IBOutlet weak var medicineTime3: UILabel!
+    @IBOutlet weak var medicineMorningTime: UILabel!
+    @IBOutlet weak var medicineDayTime: UILabel!
+    @IBOutlet weak var medicineNightTime: UILabel!
+
     
     
     override func awakeFromNib() {

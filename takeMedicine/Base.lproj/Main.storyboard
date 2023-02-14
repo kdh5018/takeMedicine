@@ -55,7 +55,7 @@
                                     <constraint firstAttribute="width" constant="390" id="jvK-1F-rDV"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="208" id="tlk-Da-A75" customClass="MedicineNameCell" customModule="takeMedicine" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="medicineCell" rowHeight="208" id="tlk-Da-A75" customClass="MedicineTableViewCell" customModule="takeMedicine" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="390" height="208"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tlk-Da-A75" id="O0q-re-3tl" customClass="MedicineTableViewCell" customModule="takeMedicine" customModuleProvider="target">
@@ -161,10 +161,10 @@
                                             </constraints>
                                             <connections>
                                                 <outlet property="medicineDate" destination="PJz-W1-BFZ" id="RuK-1g-GES"/>
+                                                <outlet property="medicineDayTime" destination="h7e-S5-tk7" id="TtS-Ri-7ND"/>
+                                                <outlet property="medicineMorningTime" destination="ihQ-SL-P6j" id="JzX-yV-QKn"/>
                                                 <outlet property="medicineName" destination="xUX-fq-9cP" id="aLj-5a-4ww"/>
-                                                <outlet property="medicineTime1" destination="ihQ-SL-P6j" id="dUD-Nt-S4K"/>
-                                                <outlet property="medicineTime2" destination="h7e-S5-tk7" id="iDi-jZ-6Pp"/>
-                                                <outlet property="medicineTime3" destination="f0o-IY-oLa" id="lfe-bH-9Dm"/>
+                                                <outlet property="medicineNightTime" destination="f0o-IY-oLa" id="ToH-n5-4ML"/>
                                             </connections>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -228,14 +228,21 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggp-pb-50p">
+                                        <rect key="frame" x="258.66666666666669" y="7" width="116.66666666666669" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="시간 추가하기"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                 <constraints>
+                                    <constraint firstItem="ggp-pb-50p" firstAttribute="leading" secondItem="RSm-Zt-kKM" secondAttribute="trailing" constant="75" id="9F1-cJ-htU"/>
                                     <constraint firstAttribute="height" constant="50" id="VTh-jY-VGy"/>
                                     <constraint firstItem="RSm-Zt-kKM" firstAttribute="centerY" secondItem="Tyr-yz-FVN" secondAttribute="centerY" id="dCi-LL-OIS"/>
                                     <constraint firstAttribute="trailing" secondItem="RSm-Zt-kKM" secondAttribute="trailing" constant="206.33333333333334" id="e6J-jK-q7h"/>
                                     <constraint firstItem="RSm-Zt-kKM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Tyr-yz-FVN" secondAttribute="leading" symbolic="YES" id="f5a-8A-wNN"/>
+                                    <constraint firstItem="ggp-pb-50p" firstAttribute="top" secondItem="Tyr-yz-FVN" secondAttribute="top" constant="7" id="reu-OG-r8R"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="kxX-Ks-G4A">
@@ -262,19 +269,19 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="UWF-0m-ciP">
-                                <rect key="frame" x="122" y="110" width="185" height="335"/>
+                                <rect key="frame" x="122" y="110" width="180" height="185"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="복용하는 약을 입력해 주세요" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="S6k-zt-Ns8" userLabel="약 이름 텍스트필드">
-                                        <rect key="frame" x="0.0" y="0.0" width="185" height="35"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="복용하는 약을 입력해 주세요" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="S6k-zt-Ns8" userLabel="약 이름 텍스트필드">
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="JVV-81-LRR"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="MPH-X1-euT"/>
+                                            <constraint firstAttribute="width" constant="180" id="MPH-X1-euT"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="namePhonePad" textContentType="name"/>
+                                        <nil key="textColor"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="namePhonePad" returnKeyType="done" enablesReturnKeyAutomatically="YES" textContentType="name"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="매일" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pqk-Dc-qCS" userLabel="복용 기간 텍스트필드">
-                                        <rect key="frame" x="0.0" y="75" width="185" height="35"/>
+                                        <rect key="frame" x="0.0" y="75" width="180" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="gkN-VO-dht"/>
                                             <constraint firstAttribute="height" constant="35" id="jnN-GE-wrN"/>
@@ -283,7 +290,7 @@
                                         <textInputTraits key="textInputTraits" textContentType="date-time"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="원하는 시간을 설정해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kqu-A9-43m" userLabel="복용 시간1 텍스트필드">
-                                        <rect key="frame" x="0.0" y="150" width="185" height="35"/>
+                                        <rect key="frame" x="0.0" y="150" width="180" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="Svi-9X-CDs"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="Vqi-ox-olH"/>
@@ -291,36 +298,8 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="date-time"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="원하는 시간을 설정해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0i2-o2-7um" userLabel="복용 시간2 텍스트필드">
-                                        <rect key="frame" x="0.0" y="225" width="185" height="35"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="ns8-7w-RGo"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="xYY-YE-Pxi"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" textContentType="date-time"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="원하는 시간을 설정해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gwo-R5-Ptg" userLabel="복용 시간3 텍스트필드">
-                                        <rect key="frame" x="0.0" y="300" width="185" height="35"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="gmT-Tu-lsK"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="xf1-zb-f1n"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" textContentType="date-time"/>
-                                    </textField>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0QI-Hs-NxS">
-                                <rect key="frame" x="314" y="261" width="40" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <buttonConfiguration key="configuration" style="plain"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Otb-LO-Kxy">
-                                <rect key="frame" x="314" y="413" width="40" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <buttonConfiguration key="configuration" style="plain"/>
-                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="ZYk-19-NCC">
                                 <rect key="frame" x="11" y="712" width="368" height="45"/>
                                 <subviews>
@@ -346,9 +325,46 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49D-33-jwU">
-                                <rect key="frame" x="314" y="337" width="40" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="원하는 시간을 설정해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0i2-o2-7um" userLabel="복용 시간2 텍스트필드">
+                                <rect key="frame" x="122" y="335" width="180" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="ns8-7w-RGo"/>
+                                    <constraint firstAttribute="width" constant="180" id="xYY-YE-Pxi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" textContentType="date-time"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="원하는 시간을 설정해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gwo-R5-Ptg" userLabel="복용 시간3 텍스트필드">
+                                <rect key="frame" x="122" y="409" width="180" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="3iJ-2e-zZx"/>
+                                    <constraint firstAttribute="width" constant="180" id="xf1-zb-f1n"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" textContentType="date-time"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49D-33-jwU">
+                                <rect key="frame" x="320" y="337" width="40" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="342-Br-Nso"/>
+                                    <constraint firstAttribute="height" constant="32" id="dYv-0X-roo"/>
+                                </constraints>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Otb-LO-Kxy">
+                                <rect key="frame" x="320" y="411" width="40" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="6ju-pb-cXv"/>
+                                    <constraint firstAttribute="width" constant="40" id="jSx-iE-vxX"/>
+                                </constraints>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0QI-Hs-NxS">
+                                <rect key="frame" x="320" y="263" width="40" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="hhL-mn-KDI"/>
+                                    <constraint firstAttribute="height" constant="32" id="lFG-nJ-M9r"/>
+                                </constraints>
                                 <buttonConfiguration key="configuration" style="plain"/>
                             </button>
                         </subviews>
@@ -356,20 +372,32 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="UWF-0m-ciP" firstAttribute="top" secondItem="Tyr-yz-FVN" secondAttribute="bottom" constant="60" id="0n8-0n-bj6"/>
+                            <constraint firstItem="Gwo-R5-Ptg" firstAttribute="leading" secondItem="RF2-zU-fST" secondAttribute="leading" constant="122" id="3t3-g3-ws2"/>
+                            <constraint firstItem="RF2-zU-fST" firstAttribute="trailing" secondItem="49D-33-jwU" secondAttribute="trailing" constant="30" id="6Io-Mp-5BC"/>
+                            <constraint firstItem="Otb-LO-Kxy" firstAttribute="top" secondItem="49D-33-jwU" secondAttribute="bottom" constant="42" id="7cb-Td-aJY"/>
                             <constraint firstItem="ZYk-19-NCC" firstAttribute="leading" secondItem="RF2-zU-fST" secondAttribute="leading" constant="11" id="9VQ-8c-7HF"/>
+                            <constraint firstItem="0i2-o2-7um" firstAttribute="top" secondItem="UWF-0m-ciP" secondAttribute="bottom" constant="40" id="G2R-XD-u4t"/>
+                            <constraint firstItem="RF2-zU-fST" firstAttribute="trailing" secondItem="0QI-Hs-NxS" secondAttribute="trailing" constant="30" id="TqE-vW-g54"/>
+                            <constraint firstItem="0i2-o2-7um" firstAttribute="leading" secondItem="RF2-zU-fST" secondAttribute="leading" constant="122" id="WW5-Lo-XrZ"/>
+                            <constraint firstItem="Gwo-R5-Ptg" firstAttribute="top" secondItem="0i2-o2-7um" secondAttribute="bottom" constant="40" id="Ymv-Zp-95z"/>
+                            <constraint firstItem="49D-33-jwU" firstAttribute="top" secondItem="0QI-Hs-NxS" secondAttribute="bottom" constant="42" id="cpV-OE-xp6"/>
                             <constraint firstAttribute="trailing" secondItem="Tyr-yz-FVN" secondAttribute="trailing" id="e2A-vb-QMu"/>
-                            <constraint firstItem="ZYk-19-NCC" firstAttribute="top" secondItem="UWF-0m-ciP" secondAttribute="bottom" constant="267" id="hsQ-tj-MxJ"/>
+                            <constraint firstItem="0QI-Hs-NxS" firstAttribute="top" secondItem="Tyr-yz-FVN" secondAttribute="bottom" constant="213" id="g2Z-uL-qJj"/>
+                            <constraint firstItem="Gwo-R5-Ptg" firstAttribute="top" secondItem="UWF-0m-ciP" secondAttribute="bottom" constant="114" id="hsQ-tj-MxJ"/>
                             <constraint firstItem="kxX-Ks-G4A" firstAttribute="leading" secondItem="RF2-zU-fST" secondAttribute="leading" constant="30" id="lUy-jp-XEI"/>
                             <constraint firstItem="UWF-0m-ciP" firstAttribute="leading" secondItem="RF2-zU-fST" secondAttribute="leading" constant="122" id="lkc-27-McU"/>
                             <constraint firstItem="kxX-Ks-G4A" firstAttribute="top" secondItem="Tyr-yz-FVN" secondAttribute="bottom" constant="65" id="nE1-fy-eZp"/>
                             <constraint firstItem="Tyr-yz-FVN" firstAttribute="top" secondItem="rPI-73-UnU" secondAttribute="top" id="nJ3-UU-iiU"/>
                             <constraint firstItem="Tyr-yz-FVN" firstAttribute="leading" secondItem="rPI-73-UnU" secondAttribute="leading" id="oa1-cH-SaD"/>
                             <constraint firstItem="RF2-zU-fST" firstAttribute="bottom" secondItem="ZYk-19-NCC" secondAttribute="bottom" constant="30" id="pns-bs-BI8"/>
+                            <constraint firstItem="RF2-zU-fST" firstAttribute="trailing" secondItem="Otb-LO-Kxy" secondAttribute="trailing" constant="30" id="rab-e1-W9E"/>
                             <constraint firstItem="RF2-zU-fST" firstAttribute="trailing" secondItem="ZYk-19-NCC" secondAttribute="trailing" constant="11" id="s68-5H-6L4"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="nameTextField" destination="S6k-zt-Ns8" id="Mrl-Nn-Bl5"/>
                         <outlet property="textFieldDatePicker" destination="Pqk-Dc-qCS" id="Dda-FO-8Ex"/>
+                        <outlet property="textFieldTimePicker" destination="Kqu-A9-43m" id="Hvh-rb-YxZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qz9-MW-klQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
