@@ -8,6 +8,8 @@
 import UIKit
 
 class MedicineTableViewCell: UITableViewCell {
+    
+    static let reuseId = "medicineCell"
 
     @IBOutlet weak var medicineName: UILabel!
     @IBOutlet weak var medicineDate: UILabel!

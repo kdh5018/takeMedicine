@@ -13,6 +13,7 @@
 		762EFE212993728F009E55D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 762EFE1F2993728F009E55D1 /* Main.storyboard */; };
 		762EFE2329937290009E55D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 762EFE2229937290009E55D1 /* Assets.xcassets */; };
 		762EFE2629937290009E55D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 762EFE2429937290009E55D1 /* LaunchScreen.storyboard */; };
+		7642D666299D1F2B005A5101 /* Fakery in Frameworks */ = {isa = PBXBuildFile; productRef = 7642D665299D1F2B005A5101 /* Fakery */; };
 		7655E0232994C14400DECB16 /* MedicineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7655E0222994C14400DECB16 /* MedicineTableViewCell.swift */; };
 		7697F40329937CF80092D3F9 /* MedicineData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7697F40229937CF80092D3F9 /* MedicineData.swift */; };
 		76CAF7202994B7640039DE1B /* PlusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CAF71F2994B7640039DE1B /* PlusViewController.swift */; };
@@ -39,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7642D666299D1F2B005A5101 /* Fakery in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +105,9 @@
 			dependencies = (
 			);
 			name = takeMedicine;
+			packageProductDependencies = (
+				7642D665299D1F2B005A5101 /* Fakery */,
+			);
 			productName = takeMedicine;
 			productReference = 762EFE162993728F009E55D1 /* takeMedicine.app */;
 			productType = "com.apple.product-type.application";
@@ -131,6 +136,9 @@
 				Base,
 			);
 			mainGroup = 762EFE0D2993728F009E55D1;
+			packageReferences = (
+				7642D664299D1F2B005A5101 /* XCRemoteSwiftPackageReference "Fakery" */,
+			);
 			productRefGroup = 762EFE172993728F009E55D1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -386,6 +394,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7642D664299D1F2B005A5101 /* XCRemoteSwiftPackageReference "Fakery" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/vadymmarkov/Fakery.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7642D665299D1F2B005A5101 /* Fakery */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7642D664299D1F2B005A5101 /* XCRemoteSwiftPackageReference "Fakery" */;
+			productName = Fakery;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 762EFE0E2993728F009E55D1 /* Project object */;
 }

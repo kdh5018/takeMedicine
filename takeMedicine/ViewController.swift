@@ -9,17 +9,15 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var medicineDataList: [MedicineData] = [
-        MedicineData(title: "유산균", date: "2월20일까지", morningTime: "8시", dayTime: "12시", nightTime: "18시"),
-        MedicineData(title: "감기약", date: "2월27일까지", morningTime: "8시", dayTime: "12시", nightTime: "18시"),
-        MedicineData(title: "감기약", date: "2월27일까지", morningTime: "8시", dayTime: "12시", nightTime: "18시"),
-        MedicineData(title: "감기약", date: "2월27일까지", morningTime: "8시", dayTime: "12시", nightTime: "18시"),
-        MedicineData(title: "감기약", date: "2월27일까지", morningTime: "8시", dayTime: "12시", nightTime: "18시"),
-        MedicineData(title: "감기약", date: "2월27일까지", morningTime: "8시", dayTime: "12시", nightTime: "18시"),
-        MedicineData(title: "감기약", date: "2월27일까지", morningTime: "8시", dayTime: "12시", nightTime: "18시"),
-        MedicineData(title: "감기약", date: "2월27일까지", morningTime: "8시", dayTime: "12시", nightTime: "18시"),
- 
-    ]
+    var medicineDataList: [MedicineData] = [] {
+        didSet{
+            print(#fileID, #function, #line, "- medicineDataList: \(medicineDataList.count)")
+            DispatchQueue.main.async {
+                self.medicineTableView.reloadData()
+            }
+        }
+    }
+
     
     @IBOutlet weak var medicineTableView: UITableView!
     
@@ -30,7 +28,9 @@ class ViewController: UIViewController {
         medicineTableView.dataSource = self
         medicineTableView.delegate = self
         
-        medicineTableView.rowHeight = 200
+        medicineTableView.estimatedRowHeight = UITableView.automaticDimension
+        
+        self.medicineDataList = MedicineData.getDummies()
     }
     
 }
@@ -42,10 +42,9 @@ extension ViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "medicineCell", for: indexPath) as? MedicineTableViewCell else {
-//            return UITableViewCell()
-//        }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "medicineCell", for: indexPath) as! MedicineTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MedicineTableViewCell.reuseId, for: indexPath) as? MedicineTableViewCell else {
+            return UITableViewCell()
+        }
         
         let cellData = medicineDataList[indexPath.row]
         

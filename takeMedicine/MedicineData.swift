@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Fakery
 
 struct MedicineData {
 
@@ -15,4 +16,71 @@ struct MedicineData {
     let dayTime: String
     let nightTime: String
     
+}
+
+//MARK: - 목업데이터 헬퍼
+extension MedicineData {
+    
+    static let dummyTitles : [String] = ["감기약", "목감기약", "유산균", "비타민"]
+    static let dummyDates : [String] = ["2월27일까지", "2월20일까지", "1월30일까지", "3월01일까지"]
+    static let dummyTimes : [String] = ["2시", "3시", "12시", "5시"]
+    
+    static func getDummy() -> Self {
+
+        let dummyTitle = dummyTitles.randomElement()!
+        let dummyDate = dummyDates.randomElement()!
+        let dummyMorningTime = dummyTimes.randomElement()!
+        let dummyDayTime = dummyTimes.randomElement()!
+        let dummyNightTime = dummyTimes.randomElement()!
+        
+        return MedicineData(title: dummyTitle,
+                            date: dummyDate,
+                            morningTime: dummyMorningTime,
+                            dayTime: dummyDayTime,
+                            nightTime: dummyNightTime)
+    }
+    
+    static func getDummies(count: Int = 30) -> [MedicineData] {
+        
+        var results : [MedicineData] = []
+        
+        for _ in 0..<count {
+            results.append(MedicineData.getDummy())
+        }
+        return results
+    }
+    
+    static func getDummyWithFakery() -> Self {
+        let faker = Faker(locale: "ko")
+
+        let firstName = faker.name.firstName()  //=> "Emilie"
+        let lastName = faker.name.lastName()    //=> "Hansen"
+        let city = faker.address.city()         //=> "Oslo"
+        
+        let dayformatter = DateFormatter()
+        dayformatter.dateFormat = "yyyy-MM-dd"
+        
+        let timeformatter = DateFormatter()
+        timeformatter.dateFormat = "HH:mm:ss"
+        
+        let randomDate = faker.date.birthday(0, 10)
+        
+        let dummyData = MedicineData(title: faker.lorem.words(amount: 3),
+                                     date: dayformatter.string(from: randomDate),
+                                     morningTime: timeformatter.string(from: randomDate),
+                                     dayTime: timeformatter.string(from: randomDate),
+                                     nightTime: timeformatter.string(from: randomDate))
+        return dummyData
+    }
+    
+    
+    static func getDummiesWithFakery(count: Int = 30) -> [MedicineData] {
+        
+        var results : [MedicineData] = []
+        
+        for _ in 0..<count {
+            results.append(MedicineData.getDummyWithFakery())
+        }
+        return results
+    }
 }
