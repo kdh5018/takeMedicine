@@ -8,14 +8,20 @@
 import UIKit
 
 class PlusViewController: UIViewController {
-
+    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var textFieldDatePicker: UITextField!
-    @IBOutlet weak var textFieldTimePicker: UITextField!
+    @IBOutlet weak var textFieldTimeMorningPicker: UITextField!
+    @IBOutlet weak var textFieldTimeDayPicker: UITextField!
+    @IBOutlet weak var textFieldTimeNightPicker: UITextField!
     
+    var medicineDataManager = DataManager()
+    var viewController = ViewController()
     
     let datePicker = UIDatePicker()
-    let timePicker = UIDatePicker()
+    let morningPicker = UIDatePicker()
+    let dayPicker = UIDatePicker()
+    let nightPicker = UIDatePicker()
     
     
     override func viewDidLoad() {
@@ -24,30 +30,46 @@ class PlusViewController: UIViewController {
         nameTextField.delegate = self
         
         self.showDatePicker()
-        self.showTimePicker()
+        self.showMorningPicker()
         self.hideKeyboardWhenTappedAround()
-
+        
     }
     
     
     func showDatePicker() {
-//        let datePicker = UIDatePicker()
+        //        let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .inline
-//        datePicker.addTarget(self, action: #selector(showDate(datePicker:)), for: .valueChanged)
+        //        datePicker.addTarget(self, action: #selector(showDate(datePicker:)), for: .valueChanged)
         self.textFieldDatePicker.inputView = datePicker
         
         let dateToolbar = UIToolbar().dateToolbarPicker(select: #selector(dateDismissPicker))
         self.textFieldDatePicker.inputAccessoryView = dateToolbar
     }
     
-    func showTimePicker() {
-        timePicker.datePickerMode = .time
-        timePicker.preferredDatePickerStyle = .wheels
-        self.textFieldTimePicker.inputView = timePicker
+    func showMorningPicker() {
+        morningPicker.datePickerMode = .time
+        morningPicker.preferredDatePickerStyle = .wheels
+        self.textFieldTimeMorningPicker.inputView = morningPicker
         
         let timeToolbar = UIToolbar().TimetoolbarPicker(select: #selector(timeDismissPicker))
-        self.textFieldTimePicker.inputAccessoryView = timeToolbar
+        self.textFieldTimeMorningPicker.inputAccessoryView = timeToolbar
+    }
+    func showDayPicker() {
+        dayPicker.datePickerMode = .time
+        dayPicker.preferredDatePickerStyle = .wheels
+        self.textFieldTimeDayPicker.inputView = dayPicker
+        
+        let timeToolbar = UIToolbar().TimetoolbarPicker(select: #selector(timeDismissPicker))
+        self.textFieldTimeDayPicker.inputAccessoryView = timeToolbar
+    }
+    func showNightPicker() {
+        nightPicker.datePickerMode = .time
+        nightPicker.preferredDatePickerStyle = .wheels
+        self.textFieldTimeNightPicker.inputView = nightPicker
+        
+        let timeToolbar = UIToolbar().TimetoolbarPicker(select: #selector(timeDismissPicker))
+        self.textFieldTimeNightPicker.inputAccessoryView = timeToolbar
     }
     
     @objc func dateDismissPicker() {
@@ -56,7 +78,9 @@ class PlusViewController: UIViewController {
     }
     
     @objc func timeDismissPicker() {
-        self.showTime(timePicker: timePicker)
+        self.showMorning(timePicker: morningPicker)
+        self.showDay(timePicker: dayPicker)
+        self.showNight(timePicker: nightPicker)
         view.endEditing(true)
         
     }
@@ -68,22 +92,38 @@ class PlusViewController: UIViewController {
         
     }
     
-    @objc func showTime(timePicker: UIDatePicker) {
+    @objc func showMorning(timePicker: UIDatePicker) {
         let timeFormatter = DateFormatter()
         timeFormatter.dateFormat = "HH시 mm분"
-        self.textFieldTimePicker.text = timeFormatter.string(from: timePicker.date)
+        self.textFieldTimeMorningPicker.text = timeFormatter.string(from: morningPicker.date)
+    }
+    @objc func showDay(timePicker: UIDatePicker) {
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "HH시 mm분"
+        self.textFieldTimeDayPicker.text = timeFormatter.string(from: dayPicker.date)
+    }
+    @objc func showNight(timePicker: UIDatePicker) {
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "HH시 mm분"
+        self.textFieldTimeNightPicker.text = timeFormatter.string(from: nightPicker.date)
     }
     
     @IBAction func addBtn(_ sender: UIButton) {
         
+        guard let title = nameTextField.text, !title.isEmpty else { return }
+        let date = textFieldDatePicker.text ?? ""
+        let morningTime = textFieldTimeMorningPicker.text ?? ""
+        let dayTime = textFieldTimeDayPicker.text ?? ""
+        let nightTime = textFieldTimeNightPicker.text ?? ""
         
+        let newMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime)
         
+        medicineDataManager.medicineDataArray.append(newMedicine)
         
+        dismiss(animated: true)
         
-        
-        
-        
-        
+        // 새로운 약 정보가 추가되었으므로, 테이블 뷰를 다시 로드
+        viewController.medicineTableView.reloadData()
     }
     
     @IBAction func cancelBtn(_ sender: UIButton) {

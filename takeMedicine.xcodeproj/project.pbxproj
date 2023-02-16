@@ -16,6 +16,7 @@
 		7642D666299D1F2B005A5101 /* Fakery in Frameworks */ = {isa = PBXBuildFile; productRef = 7642D665299D1F2B005A5101 /* Fakery */; };
 		7655E0232994C14400DECB16 /* MedicineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7655E0222994C14400DECB16 /* MedicineTableViewCell.swift */; };
 		7697F40329937CF80092D3F9 /* MedicineData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7697F40229937CF80092D3F9 /* MedicineData.swift */; };
+		76A98845299E007500727AD5 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A98844299E007500727AD5 /* DataManager.swift */; };
 		76CAF7202994B7640039DE1B /* PlusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CAF71F2994B7640039DE1B /* PlusViewController.swift */; };
 		76CAF7222994BDB00039DE1B /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CAF7212994BDB00039DE1B /* EditViewController.swift */; };
 /* End PBXBuildFile section */
@@ -31,6 +32,7 @@
 		762EFE2729937290009E55D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7655E0222994C14400DECB16 /* MedicineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineTableViewCell.swift; sourceTree = "<group>"; };
 		7697F40229937CF80092D3F9 /* MedicineData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineData.swift; sourceTree = "<group>"; };
+		76A98844299E007500727AD5 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		76CAF71F2994B7640039DE1B /* PlusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusViewController.swift; sourceTree = "<group>"; };
 		76CAF7212994BDB00039DE1B /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,6 +74,7 @@
 				76CAF71F2994B7640039DE1B /* PlusViewController.swift */,
 				76CAF7212994BDB00039DE1B /* EditViewController.swift */,
 				7697F40229937CF80092D3F9 /* MedicineData.swift */,
+				76A98844299E007500727AD5 /* DataManager.swift */,
 				762EFE1F2993728F009E55D1 /* Main.storyboard */,
 				76CAF71E2993944C0039DE1B /* TableCell */,
 				762EFE2229937290009E55D1 /* Assets.xcassets */,
@@ -167,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7697F40329937CF80092D3F9 /* MedicineData.swift in Sources */,
+				76A98845299E007500727AD5 /* DataManager.swift in Sources */,
 				76CAF7202994B7640039DE1B /* PlusViewController.swift in Sources */,
 				7655E0232994C14400DECB16 /* MedicineTableViewCell.swift in Sources */,
 				762EFE1E2993728F009E55D1 /* ViewController.swift in Sources */,
@@ -326,6 +330,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -356,6 +361,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
