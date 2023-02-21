@@ -8,13 +8,42 @@
 import Foundation
 import Fakery
 
-struct MedicineData {
+protocol MedicineDelegate: AnyObject {
+    func addNewMedicine(_ medicineData: MedicineData)
+    func update(index: Int, _ medicineData: MedicineData)
+}
 
+struct MedicineData {
+    
+    static var number: Int = 0
+
+    let medicineId: Int
+    
     let title: String
     let date: String
     let morningTime: String
     let dayTime: String?
     let nightTime: String?
+    
+    /// medicineData 생성자
+    /// - Parameters:
+    ///   - title: 약 이름
+    ///   - date: 복용 기간
+    ///   - morningTime: 복용 시간1
+    ///   - dayTime: 복용 시간2
+    ///   - nightTime: 복용 시간3
+    init(title: String, date: String, morningTime: String, dayTime: String?, nightTime: String?) {
+//        
+        self.medicineId = MedicineData.number == 0 ? 0 : MedicineData.number
+        
+        self.title = title
+        self.date = date
+        self.morningTime = morningTime
+        self.dayTime = dayTime
+        self.nightTime = nightTime
+        
+        MedicineData.number += 1
+    }
     
 }
 

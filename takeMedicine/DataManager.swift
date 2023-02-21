@@ -18,8 +18,16 @@ class DataManager {
         ]
     }
     
+    func makeNewMedicine(_ medicineData: MedicineData) {
+        medicineDataArray.append(medicineData)
+    }
+    
     func getMedicineData() -> [MedicineData] {
         return medicineDataArray
+    }
+    
+    func updateMedicine(index: Int, _ medicineData: MedicineData) {
+        medicineDataArray[index] = medicineData
     }
     
 }

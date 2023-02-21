@@ -8,7 +8,7 @@
 import UIKit
 
 class MedicineTableViewCell: UITableViewCell {
-    
+
     static let reuseId = "medicineCell"
 
     @IBOutlet weak var medicineName: UILabel!
@@ -17,7 +17,17 @@ class MedicineTableViewCell: UITableViewCell {
     @IBOutlet weak var medicineDayTime: UILabel!
     @IBOutlet weak var medicineNightTime: UILabel!
 
-    
+    var medicineData: MedicineData? {
+        // 값이 변화할 때마다 자동으로 업데이트가 되도록 구현하는 didSet(속성 감시자)
+        didSet{
+            guard let medicineData = medicineData else { return }
+            medicineName.text = medicineData.title
+            medicineDate.text = medicineData.date
+            medicineMorningTime.text = medicineData.morningTime
+            medicineDayTime.text = medicineData.dayTime
+            medicineNightTime.text = medicineData.nightTime
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

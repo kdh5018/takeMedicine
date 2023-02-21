@@ -15,8 +15,11 @@ class PlusViewController: UIViewController {
     @IBOutlet weak var textFieldTimeDayPicker: UITextField!
     @IBOutlet weak var textFieldTimeNightPicker: UITextField!
     
+    
     var medicineDataManager = DataManager()
     var viewController = ViewController()
+    var delegate: MedicineDelegate?
+    var medicineData: MedicineData?
     
     let datePicker = UIDatePicker()
     let morningPicker = UIDatePicker()
@@ -36,6 +39,7 @@ class PlusViewController: UIViewController {
     }
     
     
+    /// 복용 기간 날짜 설정을 위한 데이트피커
     func showDatePicker() {
         //        let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
@@ -47,6 +51,7 @@ class PlusViewController: UIViewController {
         self.textFieldDatePicker.inputAccessoryView = dateToolbar
     }
     
+    /// 복용 시간 설정을 위한 데이트피커
     func showMorningPicker() {
         morningPicker.datePickerMode = .time
         morningPicker.preferredDatePickerStyle = .wheels
@@ -87,9 +92,8 @@ class PlusViewController: UIViewController {
     
     @objc func showDate(datePicker: UIDatePicker) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy년 MM월 dd일까지"
+        dateFormatter.dateFormat = "M월 dd일까지"
         self.textFieldDatePicker.text = dateFormatter.string(from: datePicker.date)
-        
     }
     
     @objc func showMorning(timePicker: UIDatePicker) {
@@ -108,9 +112,16 @@ class PlusViewController: UIViewController {
         self.textFieldTimeNightPicker.text = timeFormatter.string(from: nightPicker.date)
     }
     
+    @IBAction func addTimeBtn(_ sender: UIButton) {
+        
+        
+    }
+    
+    
     @IBAction func addBtn(_ sender: UIButton) {
         
-        guard let title = nameTextField.text, !title.isEmpty else { return }
+        // 입력한 약 종류가 없다면(새로운 약 추가)
+        let title = nameTextField.text ?? ""
         let date = textFieldDatePicker.text ?? ""
         let morningTime = textFieldTimeMorningPicker.text ?? ""
         let dayTime = textFieldTimeDayPicker.text ?? ""
@@ -118,12 +129,12 @@ class PlusViewController: UIViewController {
         
         let newMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime)
         
-        medicineDataManager.medicineDataArray.append(newMedicine)
+        delegate?.addNewMedicine(newMedicine)
         
-        dismiss(animated: true)
+        self.dismiss(animated: true)
         
-        // 새로운 약 정보가 추가되었으므로, 테이블 뷰를 다시 로드
-        viewController.medicineTableView.reloadData()
+//        self.navigationController?.popViewController(animated: true)
+        
     }
     
     @IBAction func cancelBtn(_ sender: UIButton) {
