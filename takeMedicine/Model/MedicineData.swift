@@ -16,7 +16,7 @@ protocol MedicineDelegate: AnyObject {
 struct MedicineData {
     
     static var number: Int = 0
-
+    
     let medicineId: Int
     
     let title: String
@@ -33,7 +33,7 @@ struct MedicineData {
     ///   - dayTime: 복용 시간2
     ///   - nightTime: 복용 시간3
     init(title: String, date: String, morningTime: String, dayTime: String?, nightTime: String?) {
-//        
+        //        
         self.medicineId = MedicineData.number == 0 ? 0 : MedicineData.number
         
         self.title = title
@@ -78,7 +78,7 @@ struct MedicineData {
 //        }
 //        return results
 //    }
-    
+
 //    static func getDummyWithFakery() -> Self {
 //        let faker = Faker(locale: "ko")
 //

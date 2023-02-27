@@ -11,7 +11,6 @@ class ViewController: UIViewController {
     
     var medicineDataManager = DataManager()
     
-    
     @IBOutlet weak var medicineTableView: UITableView!
     
     
@@ -73,7 +72,16 @@ extension ViewController : UITableViewDataSource {
 extension ViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 테이블셀 누르면 수정하기/삭제하기 버튼 보이고 숨기고 기능 넣기
+        // 현재 선택된 셀의 높이 가져오기
+        let currentHeight = tableView.cellForRow(at: indexPath)?.frame.size.height ?? 0
         
+        // 새로운 높이 계산하기
+        let newHeight = currentHeight == 200 ? 100 : 200
+        
+        // 애니메이션 효과 적용하여 높이 변경하기
+        UIView.animate(withDuration: 0.3) {
+            tableView.cellForRow(at: indexPath)?.frame.size.height = CGFloat(newHeight)
+        }
     }
 }
 

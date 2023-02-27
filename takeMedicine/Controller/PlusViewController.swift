@@ -15,6 +15,8 @@ class PlusViewController: UIViewController {
     @IBOutlet weak var textFieldTimeDayPicker: UITextField!
     @IBOutlet weak var textFieldTimeNightPicker: UITextField!
     
+    @IBOutlet weak var dayDelButton: UIButton!
+    @IBOutlet weak var nightDelButton: UIButton!
     
     var medicineDataManager = DataManager()
     var viewController = ViewController()
@@ -22,29 +24,30 @@ class PlusViewController: UIViewController {
     var medicineData: MedicineData?
     
     let datePicker = UIDatePicker()
-    let morningPicker = UIDatePicker()
-    let dayPicker = UIDatePicker()
-    let nightPicker = UIDatePicker()
-    
+    let timePicker = UIDatePicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         nameTextField.delegate = self
         
-        self.showDatePicker()
-        self.showMorningPicker()
-        self.hideKeyboardWhenTappedAround()
+        textFieldTimeDayPicker.isHidden = true
+        dayDelButton.isHidden = true
+        textFieldTimeNightPicker.isHidden = true
+        nightDelButton.isHidden = true
         
+        self.showDatePicker()
+        self.showTimePicker()
+        
+        self.hideKeyboardWhenTappedAround()
     }
     
     
-    /// 복용 기간 날짜 설정을 위한 데이트피커
+    /// 복용 기간 설정을 위한 데이트피커
     func showDatePicker() {
-        //        let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .inline
-        //        datePicker.addTarget(self, action: #selector(showDate(datePicker:)), for: .valueChanged)
+        
         self.textFieldDatePicker.inputView = datePicker
         
         let dateToolbar = UIToolbar().dateToolbarPicker(select: #selector(dateDismissPicker))
@@ -52,42 +55,21 @@ class PlusViewController: UIViewController {
     }
     
     /// 복용 시간 설정을 위한 데이트피커
-    func showMorningPicker() {
-        morningPicker.datePickerMode = .time
-        morningPicker.preferredDatePickerStyle = .wheels
-        self.textFieldTimeMorningPicker.inputView = morningPicker
+    private func showTimePicker() {
+        timePicker.datePickerMode = .time
+        timePicker.preferredDatePickerStyle = .wheels
+        timePicker.minimumDate = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())
+        timePicker.maximumDate = Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: Date())
+        timePicker.addTarget(self, action: #selector(showTime(timePicker:)), for: .valueChanged)
+        
+        textFieldTimeMorningPicker.inputView = timePicker
+        textFieldTimeDayPicker.inputView = timePicker
+        textFieldTimeNightPicker.inputView = timePicker
         
         let timeToolbar = UIToolbar().TimetoolbarPicker(select: #selector(timeDismissPicker))
         self.textFieldTimeMorningPicker.inputAccessoryView = timeToolbar
-    }
-    func showDayPicker() {
-        dayPicker.datePickerMode = .time
-        dayPicker.preferredDatePickerStyle = .wheels
-        self.textFieldTimeDayPicker.inputView = dayPicker
-        
-        let timeToolbar = UIToolbar().TimetoolbarPicker(select: #selector(timeDismissPicker))
         self.textFieldTimeDayPicker.inputAccessoryView = timeToolbar
-    }
-    func showNightPicker() {
-        nightPicker.datePickerMode = .time
-        nightPicker.preferredDatePickerStyle = .wheels
-        self.textFieldTimeNightPicker.inputView = nightPicker
-        
-        let timeToolbar = UIToolbar().TimetoolbarPicker(select: #selector(timeDismissPicker))
         self.textFieldTimeNightPicker.inputAccessoryView = timeToolbar
-    }
-    
-    @objc func dateDismissPicker() {
-        self.showDate(datePicker: datePicker)
-        view.endEditing(true)
-    }
-    
-    @objc func timeDismissPicker() {
-        self.showMorning(timePicker: morningPicker)
-        self.showDay(timePicker: dayPicker)
-        self.showNight(timePicker: nightPicker)
-        view.endEditing(true)
-        
     }
     
     @objc func showDate(datePicker: UIDatePicker) {
@@ -96,31 +78,63 @@ class PlusViewController: UIViewController {
         self.textFieldDatePicker.text = dateFormatter.string(from: datePicker.date)
     }
     
-    @objc func showMorning(timePicker: UIDatePicker) {
-        let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = "HH시 mm분"
-        self.textFieldTimeMorningPicker.text = timeFormatter.string(from: morningPicker.date)
-    }
-    @objc func showDay(timePicker: UIDatePicker) {
-        let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = "HH시 mm분"
-        self.textFieldTimeDayPicker.text = timeFormatter.string(from: dayPicker.date)
-    }
-    @objc func showNight(timePicker: UIDatePicker) {
-        let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = "HH시 mm분"
-        self.textFieldTimeNightPicker.text = timeFormatter.string(from: nightPicker.date)
+    @objc func showTime(timePicker: UIDatePicker) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "H시 mm분"
+        let selectedTime = formatter.string(from: timePicker.date)
+        
+        if textFieldTimeMorningPicker.isEditing {
+            textFieldTimeMorningPicker.text = selectedTime
+        } else if textFieldTimeDayPicker.isEditing {
+            textFieldTimeDayPicker.text = selectedTime
+        } else if textFieldTimeNightPicker.isEditing {
+            textFieldTimeNightPicker.text = selectedTime
+        }
     }
     
+    @objc func dateDismissPicker() {
+        self.showDate(datePicker: datePicker)
+        view.endEditing(true)
+    }
+    
+    @objc func timeDismissPicker() {
+        self.showTime(timePicker: timePicker)
+        view.endEditing(true)
+    }
+    
+    /// 시간 추가하기 버튼 클릭 시 복용 시간 추가 기능 구현
+    var clickCount = 0
+    
     @IBAction func addTimeBtn(_ sender: UIButton) {
-        
-        
+        clickCount += 1
+        if clickCount == 1 {
+            textFieldTimeDayPicker.isHidden = false
+            dayDelButton.isHidden = false
+        } else {
+            textFieldTimeNightPicker.isHidden = false
+            nightDelButton.isHidden = false
+        }
+    }
+    
+    @IBAction func dayDelBtn(_ sender: UIButton) {
+        textFieldTimeDayPicker.isHidden = true
+        dayDelButton.isHidden = true
+        clickCount = 0
+        if !textFieldTimeNightPicker.isHidden {
+            dayDelButton.isUserInteractionEnabled = false
+        }
+    }
+    
+    @IBAction func nightDelBtn(_ sender: UIButton) {
+        textFieldTimeNightPicker.isHidden = true
+        nightDelButton.isHidden = true
+        clickCount = 1
     }
     
     
     @IBAction func addBtn(_ sender: UIButton) {
         
-        // 입력한 약 종류가 없다면(새로운 약 추가)
+        // 새로운 약 추가
         let title = nameTextField.text ?? ""
         let date = textFieldDatePicker.text ?? ""
         let morningTime = textFieldTimeMorningPicker.text ?? ""
@@ -132,8 +146,6 @@ class PlusViewController: UIViewController {
         delegate?.addNewMedicine(newMedicine)
         
         self.dismiss(animated: true)
-        
-//        self.navigationController?.popViewController(animated: true)
         
     }
     

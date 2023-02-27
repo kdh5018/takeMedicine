@@ -70,13 +70,9 @@
 			children = (
 				762EFE192993728F009E55D1 /* AppDelegate.swift */,
 				762EFE1B2993728F009E55D1 /* SceneDelegate.swift */,
-				762EFE1D2993728F009E55D1 /* ViewController.swift */,
-				76CAF71F2994B7640039DE1B /* PlusViewController.swift */,
-				76CAF7212994BDB00039DE1B /* EditViewController.swift */,
-				7697F40229937CF80092D3F9 /* MedicineData.swift */,
-				76A98844299E007500727AD5 /* DataManager.swift */,
-				762EFE1F2993728F009E55D1 /* Main.storyboard */,
-				76CAF71E2993944C0039DE1B /* TableCell */,
+				76D8D16B29AC79AA00F8132A /* Model */,
+				76D8D16C29AC79B200F8132A /* View */,
+				76D8D16D29AC79BD00F8132A /* Controller */,
 				762EFE2229937290009E55D1 /* Assets.xcassets */,
 				762EFE2429937290009E55D1 /* LaunchScreen.storyboard */,
 				762EFE2729937290009E55D1 /* Info.plist */,
@@ -84,12 +80,32 @@
 			path = takeMedicine;
 			sourceTree = "<group>";
 		};
-		76CAF71E2993944C0039DE1B /* TableCell */ = {
+		76D8D16B29AC79AA00F8132A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				76A98844299E007500727AD5 /* DataManager.swift */,
+				7697F40229937CF80092D3F9 /* MedicineData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		76D8D16C29AC79B200F8132A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				762EFE1F2993728F009E55D1 /* Main.storyboard */,
 				7655E0222994C14400DECB16 /* MedicineTableViewCell.swift */,
 			);
-			path = TableCell;
+			path = View;
+			sourceTree = "<group>";
+		};
+		76D8D16D29AC79BD00F8132A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				762EFE1D2993728F009E55D1 /* ViewController.swift */,
+				76CAF71F2994B7640039DE1B /* PlusViewController.swift */,
+				76CAF7212994BDB00039DE1B /* EditViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -330,7 +346,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -361,7 +377,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
