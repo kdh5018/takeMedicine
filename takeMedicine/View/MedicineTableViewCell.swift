@@ -17,6 +17,10 @@ class MedicineTableViewCell: UITableViewCell {
     @IBOutlet weak var medicineDayTime: UILabel!
     @IBOutlet weak var medicineNightTime: UILabel!
     
+    // 테이블 뷰 셀에 있는 수정,삭제 버튼 스택뷰
+    @IBOutlet weak var buttonStackView: UIStackView!
+    
+    
     var medicineData: MedicineData? {
         // 값이 변화할 때마다 자동으로 업데이트가 되도록 구현하는 didSet(속성 감시자)
         didSet{
@@ -27,6 +31,11 @@ class MedicineTableViewCell: UITableViewCell {
             medicineDayTime.text = medicineData.dayTime
             medicineNightTime.text = medicineData.nightTime
         }
+    }
+    
+    // 수정, 삭제 버튼 스택뷰 숨기기 함수
+    func configureCell(isSelected: Bool){
+        buttonStackView.isHidden = !isSelected
     }
     
     override func awakeFromNib() {

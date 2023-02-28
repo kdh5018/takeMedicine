@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var medicineTableView: UITableView!
     
+    var selectedRows: Set<Int> = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +41,12 @@ class ViewController: UIViewController {
         }
     }
     
+    // 삭제버튼
+    @IBAction func delBtn(_ sender: UIButton) {
+        guard let indexPath = (sender.superview?.superview as? UIView)?.indexPathInTableView(medicineTableView) else { return }
+        medicineDataManager.medicineDataArray.remove(at: indexPath.row)
+        medicineTableView.reloadData()
+    }
 }
 
 extension ViewController : UITableViewDataSource {
@@ -64,6 +72,10 @@ extension ViewController : UITableViewDataSource {
         cell.medicineDayTime?.text = cellData.dayTime
         cell.medicineNightTime?.text = cellData.nightTime
         
+        // 테이블뷰셀 on/off를 위해 선택 여부 가져옴
+        let isSelected = selectedRows.contains(cellData.medicineId)
+        cell.configureCell(isSelected: isSelected)
+        
         return cell
         
     }
@@ -71,17 +83,19 @@ extension ViewController : UITableViewDataSource {
 
 extension ViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // 테이블셀 누르면 수정하기/삭제하기 버튼 보이고 숨기고 기능 넣기
-        // 현재 선택된 셀의 높이 가져오기
-        let currentHeight = tableView.cellForRow(at: indexPath)?.frame.size.height ?? 0
         
-        // 새로운 높이 계산하기
-        let newHeight = currentHeight == 200 ? 100 : 200
+        let dataList = medicineDataManager.getMedicineData()
         
-        // 애니메이션 효과 적용하여 높이 변경하기
-        UIView.animate(withDuration: 0.3) {
-            tableView.cellForRow(at: indexPath)?.frame.size.height = CGFloat(newHeight)
+        let selectedData = dataList[indexPath.row]
+        
+        if selectedRows.contains(selectedData.medicineId) {
+            selectedRows.remove(selectedData.medicineId)
+        } else {
+            selectedRows.insert(selectedData.medicineId)
         }
+        
+        // reloadRow를
+        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 }
 
@@ -93,5 +107,17 @@ extension ViewController: MedicineDelegate {
     func update(index: Int, _ medicineData: MedicineData) {
         medicineDataManager.updateMedicine(index: index, medicineData)
         medicineTableView.reloadData()
+    }
+}
+
+// 주어진 뷰에서 시작하여 해당 뷰의 superview를 차례대로 올라가며 UITableViewCell을 찾고, UITableViewCell을 찾으면 해당 셀의 indexPath를 UITableView의 indexPath(for:) 메소드를 사용하여 반환
+extension UIView {
+    func indexPathInTableView(_ tableView: UITableView) -> IndexPath? {
+        var view: UIView? = self
+        while view != nil && !(view is UITableViewCell) {
+            view = view?.superview
+        }
+        guard let cell = view as? UITableViewCell else { return nil }
+        return tableView.indexPath(for: cell)
     }
 }

@@ -26,6 +26,9 @@ class PlusViewController: UIViewController {
     let datePicker = UIDatePicker()
     let timePicker = UIDatePicker()
     
+    /// 시간 추가하기 버튼 클릭 시 복용 시간 추가 기능 구현
+    var clickCount = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -102,9 +105,6 @@ class PlusViewController: UIViewController {
         view.endEditing(true)
     }
     
-    /// 시간 추가하기 버튼 클릭 시 복용 시간 추가 기능 구현
-    var clickCount = 0
-    
     @IBAction func addTimeBtn(_ sender: UIButton) {
         clickCount += 1
         if clickCount == 1 {
@@ -120,9 +120,13 @@ class PlusViewController: UIViewController {
         textFieldTimeDayPicker.isHidden = true
         dayDelButton.isHidden = true
         clickCount = 0
-        if !textFieldTimeNightPicker.isHidden {
-            dayDelButton.isUserInteractionEnabled = false
-        }
+//        if textFieldTimeNightPicker.isHidden == false {
+//            dayDelButton.isEnabled = false
+//        }
+//        while !textFieldTimeNightPicker.isHidden {
+//            dayDelButton.isEnabled = false
+//        }
+
     }
     
     @IBAction func nightDelBtn(_ sender: UIButton) {
@@ -131,12 +135,16 @@ class PlusViewController: UIViewController {
         clickCount = 1
     }
     
-    
     @IBAction func addBtn(_ sender: UIButton) {
-        
         // 새로운 약 추가
         let title = nameTextField.text ?? ""
-        let date = textFieldDatePicker.text ?? ""
+        
+        // 복용 날짜 비어있으면 매일 출력 아니면 입력 날짜 출력
+        guard let dateInput = textFieldDatePicker.text else {
+            return
+        }
+        
+        let date = dateInput.isEmpty ? "매일" : dateInput
         let morningTime = textFieldTimeMorningPicker.text ?? ""
         let dayTime = textFieldTimeDayPicker.text ?? ""
         let nightTime = textFieldTimeNightPicker.text ?? ""
@@ -144,6 +152,7 @@ class PlusViewController: UIViewController {
         let newMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime)
         
         delegate?.addNewMedicine(newMedicine)
+        
         
         self.dismiss(animated: true)
         
