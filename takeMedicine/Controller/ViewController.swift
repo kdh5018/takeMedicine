@@ -32,7 +32,6 @@ class ViewController: UIViewController {
         //        self.medicineDataList = MedicineData.getDummies()
     }
     
-    
     // 서로의 메모리를 연결하기 위해 반드시 필요함⭐️
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)

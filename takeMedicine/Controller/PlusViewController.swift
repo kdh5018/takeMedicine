@@ -42,6 +42,7 @@ class PlusViewController: UIViewController {
         self.showDatePicker()
         self.showTimePicker()
         
+        
         self.hideKeyboardWhenTappedAround()
     }
     
