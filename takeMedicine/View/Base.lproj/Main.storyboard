@@ -209,8 +209,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="시간 추가하기"/>
                                                 <connections>
-                                                    <action selector="addTimeBtn:" destination="moY-pL-aOa" eventType="touchUpInside" id="Elr-do-R04"/>
-                                                    <action selector="editAddTimeBtn:" destination="AYh-rf-UmZ" eventType="touchUpInside" id="gLm-8Z-pwF"/>
+                                                    <action selector="editTimeAdded:" destination="AYh-rf-UmZ" eventType="touchUpInside" id="fVn-ro-SVp"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -283,8 +282,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="수정하기"/>
                                                 <connections>
-                                                    <action selector="addBtn:" destination="moY-pL-aOa" eventType="touchUpInside" id="oXv-k0-4Ft"/>
-                                                    <action selector="editBtn:" destination="AYh-rf-UmZ" eventType="touchUpInside" id="iAA-DQ-Ug7"/>
+                                                    <action selector="btnEdited:" destination="AYh-rf-UmZ" eventType="touchUpInside" id="R49-Th-xaK"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VGs-HU-VD1">
@@ -292,7 +290,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="취소하기"/>
                                                 <connections>
-                                                    <action selector="editCancelBtn:" destination="AYh-rf-UmZ" eventType="touchUpInside" id="MbU-Wf-i0U"/>
+                                                    <action selector="editCanceled:" destination="AYh-rf-UmZ" eventType="touchUpInside" id="0J3-h0-TtC"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -394,7 +392,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="시간 추가하기"/>
                                         <connections>
-                                            <action selector="addTimeBtn:" destination="moY-pL-aOa" eventType="touchUpInside" id="e9A-S2-97W"/>
+                                            <action selector="timeAdded:" destination="moY-pL-aOa" eventType="touchUpInside" id="dZh-5K-oHo"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -467,7 +465,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="추가하기"/>
                                         <connections>
-                                            <action selector="addBtn:" destination="moY-pL-aOa" eventType="touchUpInside" id="x62-fX-QiI"/>
+                                            <action selector="btnAdded:" destination="moY-pL-aOa" eventType="touchUpInside" id="UyW-F1-zOM"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TQB-do-pTC">
@@ -475,7 +473,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="취소하기"/>
                                         <connections>
-                                            <action selector="cancelBtn:" destination="moY-pL-aOa" eventType="touchUpInside" id="dO1-pY-dmV"/>
+                                            <action selector="btnCanceled:" destination="moY-pL-aOa" eventType="touchUpInside" id="IqD-7s-b8Q"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -499,7 +497,7 @@
                                 <rect key="frame" x="320" y="412" width="40" height="32"/>
                                 <buttonConfiguration key="configuration" style="plain"/>
                                 <connections>
-                                    <action selector="nightDelBtn:" destination="moY-pL-aOa" eventType="touchUpInside" id="Soo-LX-Msh"/>
+                                    <action selector="nightDelBtn:" destination="moY-pL-aOa" eventType="touchUpInside" id="IK9-5I-t4K"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="emy-2k-Ajj">

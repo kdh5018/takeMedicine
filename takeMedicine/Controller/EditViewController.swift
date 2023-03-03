@@ -23,20 +23,19 @@ class EditViewController: UIViewController {
     var VC = ViewController()
     var editDelegate: MedicineDelegate?
     var editMedicineData: MedicineData?
+    var editDataManager: DataManager?
     
     let editDatePicker = UIDatePicker()
     let editTimePicker = UIDatePicker()
     
     /// 시간 추가하기 버튼 클릭 시 복용 시간 추가 기능 구현
     var clickCount = 0
-    
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         editNameTextField.delegate = self
+        
         
         editDayTimeTextField.isHidden = true
         editDayDelButton.isHidden = true
@@ -108,7 +107,7 @@ class EditViewController: UIViewController {
         view.endEditing(true)
     }
     
-    @IBAction func editAddTimeBtn(_ sender: UIButton) {
+    @IBAction func editTimeAdded(_ sender: UIButton) {
         clickCount += 1
         if clickCount == 1 {
             editDayTimeTextField.isHidden = false
@@ -132,7 +131,7 @@ class EditViewController: UIViewController {
         clickCount = 1
     }
     
-    @IBAction func editBtn(_ sender: UIButton) {
+    @IBAction func btnEdited(_ sender: UIButton) {
         
         let medicineId = MedicineData.number
         let title = editNameTextField.text ?? ""
@@ -152,7 +151,7 @@ class EditViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    @IBAction func editCancelBtn(_ sender: UIButton) {
+    @IBAction func editCanceled(_ sender: UIButton) {
         dismiss(animated: true)
     }
     

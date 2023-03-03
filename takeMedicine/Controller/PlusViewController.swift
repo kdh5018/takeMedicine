@@ -18,6 +18,8 @@ class PlusViewController: UIViewController {
     @IBOutlet weak var dayDelButton: UIButton!
     @IBOutlet weak var nightDelButton: UIButton!
     
+    @IBOutlet weak var inputVerticalStackView: UIStackView!
+
     var medicineDataManager = DataManager()
     var viewController = ViewController()
     var delegate: MedicineDelegate?
@@ -41,7 +43,6 @@ class PlusViewController: UIViewController {
         
         self.showDatePicker()
         self.showTimePicker()
-        
         
         self.hideKeyboardWhenTappedAround()
     }
@@ -106,7 +107,7 @@ class PlusViewController: UIViewController {
         view.endEditing(true)
     }
     
-    @IBAction func addTimeBtn(_ sender: UIButton) {
+    @IBAction func timeAdded(_ sender: UIButton) {
         clickCount += 1
         if clickCount == 1 {
             textFieldTimeDayPicker.isHidden = false
@@ -121,22 +122,20 @@ class PlusViewController: UIViewController {
         textFieldTimeDayPicker.isHidden = true
         dayDelButton.isHidden = true
         clickCount = 0
-//        if textFieldTimeNightPicker.isHidden == false {
-//            dayDelButton.isEnabled = false
-//        }
-//        while !textFieldTimeNightPicker.isHidden {
-//            dayDelButton.isEnabled = false
-//        }
-
     }
     
     @IBAction func nightDelBtn(_ sender: UIButton) {
         textFieldTimeNightPicker.isHidden = true
         nightDelButton.isHidden = true
-        clickCount = 1
+        // 2번째 시간 넣기 있으면 클릭카운트 1 , 2번째 시간 넣기 없으면 클릭카운트 0
+        if textFieldTimeDayPicker.isHidden == false {
+            clickCount = 1
+        } else {
+            clickCount = 0
+        }
     }
     
-    @IBAction func addBtn(_ sender: UIButton) {
+    @IBAction func btnAdded(_ sender: UIButton) {
         // 새로운 약 추가
         let title = nameTextField.text ?? ""
         
@@ -159,9 +158,10 @@ class PlusViewController: UIViewController {
         
     }
     
-    @IBAction func cancelBtn(_ sender: UIButton) {
+    @IBAction func btnCanceled(_ sender: UIButton) {
         dismiss(animated: true)
     }
+    
     
 }
 

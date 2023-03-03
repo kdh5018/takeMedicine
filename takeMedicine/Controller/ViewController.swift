@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     var selectedRows: Set<Int> = []
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         medicineTableView.dataSource = self
