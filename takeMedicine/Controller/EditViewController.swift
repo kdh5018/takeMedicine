@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class EditViewController: UIViewController {
     
     
@@ -19,6 +20,8 @@ class EditViewController: UIViewController {
     @IBOutlet weak var editDayDelButton: UIButton!
     @IBOutlet weak var editNightDelButton: UIButton!
     
+    
+    
     var editMedicineDataManager = DataManager()
     var VC = ViewController()
     var editDelegate: MedicineDelegate?
@@ -30,12 +33,13 @@ class EditViewController: UIViewController {
     
     /// 시간 추가하기 버튼 클릭 시 복용 시간 추가 기능 구현
     var clickCount = 0
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         editNameTextField.delegate = self
         
+
         
         editDayTimeTextField.isHidden = true
         editDayDelButton.isHidden = true
@@ -44,7 +48,7 @@ class EditViewController: UIViewController {
         
         self.showDatePicker()
         self.showTimePicker()
-    
+        
         self.editHideKeyboardWhenTappedAround()
     }
     
@@ -131,24 +135,9 @@ class EditViewController: UIViewController {
         clickCount = 1
     }
     
+    
     @IBAction func btnEdited(_ sender: UIButton) {
         
-        let medicineId = MedicineData.number
-        let title = editNameTextField.text ?? ""
-        
-        // 복용 날짜 비어있으면 매일 출력 아니면 입력 날짜 출력
-        guard let dateInput = editDateTextField.text else {
-            return
-        }
-        
-        let date = dateInput.isEmpty ? "매일" : dateInput
-        let morningTime = editMorningTimeTextField.text ?? ""
-        let dayTime = editDayTimeTextField.text ?? ""
-        let nightTime = editNightTimeTextField.text ?? ""
-        
-        editDelegate?.update(index: medicineId, editMedicineData!)
-        
-        dismiss(animated: true)
     }
     
     @IBAction func editCanceled(_ sender: UIButton) {

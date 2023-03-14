@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    
     var medicineDataManager = DataManager()
     
     @IBOutlet weak var medicineTableView: UITableView!
@@ -17,7 +18,7 @@ class ViewController: UIViewController {
     
     
     
-    override func viewDidLoad() {
+    override func viewDidLoad() { 
         super.viewDidLoad()
         medicineTableView.dataSource = self
         medicineTableView.delegate = self
@@ -39,8 +40,10 @@ class ViewController: UIViewController {
         if let destinationVC = segue.destination as? PlusViewController {
             destinationVC.delegate = self
         }
-    }
-    
+        if let destinationVC = segue.destination as? EditViewController {
+            destinationVC.editDelegate = self
+        }
+    }    
     // 삭제버튼
     @IBAction func delBtn(_ sender: UIButton) {
         guard let indexPath = (sender.superview?.superview as? UIView)?.indexPathInTableView(medicineTableView) else { return }
@@ -72,9 +75,13 @@ extension ViewController : UITableViewDataSource {
         cell.medicineDayTime?.text = cellData.dayTime
         cell.medicineNightTime?.text = cellData.nightTime
         
+        
+        
+        
         // 테이블뷰셀 on/off를 위해 선택 여부 가져옴
         let isSelected = selectedRows.contains(cellData.medicineId)
         cell.configureCell(isSelected: isSelected)
+        
         
         return cell
         
@@ -93,6 +100,10 @@ extension ViewController : UITableViewDelegate {
         } else {
             selectedRows.insert(selectedData.medicineId)
         }
+        
+        
+        print("Selected cell at index: \(indexPath.row)")
+        
         
         // reloadRow를
         tableView.reloadRows(at: [indexPath], with: .automatic)
