@@ -7,6 +7,9 @@
 
 import UIKit
 
+protocol UpdateDelegate: AnyObject {
+    func update(index: Int, _ medicineData: MedicineData)
+}
 
 class EditViewController: UIViewController {
     
@@ -24,7 +27,6 @@ class EditViewController: UIViewController {
     
     var editMedicineDataManager = DataManager()
     var VC = ViewController()
-    var editDelegate: MedicineDelegate?
     var editMedicineData: MedicineData?
     var editDataManager: DataManager?
     
@@ -137,6 +139,8 @@ class EditViewController: UIViewController {
     
     
     @IBAction func btnEdited(_ sender: UIButton) {
+        VC.editedValues()
+        self.dismiss(animated: true)
         
     }
     
@@ -148,8 +152,6 @@ class EditViewController: UIViewController {
 
 extension EditViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedData = editMedicineDataManager.medicineDataArray[indexPath.row]
-        
         
     }
 }

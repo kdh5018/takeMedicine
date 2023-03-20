@@ -8,11 +8,6 @@
 import Foundation
 import Fakery
 
-protocol MedicineDelegate: AnyObject {
-    func addNewMedicine(_ medicineData: MedicineData)
-    func update(index: Int, _ medicineData: MedicineData)
-}
-
 struct MedicineData {
     
     static var number: Int = 0

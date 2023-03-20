@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol PlusDelegate: AnyObject {
+    func addNewMedicine(_ medicineData: MedicineData)
+}
+
 class PlusViewController: UIViewController {
     
     @IBOutlet weak var nameTextField: UITextField!
@@ -18,11 +22,10 @@ class PlusViewController: UIViewController {
     @IBOutlet weak var dayDelButton: UIButton!
     @IBOutlet weak var nightDelButton: UIButton!
     
-    @IBOutlet weak var inputVerticalStackView: UIStackView!
 
     var medicineDataManager = DataManager()
     var viewController = ViewController()
-    var delegate: MedicineDelegate?
+    var plusDelegate: PlusDelegate?
     var medicineData: MedicineData?
     
     let datePicker = UIDatePicker()
@@ -151,7 +154,7 @@ class PlusViewController: UIViewController {
         
         let newMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime)
         
-        delegate?.addNewMedicine(newMedicine)
+        plusDelegate?.addNewMedicine(newMedicine)
         
         
         self.dismiss(animated: true)

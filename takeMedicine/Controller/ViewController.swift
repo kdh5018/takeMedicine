@@ -30,6 +30,7 @@ class ViewController: UIViewController {
         // 데이터 불러오기
         medicineDataManager.getMedicineData()
         
+        
         // 더미데이터를 이용하여 초기 화면 체크
         //        self.medicineDataList = MedicineData.getDummies()
     }
@@ -38,12 +39,26 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         if let destinationVC = segue.destination as? PlusViewController {
-            destinationVC.delegate = self
+            destinationVC.plusDelegate = self
         }
-        if let destinationVC = segue.destination as? EditViewController {
-            destinationVC.editDelegate = self
-        }
-    }    
+    }
+
+    
+    // 약 추가하기 VC 로드
+    @IBAction func plusVCLoaded(_ sender: UIButton) {
+        guard let plusVC = self.storyboard?.instantiateViewController(identifier: "PlusViewController") as? PlusViewController else { return }
+        plusVC.modalPresentationStyle = .fullScreen
+        self.present(plusVC, animated: true, completion: nil)
+    }
+    
+    // 약 수정하기 VC 로드
+    @IBAction func editVCLoaded(_ sender: UIButton) {
+        guard let editVC = self.storyboard?.instantiateViewController(identifier: "EditViewController") as? EditViewController else { return }
+        editVC.modalPresentationStyle = .fullScreen
+        self.present(editVC, animated: true, completion: nil)
+    }
+    
+    
     // 삭제버튼
     @IBAction func delBtn(_ sender: UIButton) {
         guard let indexPath = (sender.superview?.superview as? UIView)?.indexPathInTableView(medicineTableView) else { return }
@@ -56,8 +71,8 @@ extension ViewController : UITableViewDataSource {
     // 입력한 약 종류 개수만큼 row출력
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return medicineDataManager.getMedicineData().count
-        //        return medicineDataList.count
     }
+    
     // 입력한 약에 필요한 각각의 내용이 들어가는 내용
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -74,9 +89,6 @@ extension ViewController : UITableViewDataSource {
         cell.medicineMorningTime?.text = cellData.morningTime
         cell.medicineDayTime?.text = cellData.dayTime
         cell.medicineNightTime?.text = cellData.nightTime
-        
-        
-        
         
         // 테이블뷰셀 on/off를 위해 선택 여부 가져옴
         let isSelected = selectedRows.contains(cellData.medicineId)
@@ -105,16 +117,17 @@ extension ViewController : UITableViewDelegate {
         print("Selected cell at index: \(indexPath.row)")
         
         
-        // reloadRow를
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 }
 
-extension ViewController: MedicineDelegate {
+extension ViewController: PlusDelegate {
     func addNewMedicine(_ medicineData: MedicineData) {
         medicineDataManager.makeNewMedicine(medicineData)
         medicineTableView.reloadData()
     }
+}
+extension ViewController: UpdateDelegate {
     func update(index: Int, _ medicineData: MedicineData) {
         medicineDataManager.updateMedicine(index: index, medicineData)
         medicineTableView.reloadData()
