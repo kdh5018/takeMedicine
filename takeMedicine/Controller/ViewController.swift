@@ -6,9 +6,9 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ViewController: UIViewController {
-    
     
     var medicineDataManager = DataManager()
     
@@ -16,10 +16,13 @@ class ViewController: UIViewController {
     
     var selectedRows: Set<Int> = []
     
+    let realm = try! Realm()
     
     
     override func viewDidLoad() { 
         super.viewDidLoad()
+        
+//        print(Realm.Configuration.defaultConfiguration.fileURL!)
         medicineTableView.dataSource = self
         medicineTableView.delegate = self
         
@@ -80,6 +83,7 @@ extension ViewController : UITableViewDataSource {
             return UITableViewCell()
         }
         
+        
         let array = medicineDataManager.getMedicineData()
         
         let cellData = array[indexPath.row]
@@ -124,6 +128,12 @@ extension ViewController : UITableViewDelegate {
 extension ViewController: PlusDelegate {
     func addNewMedicine(_ medicineData: MedicineData) {
         medicineDataManager.makeNewMedicine(medicineData)
+        medicineTableView.reloadData()
+    }
+}
+extension ViewController: GetDelegate {
+    func getMedicine() {
+        medicineDataManager.getMedicineData()
         medicineTableView.reloadData()
     }
 }

@@ -196,10 +196,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4U9-qS-CcD">
-                                        <rect key="frame" x="0.0" y="0.0" width="390" height="50"/>
+                                        <rect key="frame" x="0.0" y="47" width="390" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="약 수정하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kph-ty-6Al">
-                                                <rect key="frame" x="20" y="3.6666666666666679" width="163.66666666666666" height="42.666666666666657"/>
+                                                <rect key="frame" x="20" y="3.6666666666666643" width="163.66666666666666" height="42.666666666666664"/>
                                                 <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="35"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -226,7 +226,7 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="cAB-zG-G5L">
-                                        <rect key="frame" x="30" y="115" width="84" height="172"/>
+                                        <rect key="frame" x="30" y="162" width="84" height="172"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="약 이름 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrD-y0-Czj" userLabel="약 이름">
                                                 <rect key="frame" x="17.333333333333336" y="0.0" width="66.666666666666657" height="24"/>
@@ -249,7 +249,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="HtI-xx-V9a">
-                                        <rect key="frame" x="122" y="110" width="180" height="110"/>
+                                        <rect key="frame" x="122" y="162" width="180" height="110"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="복용하는 약을 입력해 주세요" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ENJ-Qi-Yv2" userLabel="약 이름 텍스트필드">
                                                 <rect key="frame" x="0.0" y="0.0" width="180" height="35"/>
@@ -296,29 +296,29 @@
                                         </subviews>
                                     </stackView>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="원하는 시간을 설정해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UQT-pj-2ee" userLabel="복용 시간2 텍스트필드">
-                                        <rect key="frame" x="122" y="336" width="185" height="34"/>
+                                        <rect key="frame" x="122" y="388" width="185" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="date-time"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="원하는 시간을 설정해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JZo-Dm-dmY" userLabel="복용 시간3 텍스트필드">
-                                        <rect key="frame" x="122" y="411" width="185" height="34"/>
+                                        <rect key="frame" x="122" y="463" width="185" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="date-time"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="원하는 시간을 설정해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FUm-d7-TG3" userLabel="복용 시간1 텍스트필드">
-                                        <rect key="frame" x="122" y="262" width="185" height="34"/>
+                                        <rect key="frame" x="122" y="314" width="185" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="date-time"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3fa-jG-eUk">
-                                        <rect key="frame" x="320" y="412" width="40" height="32"/>
+                                        <rect key="frame" x="320" y="464" width="40" height="32"/>
                                         <buttonConfiguration key="configuration" style="plain"/>
                                         <connections>
                                             <action selector="editNightDelBtn:" destination="AYh-rf-UmZ" eventType="touchUpInside" id="VPJ-Sf-lOC"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7Y-2k-E2c">
-                                        <rect key="frame" x="320" y="337" width="40" height="32"/>
+                                        <rect key="frame" x="320" y="384" width="40" height="32"/>
                                         <buttonConfiguration key="configuration" style="plain"/>
                                         <connections>
                                             <action selector="editDayDelBtn:" destination="AYh-rf-UmZ" eventType="touchUpInside" id="swj-8y-89c"/>
@@ -343,9 +343,9 @@
                                     <constraint firstItem="JZo-Dm-dmY" firstAttribute="top" secondItem="UQT-pj-2ee" secondAttribute="bottom" constant="41" id="Z6Q-Bx-eFU"/>
                                     <constraint firstItem="cAB-zG-G5L" firstAttribute="top" secondItem="4U9-qS-CcD" secondAttribute="bottom" constant="65" id="a1C-fr-EWE"/>
                                     <constraint firstItem="edY-9x-qlg" firstAttribute="leading" secondItem="UeH-Eb-Oj8" secondAttribute="leading" constant="11" id="aj2-xv-TKg"/>
-                                    <constraint firstItem="HtI-xx-V9a" firstAttribute="top" secondItem="4U9-qS-CcD" secondAttribute="bottom" constant="60" id="akK-eH-goY"/>
+                                    <constraint firstItem="HtI-xx-V9a" firstAttribute="top" secondItem="4U9-qS-CcD" secondAttribute="bottom" constant="65" id="akK-eH-goY"/>
                                     <constraint firstItem="UeH-Eb-Oj8" firstAttribute="trailing" secondItem="3fa-jG-eUk" secondAttribute="trailing" constant="30" id="iyq-h5-Yua"/>
-                                    <constraint firstItem="4U9-qS-CcD" firstAttribute="top" secondItem="HTD-zl-CBD" secondAttribute="top" id="jPD-SL-Jzs"/>
+                                    <constraint firstItem="4U9-qS-CcD" firstAttribute="top" secondItem="UeH-Eb-Oj8" secondAttribute="top" id="jPD-SL-Jzs"/>
                                     <constraint firstAttribute="trailing" secondItem="4U9-qS-CcD" secondAttribute="trailing" id="k4n-r2-V5f"/>
                                     <constraint firstItem="UeH-Eb-Oj8" firstAttribute="trailing" secondItem="edY-9x-qlg" secondAttribute="trailing" constant="11" id="wSH-DH-m5F"/>
                                     <constraint firstItem="UQT-pj-2ee" firstAttribute="top" secondItem="FUm-d7-TG3" secondAttribute="bottom" constant="40" id="yvk-gy-aOY"/>
@@ -432,7 +432,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="UWF-0m-ciP">
-                                <rect key="frame" x="122" y="157" width="180" height="110"/>
+                                <rect key="frame" x="122" y="162" width="180" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="복용하는 약을 입력해 주세요" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="S6k-zt-Ns8" userLabel="약 이름 텍스트필드">
                                         <rect key="frame" x="0.0" y="0.0" width="180" height="35"/>
@@ -479,22 +479,22 @@
                                 </subviews>
                             </stackView>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="원하는 시간을 설정해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0i2-o2-7um" userLabel="복용 시간2 텍스트필드">
-                                <rect key="frame" x="122" y="383" width="185" height="34"/>
+                                <rect key="frame" x="122" y="388" width="185" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="date-time"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="원하는 시간을 설정해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gwo-R5-Ptg" userLabel="복용 시간3 텍스트필드">
-                                <rect key="frame" x="122" y="458" width="185" height="34"/>
+                                <rect key="frame" x="122" y="463" width="185" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="date-time"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="원하는 시간을 설정해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kqu-A9-43m" userLabel="복용 시간1 텍스트필드">
-                                <rect key="frame" x="122" y="309" width="185" height="34"/>
+                                <rect key="frame" x="122" y="314" width="185" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="date-time"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="clN-0o-1IN">
-                                <rect key="frame" x="320" y="459" width="40" height="32"/>
+                                <rect key="frame" x="320" y="464" width="40" height="32"/>
                                 <buttonConfiguration key="configuration" style="plain"/>
                                 <connections>
                                     <action selector="nightDelBtn:" destination="moY-pL-aOa" eventType="touchUpInside" id="IK9-5I-t4K"/>
@@ -511,7 +511,7 @@
                         <viewLayoutGuide key="safeArea" id="RF2-zU-fST"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="UWF-0m-ciP" firstAttribute="top" secondItem="Tyr-yz-FVN" secondAttribute="bottom" constant="60" id="0n8-0n-bj6"/>
+                            <constraint firstItem="UWF-0m-ciP" firstAttribute="top" secondItem="Tyr-yz-FVN" secondAttribute="bottom" constant="65" id="0n8-0n-bj6"/>
                             <constraint firstItem="Tyr-yz-FVN" firstAttribute="top" secondItem="RF2-zU-fST" secondAttribute="top" id="13k-R7-FO5"/>
                             <constraint firstItem="Gwo-R5-Ptg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RF2-zU-fST" secondAttribute="leading" id="3t3-g3-ws2"/>
                             <constraint firstItem="ZYk-19-NCC" firstAttribute="leading" secondItem="RF2-zU-fST" secondAttribute="leading" constant="11" id="9VQ-8c-7HF"/>

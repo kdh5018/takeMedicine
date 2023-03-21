@@ -6,7 +6,9 @@
 //
 
 import UIKit
-
+protocol GetDelegate: AnyObject {
+    func getMedicine()
+}
 protocol UpdateDelegate: AnyObject {
     func update(index: Int, _ medicineData: MedicineData)
 }
@@ -30,6 +32,9 @@ class EditViewController: UIViewController {
     var editMedicineData: MedicineData?
     var editDataManager: DataManager?
     
+    var getDelegate: GetDelegate?
+    var updateDelegate: UpdateDelegate?
+    
     let editDatePicker = UIDatePicker()
     let editTimePicker = UIDatePicker()
     
@@ -41,7 +46,7 @@ class EditViewController: UIViewController {
         
         editNameTextField.delegate = self
         
-
+        
         
         editDayTimeTextField.isHidden = true
         editDayDelButton.isHidden = true
@@ -139,7 +144,6 @@ class EditViewController: UIViewController {
     
     
     @IBAction func btnEdited(_ sender: UIButton) {
-        VC.editedValues()
         self.dismiss(animated: true)
         
     }

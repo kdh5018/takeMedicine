@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7612D4C429C9714C003830F1 /* Medicine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7612D4C329C9714C003830F1 /* Medicine.swift */; };
+		7612D4C729C9719D003830F1 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 7612D4C629C9719D003830F1 /* Realm */; };
+		7612D4C929C9719D003830F1 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7612D4C829C9719D003830F1 /* RealmSwift */; };
 		762EFE1A2993728F009E55D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762EFE192993728F009E55D1 /* AppDelegate.swift */; };
 		762EFE1C2993728F009E55D1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762EFE1B2993728F009E55D1 /* SceneDelegate.swift */; };
 		762EFE1E2993728F009E55D1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762EFE1D2993728F009E55D1 /* ViewController.swift */; };
@@ -22,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7612D4C329C9714C003830F1 /* Medicine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medicine.swift; sourceTree = "<group>"; };
 		762EFE162993728F009E55D1 /* takeMedicine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = takeMedicine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		762EFE192993728F009E55D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		762EFE1B2993728F009E55D1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +46,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7612D4C929C9719D003830F1 /* RealmSwift in Frameworks */,
+				7612D4C729C9719D003830F1 /* Realm in Frameworks */,
 				7642D666299D1F2B005A5101 /* Fakery in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,6 +91,7 @@
 			children = (
 				76A98844299E007500727AD5 /* DataManager.swift */,
 				7697F40229937CF80092D3F9 /* MedicineData.swift */,
+				7612D4C329C9714C003830F1 /* Medicine.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -126,6 +133,8 @@
 			name = takeMedicine;
 			packageProductDependencies = (
 				7642D665299D1F2B005A5101 /* Fakery */,
+				7612D4C629C9719D003830F1 /* Realm */,
+				7612D4C829C9719D003830F1 /* RealmSwift */,
 			);
 			productName = takeMedicine;
 			productReference = 762EFE162993728F009E55D1 /* takeMedicine.app */;
@@ -157,6 +166,7 @@
 			mainGroup = 762EFE0D2993728F009E55D1;
 			packageReferences = (
 				7642D664299D1F2B005A5101 /* XCRemoteSwiftPackageReference "Fakery" */,
+				7612D4C529C9719D003830F1 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 762EFE172993728F009E55D1 /* Products */;
 			projectDirPath = "";
@@ -186,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7697F40329937CF80092D3F9 /* MedicineData.swift in Sources */,
+				7612D4C429C9714C003830F1 /* Medicine.swift in Sources */,
 				76A98845299E007500727AD5 /* DataManager.swift in Sources */,
 				76CAF7202994B7640039DE1B /* PlusViewController.swift in Sources */,
 				7655E0232994C14400DECB16 /* MedicineTableViewCell.swift in Sources */,
@@ -418,6 +429,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7612D4C529C9719D003830F1 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		7642D664299D1F2B005A5101 /* XCRemoteSwiftPackageReference "Fakery" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/vadymmarkov/Fakery.git";
@@ -429,6 +448,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7612D4C629C9719D003830F1 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7612D4C529C9719D003830F1 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		7612D4C829C9719D003830F1 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7612D4C529C9719D003830F1 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		7642D665299D1F2B005A5101 /* Fakery */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7642D664299D1F2B005A5101 /* XCRemoteSwiftPackageReference "Fakery" */;

@@ -50,6 +50,17 @@ class PlusViewController: UIViewController {
         self.hideKeyboardWhenTappedAround()
     }
     
+    func makeMedicineInfo(_ title: String, _ date: String?, _ morningTime: String, _ dayTime: String?, _ nightTime: String?) -> Medicine {
+        let medicine = Medicine()
+        medicine.title = title
+        medicine.date = date ?? "매일"
+        medicine.morningTime = morningTime
+        medicine.dayTime = dayTime ?? ""
+        medicine.nightTime = nightTime ?? ""
+        
+        return medicine
+    }
+    
     
     /// 복용 기간 설정을 위한 데이트피커
     func showDatePicker() {

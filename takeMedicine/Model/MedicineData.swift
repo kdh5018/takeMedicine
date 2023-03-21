@@ -15,7 +15,7 @@ struct MedicineData {
     let medicineId: Int
     
     let title: String
-    let date: String
+    let date: String?
     let morningTime: String
     let dayTime: String?
     let nightTime: String?
