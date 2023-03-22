@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol PlusDelegate: AnyObject {
+protocol Delegate: AnyObject {
     func addNewMedicine(_ medicineData: MedicineData)
 }
 
@@ -25,7 +25,7 @@ class PlusViewController: UIViewController {
 
     var medicineDataManager = DataManager()
     var viewController = ViewController()
-    var plusDelegate: PlusDelegate?
+    var Delegate: Delegate?
     var medicineData: MedicineData?
     
     let datePicker = UIDatePicker()
@@ -36,8 +36,6 @@ class PlusViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        nameTextField.delegate = self
         
         textFieldTimeDayPicker.isHidden = true
         dayDelButton.isHidden = true
@@ -50,16 +48,17 @@ class PlusViewController: UIViewController {
         self.hideKeyboardWhenTappedAround()
     }
     
-    func makeMedicineInfo(_ title: String, _ date: String?, _ morningTime: String, _ dayTime: String?, _ nightTime: String?) -> Medicine {
-        let medicine = Medicine()
-        medicine.title = title
-        medicine.date = date ?? "매일"
-        medicine.morningTime = morningTime
-        medicine.dayTime = dayTime ?? ""
-        medicine.nightTime = nightTime ?? ""
-        
-        return medicine
-    }
+    // realm을 통한 데이터베이스 생성 저장
+//    func makeMedicineInfo(_ title: String, _ date: String?, _ morningTime: String, _ dayTime: String?, _ nightTime: String?) -> Medicine {
+//        let medicine = Medicine()
+//        medicine.title = title
+//        medicine.date = date ?? "매일"
+//        medicine.morningTime = morningTime
+//        medicine.dayTime = dayTime ?? ""
+//        medicine.nightTime = nightTime ?? ""
+//
+//        return medicine
+//    }
     
     
     /// 복용 기간 설정을 위한 데이트피커
@@ -165,8 +164,7 @@ class PlusViewController: UIViewController {
         
         let newMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime)
         
-        plusDelegate?.addNewMedicine(newMedicine)
-        
+        Delegate?.addNewMedicine(newMedicine)
         
         self.dismiss(animated: true)
         

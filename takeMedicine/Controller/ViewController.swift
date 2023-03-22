@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, EditDelegate {
     
     var medicineDataManager = DataManager()
     
@@ -16,7 +16,8 @@ class ViewController: UIViewController {
     
     var selectedRows: Set<Int> = []
     
-    let realm = try! Realm()
+    
+//    let realm = try! Realm()
     
     
     override func viewDidLoad() { 
@@ -42,7 +43,7 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         if let destinationVC = segue.destination as? PlusViewController {
-            destinationVC.plusDelegate = self
+            destinationVC.Delegate = self
         }
     }
 
@@ -51,6 +52,7 @@ class ViewController: UIViewController {
     @IBAction func plusVCLoaded(_ sender: UIButton) {
         guard let plusVC = self.storyboard?.instantiateViewController(identifier: "PlusViewController") as? PlusViewController else { return }
         plusVC.modalPresentationStyle = .fullScreen
+        plusVC.Delegate = self
         self.present(plusVC, animated: true, completion: nil)
     }
     
@@ -58,6 +60,7 @@ class ViewController: UIViewController {
     @IBAction func editVCLoaded(_ sender: UIButton) {
         guard let editVC = self.storyboard?.instantiateViewController(identifier: "EditViewController") as? EditViewController else { return }
         editVC.modalPresentationStyle = .fullScreen
+        editVC.EditDelegate = self
         self.present(editVC, animated: true, completion: nil)
     }
     
@@ -67,6 +70,12 @@ class ViewController: UIViewController {
         guard let indexPath = (sender.superview?.superview as? UIView)?.indexPathInTableView(medicineTableView) else { return }
         medicineDataManager.medicineDataArray.remove(at: indexPath.row)
         medicineTableView.reloadData()
+        
+        // 테이뷰셀의 삭제와 상관 없이 medicineId가 계속 증가하는데 테이블뷰셀을 삭제할 때마다 medicineId도 맞춰서 내려가게끔 하는 방법
+        // 굳이 그렇게 안 해도 데이터 크기 문제가 없을지?
+//        let dataList = medicineDataManager.getMedicineData()
+//        var selectedData = dataList[indexPath.row]
+        
     }
 }
 
@@ -110,6 +119,7 @@ extension ViewController : UITableViewDelegate {
         let dataList = medicineDataManager.getMedicineData()
         
         let selectedData = dataList[indexPath.row]
+//        performSegue(withIdentifier: "EditViewController", sender: selectedData)
         
         if selectedRows.contains(selectedData.medicineId) {
             selectedRows.remove(selectedData.medicineId)
@@ -118,31 +128,28 @@ extension ViewController : UITableViewDelegate {
         }
         
         
-        print("Selected cell at index: \(indexPath.row)")
+        print("Selected cell at index: \(selectedData.medicineId)")
         
         
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 }
 
-extension ViewController: PlusDelegate {
+extension ViewController: Delegate {
     func addNewMedicine(_ medicineData: MedicineData) {
         medicineDataManager.makeNewMedicine(medicineData)
         medicineTableView.reloadData()
     }
-}
-extension ViewController: GetDelegate {
     func getMedicine() {
         medicineDataManager.getMedicineData()
         medicineTableView.reloadData()
     }
-}
-extension ViewController: UpdateDelegate {
     func update(index: Int, _ medicineData: MedicineData) {
         medicineDataManager.updateMedicine(index: index, medicineData)
         medicineTableView.reloadData()
     }
 }
+
 
 // 주어진 뷰에서 시작하여 해당 뷰의 superview를 차례대로 올라가며 UITableViewCell을 찾고, UITableViewCell을 찾으면 해당 셀의 indexPath를 UITableView의 indexPath(for:) 메소드를 사용하여 반환
 extension UIView {

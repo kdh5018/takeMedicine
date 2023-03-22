@@ -6,12 +6,11 @@
 //
 
 import UIKit
-protocol GetDelegate: AnyObject {
+protocol EditDelegate: AnyObject {
     func getMedicine()
-}
-protocol UpdateDelegate: AnyObject {
     func update(index: Int, _ medicineData: MedicineData)
 }
+
 
 class EditViewController: UIViewController {
     
@@ -26,14 +25,13 @@ class EditViewController: UIViewController {
     @IBOutlet weak var editNightDelButton: UIButton!
     
     
-    
     var editMedicineDataManager = DataManager()
     var VC = ViewController()
     var editMedicineData: MedicineData?
     var editDataManager: DataManager?
     
-    var getDelegate: GetDelegate?
-    var updateDelegate: UpdateDelegate?
+    var EditDelegate: EditDelegate?
+    
     
     let editDatePicker = UIDatePicker()
     let editTimePicker = UIDatePicker()
@@ -41,12 +39,26 @@ class EditViewController: UIViewController {
     /// 시간 추가하기 버튼 클릭 시 복용 시간 추가 기능 구현
     var clickCount = 0
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EditViewController", let selectedData = sender as? MedicineData {
+            let editVC = segue.destination as! EditViewController
+            editVC.editMedicineData = selectedData
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+//        if let data = selectedData {
+//            editNameTextField.text = data.title
+//            editDateTextField.text = data.date
+//            editMorningTimeTextField.text = data.morningTime
+//            editDayTimeTextField.text = data.dayTime
+//            editNightTimeTextField.text = data.nightTime
+//        }
         
-        editNameTextField.delegate = self
-        
-        
+        EditDelegate?.getMedicine()
         
         editDayTimeTextField.isHidden = true
         editDayDelButton.isHidden = true
@@ -144,20 +156,31 @@ class EditViewController: UIViewController {
     
     
     @IBAction func btnEdited(_ sender: UIButton) {
-        self.dismiss(animated: true)
         
+        
+        let title = editNameTextField.text ?? ""
+        
+        guard let dateInput = editDateTextField.text else {
+            return
+        }
+        
+        let date = dateInput.isEmpty ? "매일" : dateInput
+        let morningTime = editMorningTimeTextField.text ?? ""
+        let dayTime = editDayTimeTextField.text ?? ""
+        let nightTime = editNightTimeTextField.text ?? ""
+        
+        let updateMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime)
+        
+        EditDelegate?.update(index: 0, updateMedicine)
+        
+        
+        self.dismiss(animated: true)
     }
     
     @IBAction func editCanceled(_ sender: UIButton) {
         dismiss(animated: true)
     }
     
-}
-
-extension EditViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
 }
 
 

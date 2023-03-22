@@ -12,7 +12,7 @@ struct MedicineData {
     
     static var number: Int = 0
     
-    let medicineId: Int
+    var medicineId: Int
     
     let title: String
     let date: String?
