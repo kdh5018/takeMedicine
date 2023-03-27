@@ -8,13 +8,18 @@
 import UIKit
 import RealmSwift
 
-class ViewController: UIViewController, EditDelegate {
+// 메인 페이지
+class ViewController: UIViewController {
     
     var medicineDataManager = DataManager()
     
     @IBOutlet weak var medicineTableView: UITableView!
     
-    var selectedRows: Set<Int> = []
+    
+    var cell = MedicineTableViewCell()
+    lazy var medicineTitle = cell.medicineName
+    
+    var selectedRows: Set<UUID> = []
     
     
 //    let realm = try! Realm()
@@ -29,11 +34,6 @@ class ViewController: UIViewController, EditDelegate {
         
         medicineTableView.estimatedRowHeight = UITableView.automaticDimension
         
-        // 빈 배열에 데이터 생성
-        medicineDataManager.makeMedicineData()
-        // 데이터 불러오기
-        medicineDataManager.getMedicineData()
-        
         
         // 더미데이터를 이용하여 초기 화면 체크
         //        self.medicineDataList = MedicineData.getDummies()
@@ -45,7 +45,12 @@ class ViewController: UIViewController, EditDelegate {
         if let destinationVC = segue.destination as? PlusViewController {
             destinationVC.Delegate = self
         }
+        if let editDestinationVC = segue.destination as? EditViewController {
+            editDestinationVC.EditDelegate = self
+            editDestinationVC.titleValue = medicineTitle?.text ?? "error"
+        }
     }
+    
 
     
     // 약 추가하기 VC 로드
@@ -70,11 +75,6 @@ class ViewController: UIViewController, EditDelegate {
         guard let indexPath = (sender.superview?.superview as? UIView)?.indexPathInTableView(medicineTableView) else { return }
         medicineDataManager.medicineDataArray.remove(at: indexPath.row)
         medicineTableView.reloadData()
-        
-        // 테이뷰셀의 삭제와 상관 없이 medicineId가 계속 증가하는데 테이블뷰셀을 삭제할 때마다 medicineId도 맞춰서 내려가게끔 하는 방법
-        // 굳이 그렇게 안 해도 데이터 크기 문제가 없을지?
-//        let dataList = medicineDataManager.getMedicineData()
-//        var selectedData = dataList[indexPath.row]
         
     }
 }
@@ -104,7 +104,7 @@ extension ViewController : UITableViewDataSource {
         cell.medicineNightTime?.text = cellData.nightTime
         
         // 테이블뷰셀 on/off를 위해 선택 여부 가져옴
-        let isSelected = selectedRows.contains(cellData.medicineId)
+        let isSelected = selectedRows.contains(cellData.id)
         cell.configureCell(isSelected: isSelected)
         
         
@@ -119,16 +119,16 @@ extension ViewController : UITableViewDelegate {
         let dataList = medicineDataManager.getMedicineData()
         
         let selectedData = dataList[indexPath.row]
-//        performSegue(withIdentifier: "EditViewController", sender: selectedData)
         
-        if selectedRows.contains(selectedData.medicineId) {
-            selectedRows.remove(selectedData.medicineId)
+        
+        if selectedRows.contains(selectedData.id) {
+            selectedRows.remove(selectedData.id)
         } else {
-            selectedRows.insert(selectedData.medicineId)
+            selectedRows.insert(selectedData.id)
         }
         
         
-        print("Selected cell at index: \(selectedData.medicineId)")
+//        print("Selected cell at index: \(selectedData.id)")
         
         
         tableView.reloadRows(at: [indexPath], with: .automatic)
@@ -140,6 +140,9 @@ extension ViewController: Delegate {
         medicineDataManager.makeNewMedicine(medicineData)
         medicineTableView.reloadData()
     }
+
+}
+extension ViewController: EditDelegate {
     func getMedicine() {
         medicineDataManager.getMedicineData()
         medicineTableView.reloadData()

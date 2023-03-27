@@ -156,7 +156,7 @@
                                             <outlet property="medicineDate" destination="b4w-5t-wm8" id="93c-dK-2Jl"/>
                                             <outlet property="medicineDayTime" destination="n2x-NM-Sv2" id="EeV-to-wpZ"/>
                                             <outlet property="medicineMorningTime" destination="NlR-zT-jFE" id="8AJ-IJ-MRJ"/>
-                                            <outlet property="medicineName" destination="80d-2C-lGc" id="wAH-1F-Jfc"/>
+                                            <outlet property="medicineName" destination="80d-2C-lGc" id="lne-9V-ImH"/>
                                             <outlet property="medicineNightTime" destination="me2-vu-L3M" id="KEL-c2-l9a"/>
                                         </connections>
                                     </tableViewCell>
@@ -177,6 +177,8 @@
                     </view>
                     <connections>
                         <outlet property="medicineTableView" destination="BvZ-L7-duP" id="FTf-nb-H8A"/>
+                        <segue destination="moY-pL-aOa" kind="show" identifier="PlusViewController" id="OPA-C3-Doc"/>
+                        <segue destination="AYh-rf-UmZ" kind="show" identifier="EditViewController" id="f2z-IX-85B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Ba-ac-rVu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -188,7 +190,7 @@
             <objects>
                 <viewController storyboardIdentifier="EditViewController" id="AYh-rf-UmZ" customClass="EditViewController" customModule="takeMedicine" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SbL-RK-MiJ">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="HTD-zl-CBD">
@@ -358,6 +360,7 @@
                         <viewLayoutGuide key="safeArea" id="gah-a9-3aW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="qW7-FD-2J5"/>
                     <connections>
                         <outlet property="editDateTextField" destination="lCC-ep-6Pp" id="ZVn-0d-lXT"/>
                         <outlet property="editDayDelButton" destination="c7Y-2k-E2c" id="Qd8-Y4-0rZ"/>
@@ -377,7 +380,7 @@
             <objects>
                 <viewController storyboardIdentifier="PlusViewController" id="moY-pL-aOa" customClass="PlusViewController" customModule="takeMedicine" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rPI-73-UnU">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tyr-yz-FVN">
@@ -456,7 +459,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="ZYk-19-NCC">
-                                <rect key="frame" x="11" y="735" width="368" height="45"/>
+                                <rect key="frame" x="11" y="712" width="368" height="45"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="awH-eh-k7A">
                                         <rect key="frame" x="0.0" y="0.0" width="175" height="45"/>
@@ -538,6 +541,7 @@
                             <constraint firstItem="RF2-zU-fST" firstAttribute="trailing" secondItem="ZYk-19-NCC" secondAttribute="trailing" constant="11" id="s68-5H-6L4"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="f9v-XI-rbb"/>
                     <connections>
                         <outlet property="dayDelButton" destination="emy-2k-Ajj" id="S94-Bn-NcL"/>
                         <outlet property="nameTextField" destination="S6k-zt-Ns8" id="Mrl-Nn-Bl5"/>

@@ -11,6 +11,7 @@ protocol Delegate: AnyObject {
     func addNewMedicine(_ medicineData: MedicineData)
 }
 
+// 약 추가하기 페이지
 class PlusViewController: UIViewController {
     
     @IBOutlet weak var nameTextField: UITextField!

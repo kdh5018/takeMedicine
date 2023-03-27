@@ -10,9 +10,11 @@ import Fakery
 
 struct MedicineData {
     
-    static var number: Int = 0
+//    static var number: Int = 0
     
-    var medicineId: Int
+    var id : UUID = UUID()
+    
+//    var medicineId: Int
     
     let title: String
     let date: String?
@@ -29,7 +31,7 @@ struct MedicineData {
     ///   - nightTime: 복용 시간3
     init(title: String, date: String, morningTime: String, dayTime: String?, nightTime: String?) {
         //        
-        self.medicineId = MedicineData.number == 0 ? 0 : MedicineData.number
+//        self.medicineId = MedicineData.number == 0 ? 0 : MedicineData.number
         
         self.title = title
         self.date = date
@@ -37,7 +39,7 @@ struct MedicineData {
         self.dayTime = dayTime
         self.nightTime = nightTime
         
-        MedicineData.number += 1
+//        MedicineData.number += 1
     }
     
 }

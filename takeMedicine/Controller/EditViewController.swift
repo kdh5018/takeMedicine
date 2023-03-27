@@ -11,9 +11,8 @@ protocol EditDelegate: AnyObject {
     func update(index: Int, _ medicineData: MedicineData)
 }
 
-
+// 약 수정하기 페이지
 class EditViewController: UIViewController {
-    
     
     @IBOutlet weak var editNameTextField: UITextField!
     @IBOutlet weak var editDateTextField: UITextField!
@@ -24,13 +23,25 @@ class EditViewController: UIViewController {
     @IBOutlet weak var editDayDelButton: UIButton!
     @IBOutlet weak var editNightDelButton: UIButton!
     
-    
     var editMedicineDataManager = DataManager()
     var VC = ViewController()
     var editMedicineData: MedicineData?
     var editDataManager: DataManager?
     
     var EditDelegate: EditDelegate?
+    
+    var titleValue: String = "" {
+        didSet{
+            guard let editMedicineData = editMedicineData else {
+                return
+            }
+            editNameTextField.text = editMedicineData.title
+            editDateTextField.text = editMedicineData.date
+            editMorningTimeTextField.text = editMedicineData.morningTime
+            editDayTimeTextField.text = editMedicineData.dayTime
+            editNightTimeTextField.text = editMedicineData.nightTime
+        }
+    }
     
     
     let editDatePicker = UIDatePicker()
@@ -39,27 +50,13 @@ class EditViewController: UIViewController {
     /// 시간 추가하기 버튼 클릭 시 복용 시간 추가 기능 구현
     var clickCount = 0
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "EditViewController", let selectedData = sender as? MedicineData {
-            let editVC = segue.destination as! EditViewController
-            editVC.editMedicineData = selectedData
-        }
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        editNameTextField.text = titleValue
+        editDateTextField.text = titleValue
 
-//        if let data = selectedData {
-//            editNameTextField.text = data.title
-//            editDateTextField.text = data.date
-//            editMorningTimeTextField.text = data.morningTime
-//            editDayTimeTextField.text = data.dayTime
-//            editNightTimeTextField.text = data.nightTime
-//        }
-        
-        EditDelegate?.getMedicine()
-        
         editDayTimeTextField.isHidden = true
         editDayDelButton.isHidden = true
         editNightTimeTextField.isHidden = true
@@ -171,8 +168,8 @@ class EditViewController: UIViewController {
         
         let updateMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime)
         
+        // 🥲여기 인덱스에 들어갈 변수 찾는 법..
         EditDelegate?.update(index: 0, updateMedicine)
-        
         
         self.dismiss(animated: true)
     }
