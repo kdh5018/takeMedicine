@@ -10,11 +10,7 @@ import Fakery
 
 struct MedicineData {
     
-//    static var number: Int = 0
-    
     var id : UUID = UUID()
-    
-//    var medicineId: Int
     
     let title: String
     let date: String?

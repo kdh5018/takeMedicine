@@ -15,9 +15,9 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var medicineTableView: UITableView!
     
+    let medicineCell = MedicineTableViewCell()
     
-    var cell = MedicineTableViewCell()
-    lazy var medicineTitle = cell.medicineName
+    var selectedNumber: Int?
     
     var selectedRows: Set<UUID> = []
     
@@ -27,6 +27,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() { 
         super.viewDidLoad()
+        
         
 //        print(Realm.Configuration.defaultConfiguration.fileURL!)
         medicineTableView.dataSource = self
@@ -45,9 +46,14 @@ class ViewController: UIViewController {
         if let destinationVC = segue.destination as? PlusViewController {
             destinationVC.Delegate = self
         }
-        if let editDestinationVC = segue.destination as? EditViewController {
-            editDestinationVC.EditDelegate = self
-            editDestinationVC.titleValue = medicineTitle?.text ?? "error"
+        if segue.identifier == "EditViewController" {
+            if let editDestinationVC = segue.destination as? EditViewController {
+                if let indexPath = medicineTableView.indexPathForSelectedRow {
+                    let cell = medicineTableView.cellForRow(at: indexPath) as! MedicineTableViewCell
+                    editDestinationVC.prepareName = cell.medicineName.text ?? ""
+                    editDestinationVC.prepareDate = cell.medicineDate.text ?? ""
+                }
+            }
         }
     }
     
@@ -92,7 +98,6 @@ extension ViewController : UITableViewDataSource {
             return UITableViewCell()
         }
         
-        
         let array = medicineDataManager.getMedicineData()
         
         let cellData = array[indexPath.row]
@@ -127,7 +132,10 @@ extension ViewController : UITableViewDelegate {
             selectedRows.insert(selectedData.id)
         }
         
-        
+        let test = medicineTableView.indexPathForSelectedRow![1]
+        self.selectedNumber = test
+        print(selectedNumber!)
+//        print(medicineTableView.indexPathForSelectedRow![1])
 //        print("Selected cell at index: \(selectedData.id)")
         
         

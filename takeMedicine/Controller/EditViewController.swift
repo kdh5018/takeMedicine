@@ -14,6 +14,12 @@ protocol EditDelegate: AnyObject {
 // 약 수정하기 페이지
 class EditViewController: UIViewController {
     
+    var prepareName: String?
+    var prepareDate: String?
+    var prepareMorningTime: String?
+    var prepareDayTime: String?
+    var prepareNightTime: String?
+    
     @IBOutlet weak var editNameTextField: UITextField!
     @IBOutlet weak var editDateTextField: UITextField!
     @IBOutlet weak var editMorningTimeTextField: UITextField!
@@ -23,25 +29,16 @@ class EditViewController: UIViewController {
     @IBOutlet weak var editDayDelButton: UIButton!
     @IBOutlet weak var editNightDelButton: UIButton!
     
+    
+    
     var editMedicineDataManager = DataManager()
-    var VC = ViewController()
     var editMedicineData: MedicineData?
     var editDataManager: DataManager?
+    var VC = ViewController()
     
+    lazy var iindex = VC.selectedNumber
+
     var EditDelegate: EditDelegate?
-    
-    var titleValue: String = "" {
-        didSet{
-            guard let editMedicineData = editMedicineData else {
-                return
-            }
-            editNameTextField.text = editMedicineData.title
-            editDateTextField.text = editMedicineData.date
-            editMorningTimeTextField.text = editMedicineData.morningTime
-            editDayTimeTextField.text = editMedicineData.dayTime
-            editNightTimeTextField.text = editMedicineData.nightTime
-        }
-    }
     
     
     let editDatePicker = UIDatePicker()
@@ -54,8 +51,11 @@ class EditViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        editNameTextField.text = titleValue
-        editDateTextField.text = titleValue
+        editNameTextField.text = prepareName
+        editDateTextField.text = prepareDate
+        editMorningTimeTextField.text = prepareMorningTime
+        editDayTimeTextField.text = prepareDayTime
+        editNightTimeTextField.text = prepareNightTime
 
         editDayTimeTextField.isHidden = true
         editDayDelButton.isHidden = true
@@ -169,8 +169,7 @@ class EditViewController: UIViewController {
         let updateMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime)
         
         // 🥲여기 인덱스에 들어갈 변수 찾는 법..
-        EditDelegate?.update(index: 0, updateMedicine)
-        
+        EditDelegate?.update(index: iindex ?? 0, updateMedicine)
         self.dismiss(animated: true)
     }
     
