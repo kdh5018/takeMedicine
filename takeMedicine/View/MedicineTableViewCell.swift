@@ -21,20 +21,21 @@ class MedicineTableViewCell: UITableViewCell {
     @IBOutlet weak var buttonStackView: UIStackView!
     
     
-    var medicineData: MedicineData? {
-        // 값이 변화할 때마다 자동으로 업데이트가 되도록 구현하는 didSet(속성 감시자)
-        didSet{
-            guard let medicineData = medicineData else { return }
-            medicineName.text = medicineData.title
-            medicineDate.text = medicineData.date
-            medicineMorningTime.text = medicineData.morningTime
-            medicineDayTime.text = medicineData.dayTime
-            medicineNightTime.text = medicineData.nightTime
-        }
-    }
+    var onCellEditBtnClicked: ((_ cellData: MedicineData) -> Void)? = nil
+    
+    var medicineData: MedicineData? = nil
     
     // 수정, 삭제 버튼 스택뷰 숨기기 함수
-    func configureCell(isSelected: Bool){
+    // 셀 데이터 업데이트
+    func configureCell(cellData: MedicineData, isSelected: Bool){
+        self.medicineData = cellData
+        
+        medicineName.text = cellData.title
+        medicineDate.text = cellData.date
+        medicineMorningTime.text = cellData.morningTime
+        medicineDayTime.text = cellData.dayTime
+        medicineNightTime.text = cellData.nightTime
+        
         buttonStackView.isHidden = !isSelected
     }
     
@@ -48,5 +49,15 @@ class MedicineTableViewCell: UITableViewCell {
         
         // Configure the view for the selected state
     }
+    
+    @IBAction func onEditBtnClicked(_ sender: UIButton) {
+        
+        guard let cellData = self.medicineData else { return }
+        
+        onCellEditBtnClicked?(cellData)
+    }
+    
+    
+    
     
 }

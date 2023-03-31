@@ -17,8 +17,6 @@ class ViewController: UIViewController {
     
     let medicineCell = MedicineTableViewCell()
     
-    var selectedNumber: Int?
-    
     var selectedRows: Set<UUID> = []
     
     
@@ -46,14 +44,16 @@ class ViewController: UIViewController {
         if let destinationVC = segue.destination as? PlusViewController {
             destinationVC.Delegate = self
         }
-        if segue.identifier == "EditViewController" {
-            if let editDestinationVC = segue.destination as? EditViewController {
-                if let indexPath = medicineTableView.indexPathForSelectedRow {
-                    let cell = medicineTableView.cellForRow(at: indexPath) as! MedicineTableViewCell
-                    editDestinationVC.prepareName = cell.medicineName.text ?? ""
-                    editDestinationVC.prepareDate = cell.medicineDate.text ?? ""
-                }
-            }
+        if let editDestinationVC = segue.destination as? EditViewController,
+            let editMedicineData = sender as? MedicineData{
+            
+            editDestinationVC.editMedicineData = editMedicineData
+            
+            editDestinationVC.prepareName = editMedicineData.title
+            editDestinationVC.prepareDate = editMedicineData.date
+            editDestinationVC.prepareMorningTime = editMedicineData.morningTime
+            editDestinationVC.prepareDayTime = editMedicineData.dayTime
+            editDestinationVC.prepareNightTime = editMedicineData.nightTime
         }
     }
     
@@ -68,12 +68,12 @@ class ViewController: UIViewController {
     }
     
     // 약 수정하기 VC 로드
-    @IBAction func editVCLoaded(_ sender: UIButton) {
-        guard let editVC = self.storyboard?.instantiateViewController(identifier: "EditViewController") as? EditViewController else { return }
-        editVC.modalPresentationStyle = .fullScreen
-        editVC.EditDelegate = self
-        self.present(editVC, animated: true, completion: nil)
-    }
+//    @IBAction func editVCLoaded(_ sender: UIButton) {
+//        guard let editVC = self.storyboard?.instantiateViewController(identifier: "EditViewController") as? EditViewController else { return }
+//        editVC.modalPresentationStyle = .fullScreen
+//        editVC.EditDelegate = self
+//        self.present(editVC, animated: true, completion: nil)
+//    }
     
     
     // 삭제버튼
@@ -110,7 +110,16 @@ extension ViewController : UITableViewDataSource {
         
         // 테이블뷰셀 on/off를 위해 선택 여부 가져옴
         let isSelected = selectedRows.contains(cellData.id)
-        cell.configureCell(isSelected: isSelected)
+        cell.configureCell(cellData: cellData, isSelected: isSelected)
+        
+        cell.onCellEditBtnClicked = {
+            [weak self] (selectedMedicineData: MedicineData) in
+            
+            guard let self = self else { return }
+            
+            self.performSegue(withIdentifier: "EditViewController", sender: selectedMedicineData)
+            
+        }
         
         
         return cell
@@ -131,10 +140,7 @@ extension ViewController : UITableViewDelegate {
         } else {
             selectedRows.insert(selectedData.id)
         }
-        
-        let test = medicineTableView.indexPathForSelectedRow![1]
-        self.selectedNumber = test
-        print(selectedNumber!)
+    
 //        print(medicineTableView.indexPathForSelectedRow![1])
 //        print("Selected cell at index: \(selectedData.id)")
         

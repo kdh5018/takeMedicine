@@ -32,11 +32,12 @@ class EditViewController: UIViewController {
     
     
     var editMedicineDataManager = DataManager()
-    var editMedicineData: MedicineData?
+    var editMedicineData: MedicineData? {
+        didSet {
+        }
+    }
     var editDataManager: DataManager?
     var VC = ViewController()
-    
-    lazy var iindex = VC.selectedNumber
 
     var EditDelegate: EditDelegate?
     
@@ -57,6 +58,16 @@ class EditViewController: UIViewController {
         editDayTimeTextField.text = prepareDayTime
         editNightTimeTextField.text = prepareNightTime
 
+//        if editDayTimeTextField == nil {
+//            editDayTimeTextField.isHidden = true
+//        } else {
+//            editDayTimeTextField.isHidden = false
+//        }
+//        if editNightTimeTextField == nil {
+//            editNightTimeTextField.isHidden = true
+//        } else {
+//            editNightTimeTextField.isHidden = false
+//        }
         editDayTimeTextField.isHidden = true
         editDayDelButton.isHidden = true
         editNightTimeTextField.isHidden = true
@@ -169,7 +180,7 @@ class EditViewController: UIViewController {
         let updateMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime)
         
         // 🥲여기 인덱스에 들어갈 변수 찾는 법..
-        EditDelegate?.update(index: iindex ?? 0, updateMedicine)
+        EditDelegate?.update(index: 0, updateMedicine)
         self.dismiss(animated: true)
     }
     
