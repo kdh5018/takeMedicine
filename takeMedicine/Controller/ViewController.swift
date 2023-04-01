@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import RealmSwift
 
 // 메인 페이지
 class ViewController: UIViewController {
@@ -20,14 +19,9 @@ class ViewController: UIViewController {
     var selectedRows: Set<UUID> = []
     
     
-//    let realm = try! Realm()
-    
-    
     override func viewDidLoad() { 
         super.viewDidLoad()
         
-        
-//        print(Realm.Configuration.defaultConfiguration.fileURL!)
         medicineTableView.dataSource = self
         medicineTableView.delegate = self
         
@@ -54,6 +48,7 @@ class ViewController: UIViewController {
             editDestinationVC.prepareMorningTime = editMedicineData.morningTime
             editDestinationVC.prepareDayTime = editMedicineData.dayTime
             editDestinationVC.prepareNightTime = editMedicineData.nightTime
+            
         }
     }
     
@@ -62,18 +57,10 @@ class ViewController: UIViewController {
     // 약 추가하기 VC 로드
     @IBAction func plusVCLoaded(_ sender: UIButton) {
         guard let plusVC = self.storyboard?.instantiateViewController(identifier: "PlusViewController") as? PlusViewController else { return }
-        plusVC.modalPresentationStyle = .fullScreen
+//        plusVC.modalPresentationStyle = .fullScreen
         plusVC.Delegate = self
         self.present(plusVC, animated: true, completion: nil)
     }
-    
-    // 약 수정하기 VC 로드
-//    @IBAction func editVCLoaded(_ sender: UIButton) {
-//        guard let editVC = self.storyboard?.instantiateViewController(identifier: "EditViewController") as? EditViewController else { return }
-//        editVC.modalPresentationStyle = .fullScreen
-//        editVC.EditDelegate = self
-//        self.present(editVC, animated: true, completion: nil)
-//    }
     
     
     // 삭제버튼
@@ -112,6 +99,7 @@ extension ViewController : UITableViewDataSource {
         let isSelected = selectedRows.contains(cellData.id)
         cell.configureCell(cellData: cellData, isSelected: isSelected)
         
+        // 수정하기 버튼 클릭시 EditViewController 띄워줌
         cell.onCellEditBtnClicked = {
             [weak self] (selectedMedicineData: MedicineData) in
             
@@ -120,7 +108,6 @@ extension ViewController : UITableViewDataSource {
             self.performSegue(withIdentifier: "EditViewController", sender: selectedMedicineData)
             
         }
-        
         
         return cell
         
@@ -134,16 +121,16 @@ extension ViewController : UITableViewDelegate {
         
         let selectedData = dataList[indexPath.row]
         
-        
+        // 테이블뷰셀 선택시 버튼 보여주기/숨기기
         if selectedRows.contains(selectedData.id) {
             selectedRows.remove(selectedData.id)
         } else {
             selectedRows.insert(selectedData.id)
         }
     
-//        print(medicineTableView.indexPathForSelectedRow![1])
-//        print("Selected cell at index: \(selectedData.id)")
-        
+//        let editVC = EditViewController()
+//        editVC.cellIndex = indexPath.row
+//        present(editVC, animated: true, completion: nil)
         
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }

@@ -9,6 +9,8 @@ import UIKit
 
 protocol Delegate: AnyObject {
     func addNewMedicine(_ medicineData: MedicineData)
+    func getMedicine()
+    func update(index: Int, _ medicineData: MedicineData)
 }
 
 // 약 추가하기 페이지

@@ -6,7 +6,9 @@
 //
 
 import UIKit
+
 protocol EditDelegate: AnyObject {
+    func addNewMedicine(_ medicineData: MedicineData)
     func getMedicine()
     func update(index: Int, _ medicineData: MedicineData)
 }
@@ -20,6 +22,9 @@ class EditViewController: UIViewController {
     var prepareDayTime: String?
     var prepareNightTime: String?
     
+//    var cellIndex: Int?
+    
+    
     @IBOutlet weak var editNameTextField: UITextField!
     @IBOutlet weak var editDateTextField: UITextField!
     @IBOutlet weak var editMorningTimeTextField: UITextField!
@@ -32,10 +37,8 @@ class EditViewController: UIViewController {
     
     
     var editMedicineDataManager = DataManager()
-    var editMedicineData: MedicineData? {
-        didSet {
-        }
-    }
+    var editMedicineData: MedicineData?
+
     var editDataManager: DataManager?
     var VC = ViewController()
 
@@ -165,22 +168,22 @@ class EditViewController: UIViewController {
     
     @IBAction func btnEdited(_ sender: UIButton) {
         
-        
         let title = editNameTextField.text ?? ""
         
-        guard let dateInput = editDateTextField.text else {
+        guard let date = editDateTextField.text else {
             return
         }
-        
-        let date = dateInput.isEmpty ? "매일" : dateInput
+    
         let morningTime = editMorningTimeTextField.text ?? ""
         let dayTime = editDayTimeTextField.text ?? ""
         let nightTime = editNightTimeTextField.text ?? ""
         
-        let updateMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime)
+        let editMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime)
         
         // 🥲여기 인덱스에 들어갈 변수 찾는 법..
-        EditDelegate?.update(index: 0, updateMedicine)
+        EditDelegate?.update(index: 0, editMedicine)
+        
+
         self.dismiss(animated: true)
     }
     
