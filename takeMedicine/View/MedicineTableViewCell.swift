@@ -9,6 +9,9 @@ import UIKit
 
 class MedicineTableViewCell: UITableViewCell {
     
+    
+    // 테이블뷰는 메모리를 재사용한다 - 그렇기 때문에 cellForRowAt에서 dequeueReusableCell 키워드를 사용하는 것이다
+    // 뷰컨 cellForRowAt에서 dequeueReusableCell에 withIdentifier가 MedicineTableViewCell.reuseId인 이유
     static let reuseId = "medicineCell"
     
     @IBOutlet weak var medicineName: UILabel!
@@ -53,11 +56,7 @@ class MedicineTableViewCell: UITableViewCell {
     @IBAction func onEditBtnClicked(_ sender: UIButton) {
         
         guard let cellData = self.medicineData else { return }
-        
         onCellEditBtnClicked?(cellData)
     }
-    
-    
-    
-    
+   
 }

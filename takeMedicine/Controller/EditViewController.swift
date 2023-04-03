@@ -13,7 +13,7 @@ protocol EditDelegate: AnyObject {
     func update(index: Int, _ medicineData: MedicineData)
 }
 
-// 약 수정하기 페이지
+//MARK: - 약 수정하기 페이지
 class EditViewController: UIViewController {
     
     var prepareName: String?
@@ -21,8 +21,6 @@ class EditViewController: UIViewController {
     var prepareMorningTime: String?
     var prepareDayTime: String?
     var prepareNightTime: String?
-    
-//    var cellIndex: Int?
     
     
     @IBOutlet weak var editNameTextField: UITextField!
@@ -33,7 +31,6 @@ class EditViewController: UIViewController {
     
     @IBOutlet weak var editDayDelButton: UIButton!
     @IBOutlet weak var editNightDelButton: UIButton!
-    
     
     
     var editMedicineDataManager = DataManager()
@@ -54,6 +51,9 @@ class EditViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 키보드 return시 내려가게 하기 위해 델리겟 설정
+        editNameTextField.delegate = self
         
         editNameTextField.text = prepareName
         editDateTextField.text = prepareDate
@@ -79,7 +79,7 @@ class EditViewController: UIViewController {
         self.showDatePicker()
         self.showTimePicker()
         
-        self.editHideKeyboardWhenTappedAround()
+        self.hideKeyboardWhenTappedAround()
     }
     
     /// 복용 기간 설정을 위한 데이트피커
@@ -193,64 +193,13 @@ class EditViewController: UIViewController {
     
 }
 
-
-extension EditViewController {
-    // 화면 터치시 키보드 내리기
-    func editHideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-}
-
 extension EditViewController: UITextFieldDelegate {
-    // 키보드 return 시 내리기
+    // 키보드 리턴시 키보드 내리기
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == editNameTextField {
             textField.resignFirstResponder()
+            return true
         }
-        return true
-    }
-}
-
-extension UIToolbar {
-    // 복용 기간 텍스트필드
-    func editDateToolbarPicker(select: Selector) -> UIToolbar {
-        let dateToolbar = UIToolbar()
-        
-        dateToolbar.barStyle = .default
-        dateToolbar.isTranslucent = true
-        dateToolbar.tintColor = .black
-        dateToolbar.sizeToFit()
-        
-        let doneBtn = UIBarButtonItem(title: "날짜 선택", style: .done, target: self, action: select)
-        let spaceBtn = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        
-        dateToolbar.setItems([doneBtn, spaceBtn], animated: false)
-        dateToolbar.isUserInteractionEnabled = true
-        
-        return dateToolbar
-    }
-    
-    // 복용 시간 텍스트필드
-    func editTimetoolbarPicker(select: Selector) -> UIToolbar {
-        let timeToolbar = UIToolbar()
-        
-        timeToolbar.barStyle = .default
-        timeToolbar.isTranslucent = true
-        timeToolbar.tintColor = .black
-        timeToolbar.sizeToFit()
-        
-        let timeDoneBtn = UIBarButtonItem(title: "시간 선택", style: .done, target: self, action: select)
-        let timeSpaceBtn = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        
-        timeToolbar.setItems([timeDoneBtn, timeSpaceBtn], animated: false)
-        timeToolbar.isUserInteractionEnabled = true
-        
-        return timeToolbar
+        return false
     }
 }

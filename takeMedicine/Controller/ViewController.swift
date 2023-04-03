@@ -7,10 +7,15 @@
 
 import UIKit
 
-// 메인 페이지
+//MARK: - 메인 페이지
 class ViewController: UIViewController {
     
     var medicineDataManager = DataManager()
+    
+    @IBOutlet weak var navToPlusVCBtn: UIButton!
+    
+//    @IBOutlet weak var navToEditVCBtn: UIButton!
+    
     
     @IBOutlet weak var medicineTableView: UITableView!
     
@@ -31,6 +36,7 @@ class ViewController: UIViewController {
         // 더미데이터를 이용하여 초기 화면 체크
         //        self.medicineDataList = MedicineData.getDummies()
     }
+
     
     // 서로의 메모리를 연결하기 위해 반드시 필요함⭐️
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -72,6 +78,7 @@ class ViewController: UIViewController {
     }
 }
 
+//MARK: - 데이터 소스 관련
 extension ViewController : UITableViewDataSource {
     // 입력한 약 종류 개수만큼 row출력
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -96,6 +103,8 @@ extension ViewController : UITableViewDataSource {
         cell.medicineNightTime?.text = cellData.nightTime
         
         // 테이블뷰셀 on/off를 위해 선택 여부 가져옴
+        
+        
         let isSelected = selectedRows.contains(cellData.id)
         cell.configureCell(cellData: cellData, isSelected: isSelected)
         
@@ -113,7 +122,7 @@ extension ViewController : UITableViewDataSource {
         
     }
 }
-
+//MARK: - 테이블뷰 델리겟 관련
 extension ViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -127,10 +136,6 @@ extension ViewController : UITableViewDelegate {
         } else {
             selectedRows.insert(selectedData.id)
         }
-    
-//        let editVC = EditViewController()
-//        editVC.cellIndex = indexPath.row
-//        present(editVC, animated: true, completion: nil)
         
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
@@ -164,5 +169,56 @@ extension UIView {
         }
         guard let cell = view as? UITableViewCell else { return nil }
         return tableView.indexPath(for: cell)
+    }
+}
+
+extension UIViewController {
+    // 화면 터치시 키보드 내리기
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
+extension UIToolbar {
+    // 복용 기간 텍스트필드
+    func dateToolbarPicker(select: Selector) -> UIToolbar {
+        let dateToolbar = UIToolbar()
+        
+        dateToolbar.barStyle = .default
+        dateToolbar.isTranslucent = true
+        dateToolbar.tintColor = .black
+        dateToolbar.sizeToFit()
+        
+        let doneBtn = UIBarButtonItem(title: "날짜 선택", style: .done, target: self, action: select)
+        let spaceBtn = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        dateToolbar.setItems([doneBtn, spaceBtn], animated: false)
+        dateToolbar.isUserInteractionEnabled = true
+        
+        return dateToolbar
+    }
+    
+    // 복용 시간 텍스트필드
+    func TimetoolbarPicker(select: Selector) -> UIToolbar {
+        let timeToolbar = UIToolbar()
+        
+        timeToolbar.barStyle = .default
+        timeToolbar.isTranslucent = true
+        timeToolbar.tintColor = .black
+        timeToolbar.sizeToFit()
+        
+        let timeDoneBtn = UIBarButtonItem(title: "시간 선택", style: .done, target: self, action: select)
+        let timeSpaceBtn = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        timeToolbar.setItems([timeDoneBtn, timeSpaceBtn], animated: false)
+        timeToolbar.isUserInteractionEnabled = true
+        
+        return timeToolbar
     }
 }
