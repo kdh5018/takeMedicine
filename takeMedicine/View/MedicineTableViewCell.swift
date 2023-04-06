@@ -28,9 +28,11 @@ class MedicineTableViewCell: UITableViewCell {
     
     var medicineData: MedicineData? = nil
     
+    
     // 수정, 삭제 버튼 스택뷰 숨기기 함수
     // 셀 데이터 업데이트
     func configureCell(cellData: MedicineData, isSelected: Bool){
+
         self.medicineData = cellData
         
         medicineName.text = cellData.title

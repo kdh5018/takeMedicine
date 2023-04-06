@@ -7,14 +7,10 @@
 
 import UIKit
 
-protocol EditDelegate: AnyObject {
-    func addNewMedicine(_ medicineData: MedicineData)
-    func getMedicine()
-    func update(index: Int, _ medicineData: MedicineData)
-}
-
 //MARK: - 약 수정하기 페이지
 class EditViewController: UIViewController {
+    
+    var tableIndex: Int?
     
     var prepareName: String?
     var prepareDate: String?
@@ -38,8 +34,9 @@ class EditViewController: UIViewController {
 
     var editDataManager: DataManager?
     var VC = ViewController()
+    var editMedicineCell = MedicineTableViewCell()
 
-    var EditDelegate: EditDelegate?
+    var EditDelegate: MedicineDelegate? = nil
     
     
     let editDatePicker = UIDatePicker()
@@ -168,12 +165,15 @@ class EditViewController: UIViewController {
     
     @IBAction func btnEdited(_ sender: UIButton) {
         
+        
+        
         let title = editNameTextField.text ?? ""
         
-        guard let date = editDateTextField.text else {
+        guard let dateInput = editDateTextField.text else {
             return
         }
     
+        let date = dateInput.isEmpty ? "매일" : dateInput
         let morningTime = editMorningTimeTextField.text ?? ""
         let dayTime = editDayTimeTextField.text ?? ""
         let nightTime = editNightTimeTextField.text ?? ""
@@ -181,7 +181,8 @@ class EditViewController: UIViewController {
         let editMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime)
         
         // 🥲여기 인덱스에 들어갈 변수 찾는 법..
-        EditDelegate?.update(index: 0, editMedicine)
+        print(#fileID, #function, #line, "- editMedicine : \(editMedicine)")
+        self.EditDelegate?.update(index: 0, editMedicine)
         
 
         self.dismiss(animated: true)

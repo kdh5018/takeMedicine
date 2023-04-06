@@ -275,7 +275,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="N3M-u9-7tr">
-                                        <rect key="frame" x="11" y="742" width="368" height="45"/>
+                                        <rect key="frame" x="11" y="712" width="368" height="45"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rGS-8q-b3R">
                                                 <rect key="frame" x="0.0" y="0.0" width="175" height="45"/>
@@ -336,7 +336,7 @@
                                     <constraint firstItem="WGj-nj-xOD" firstAttribute="trailing" secondItem="N3M-u9-7tr" secondAttribute="trailing" constant="11" id="3bH-Ho-l8s"/>
                                     <constraint firstItem="w8b-Nf-XX2" firstAttribute="leading" secondItem="OZ0-Y2-eL8" secondAttribute="leading" id="Bdi-lK-OVY"/>
                                     <constraint firstItem="4vB-Y6-1Mc" firstAttribute="leading" secondItem="hY8-ef-pIB" secondAttribute="leading" id="ISJ-RY-Ene"/>
-                                    <constraint firstItem="WGj-nj-xOD" firstAttribute="bottom" secondItem="N3M-u9-7tr" secondAttribute="bottom" id="KIe-jZ-dPm"/>
+                                    <constraint firstItem="WGj-nj-xOD" firstAttribute="bottom" secondItem="N3M-u9-7tr" secondAttribute="bottom" constant="30" id="KIe-jZ-dPm"/>
                                     <constraint firstItem="wdb-Te-Qxx" firstAttribute="top" secondItem="NBN-7r-Sdn" secondAttribute="bottom" constant="42" id="Udr-ll-Kty"/>
                                     <constraint firstItem="4vB-Y6-1Mc" firstAttribute="leading" secondItem="ssw-Bx-G46" secondAttribute="trailing" constant="13" id="Vea-fH-gVa"/>
                                     <constraint firstItem="NBN-7r-Sdn" firstAttribute="top" secondItem="w8b-Nf-XX2" secondAttribute="bottom" constant="65" id="WWz-g9-gCs"/>

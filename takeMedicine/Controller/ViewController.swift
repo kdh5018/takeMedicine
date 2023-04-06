@@ -14,8 +14,6 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var navToPlusVCBtn: UIButton!
     
-//    @IBOutlet weak var navToEditVCBtn: UIButton!
-    
     
     @IBOutlet weak var medicineTableView: UITableView!
     
@@ -42,12 +40,21 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         if let destinationVC = segue.destination as? PlusViewController {
-            destinationVC.Delegate = self
+            
+            // PlusViewController(destinationVC)과 ViewController를 델리겟으로 연결⭐️
+            // extension으로 ViewController에 뷰컨트롤러를 정의했기 때문에 ViewController가 Delegate를 준수하기 때문에 self로 연결이 됨
+            destinationVC.PlusDelegate = self
         }
         if let editDestinationVC = segue.destination as? EditViewController,
-            let editMedicineData = sender as? MedicineData{
+           let editMedicineData = sender as? MedicineData,
+           let indexPath = tableView.indexPathForSelectedRow as IndexPath?{
+            
+            // EditViewController(editDestinationVC)과 ViewController를 델리겟으로 연결⭐️
+            // extension으로 ViewController에 뷰컨트롤러를 정의했기 때문에 ViewController가 Delegate를 준수하기 때문에 self로 연결이 됨
+            editDestinationVC.EditDelegate = self
             
             editDestinationVC.editMedicineData = editMedicineData
+            editDestinationVC.tableIndex = indexPath.row
             
             editDestinationVC.prepareName = editMedicineData.title
             editDestinationVC.prepareDate = editMedicineData.date
@@ -56,6 +63,7 @@ class ViewController: UIViewController {
             editDestinationVC.prepareNightTime = editMedicineData.nightTime
             
         }
+        
     }
     
 
@@ -64,7 +72,7 @@ class ViewController: UIViewController {
     @IBAction func plusVCLoaded(_ sender: UIButton) {
         guard let plusVC = self.storyboard?.instantiateViewController(identifier: "PlusViewController") as? PlusViewController else { return }
 //        plusVC.modalPresentationStyle = .fullScreen
-        plusVC.Delegate = self
+        plusVC.PlusDelegate = self
         self.present(plusVC, animated: true, completion: nil)
     }
     
@@ -95,6 +103,7 @@ extension ViewController : UITableViewDataSource {
         let array = medicineDataManager.getMedicineData()
         
         let cellData = array[indexPath.row]
+        print(#fileID, #function, #line, "- cellData: \(cellData)")
         
         cell.medicineName?.text = cellData.title
         cell.medicineDate?.text = cellData.date
@@ -103,10 +112,9 @@ extension ViewController : UITableViewDataSource {
         cell.medicineNightTime?.text = cellData.nightTime
         
         // 테이블뷰셀 on/off를 위해 선택 여부 가져옴
-        
-        
         let isSelected = selectedRows.contains(cellData.id)
         cell.configureCell(cellData: cellData, isSelected: isSelected)
+        
         
         // 수정하기 버튼 클릭시 EditViewController 띄워줌
         cell.onCellEditBtnClicked = {
@@ -115,7 +123,7 @@ extension ViewController : UITableViewDataSource {
             guard let self = self else { return }
             
             self.performSegue(withIdentifier: "EditViewController", sender: selectedMedicineData)
-            
+        
         }
         
         return cell
@@ -126,14 +134,18 @@ extension ViewController : UITableViewDataSource {
 extension ViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        let rowNumber = indexPath.row
+        
         let dataList = medicineDataManager.getMedicineData()
         
         let selectedData = dataList[indexPath.row]
         
         // 테이블뷰셀 선택시 버튼 보여주기/숨기기
         if selectedRows.contains(selectedData.id) {
+            print(#fileID, #function, #line, "- medicineId: \(rowNumber)")
             selectedRows.remove(selectedData.id)
         } else {
+            print(#fileID, #function, #line, "- medicineId: \(rowNumber)")
             selectedRows.insert(selectedData.id)
         }
         
@@ -141,18 +153,18 @@ extension ViewController : UITableViewDelegate {
     }
 }
 
-extension ViewController: Delegate {
+//MARK: - 뷰컨트롤러 델리겟
+extension ViewController: MedicineDelegate {
     func addNewMedicine(_ medicineData: MedicineData) {
         medicineDataManager.makeNewMedicine(medicineData)
         medicineTableView.reloadData()
     }
-
-}
-extension ViewController: EditDelegate {
+    
     func getMedicine() {
         medicineDataManager.getMedicineData()
         medicineTableView.reloadData()
     }
+    
     func update(index: Int, _ medicineData: MedicineData) {
         medicineDataManager.updateMedicine(index: index, medicineData)
         medicineTableView.reloadData()
@@ -222,3 +234,5 @@ extension UIToolbar {
         return timeToolbar
     }
 }
+
+

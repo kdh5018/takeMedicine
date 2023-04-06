@@ -7,11 +7,6 @@
 
 import UIKit
 
-protocol Delegate: AnyObject {
-    func addNewMedicine(_ medicineData: MedicineData)
-    func getMedicine()
-    func update(index: Int, _ medicineData: MedicineData)
-}
 
 //MARK: - 약 추가하기 페이지
 class PlusViewController: UIViewController {
@@ -27,7 +22,7 @@ class PlusViewController: UIViewController {
 
     var medicineDataManager = DataManager()
     var viewController = ViewController()
-    var Delegate: Delegate?
+    var PlusDelegate: MedicineDelegate?
     var medicineData: MedicineData?
     
     let datePicker = UIDatePicker()
@@ -141,6 +136,8 @@ class PlusViewController: UIViewController {
     }
     
     @IBAction func btnAdded(_ sender: UIButton) {
+        
+        
         // 새로운 약 추가
         let title = nameTextField.text ?? ""
         
@@ -156,8 +153,9 @@ class PlusViewController: UIViewController {
         
         let newMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime)
         
-        Delegate?.addNewMedicine(newMedicine)
+        self.PlusDelegate?.addNewMedicine(newMedicine)
         
+        print(#fileID, #function, #line, "- newMedicine: \(newMedicine)")
         self.dismiss(animated: true)
         
     }

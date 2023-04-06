@@ -27,3 +27,9 @@ class DataManager {
     }
     
 }
+
+protocol MedicineDelegate{
+    func addNewMedicine(_ medicineData: MedicineData)
+    func getMedicine()
+    func update(index: Int, _ medicineData: MedicineData)
+}

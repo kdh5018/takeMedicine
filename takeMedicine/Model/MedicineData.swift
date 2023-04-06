@@ -12,6 +12,7 @@ struct MedicineData {
     
     var id : UUID = UUID()
     
+    
     let title: String
     let date: String?
     let morningTime: String
@@ -26,8 +27,6 @@ struct MedicineData {
     ///   - dayTime: 복용 시간2
     ///   - nightTime: 복용 시간3
     init(title: String, date: String, morningTime: String, dayTime: String?, nightTime: String?) {
-        //        
-//        self.medicineId = MedicineData.number == 0 ? 0 : MedicineData.number
         
         self.title = title
         self.date = date
@@ -35,7 +34,6 @@ struct MedicineData {
         self.dayTime = dayTime
         self.nightTime = nightTime
         
-//        MedicineData.number += 1
     }
     
 }
