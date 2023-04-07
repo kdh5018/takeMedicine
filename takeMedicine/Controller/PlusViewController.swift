@@ -17,6 +17,8 @@ class PlusViewController: UIViewController {
     @IBOutlet weak var textFieldTimeDayPicker: UITextField!
     @IBOutlet weak var textFieldTimeNightPicker: UITextField!
     
+    @IBOutlet weak var plusBtn: UIButton!
+    
     @IBOutlet weak var dayDelButton: UIButton!
     @IBOutlet weak var nightDelButton: UIButton!
 
@@ -137,7 +139,6 @@ class PlusViewController: UIViewController {
     
     @IBAction func btnAdded(_ sender: UIButton) {
         
-        
         // 새로운 약 추가
         let title = nameTextField.text ?? ""
         
@@ -156,6 +157,7 @@ class PlusViewController: UIViewController {
         self.PlusDelegate?.addNewMedicine(newMedicine)
         
         print(#fileID, #function, #line, "- newMedicine: \(newMedicine)")
+        
         self.dismiss(animated: true)
         
     }

@@ -58,20 +58,20 @@ class EditViewController: UIViewController {
         editDayTimeTextField.text = prepareDayTime
         editNightTimeTextField.text = prepareNightTime
 
-//        if editDayTimeTextField == nil {
-//            editDayTimeTextField.isHidden = true
-//        } else {
-//            editDayTimeTextField.isHidden = false
-//        }
-//        if editNightTimeTextField == nil {
-//            editNightTimeTextField.isHidden = true
-//        } else {
-//            editNightTimeTextField.isHidden = false
-//        }
-        editDayTimeTextField.isHidden = true
-        editDayDelButton.isHidden = true
-        editNightTimeTextField.isHidden = true
-        editNightDelButton.isHidden = true
+        // if EditViewController를 열었을 때, 시간 텍스트필드가 비어 있으면 비어있는 텍스트필드는 숨기고 작성된 텍스트필드만 보이게
+        if editDayTimeTextField.text == nil {
+            editDayTimeTextField.isHidden = true
+            editDayDelButton.isHidden = true
+        }
+        if editNightTimeTextField == nil {
+            editNightTimeTextField.isHidden = true
+            editNightDelButton.isHidden = true
+        }
+        
+//        editDayTimeTextField.isHidden = true
+//        editDayDelButton.isHidden = true
+//        editNightTimeTextField.isHidden = true
+//        editNightDelButton.isHidden = true
         
         self.showDatePicker()
         self.showTimePicker()
@@ -164,8 +164,6 @@ class EditViewController: UIViewController {
     
     
     @IBAction func btnEdited(_ sender: UIButton) {
-        
-        
         
         let title = editNameTextField.text ?? ""
         

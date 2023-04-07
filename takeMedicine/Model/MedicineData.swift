@@ -6,18 +6,30 @@
 //
 
 import Foundation
-import Fakery
+//import Fakery
 
-struct MedicineData {
+enum Section {
+    case normal, pinned
+}
+
+class MedicineData: NSObject, NSCoding, NSSecureCoding, Codable {
     
-    var id : UUID = UUID()
+    static var supportsSecureCoding: Bool = true
+    
+    var uuid : UUID = UUID()
+    
+    private (set) var title: String
+    private (set) var date: String?
+    private (set) var morningTime: String
+    private (set) var dayTime: String?
+    private (set) var nightTime: String?
     
     
-    let title: String
-    let date: String?
-    let morningTime: String
-    let dayTime: String?
-    let nightTime: String?
+//    let title: String
+//    let date: String?
+//    let morningTime: String
+//    let dayTime: String?
+//    let nightTime: String?
     
     /// medicineData 생성자
     /// - Parameters:
@@ -34,6 +46,42 @@ struct MedicineData {
         self.dayTime = dayTime
         self.nightTime = nightTime
         
+    }
+    //MARK: - 모델 데이터 확인용
+    var info : String {
+        get{
+            return "title: \(title), date: \(date), morningTime: \(morningTime), dayTime: \(dayTime), nightTime: \(nightTime)"
+        }
+    }
+    
+    //MARK: - hashable 프로토콜 준수용
+    static func == (lhs: MedicineData, rhs: MedicineData) -> Bool {
+        lhs.uuid == rhs.uuid
+    }
+    
+    //MARK: - NSCoding을 사용할 때 필요한 것들
+    func encode(with coder: NSCoder) {
+        coder.encode(self.title, forKey: "title")
+        coder.encode(self.date, forKey: "date")
+        coder.encode(self.morningTime, forKey: "morningTime")
+        coder.encode(self.dayTime, forKey: "dayTime")
+        coder.encode(self.nightTime, forKey: "nightTime")
+    }
+    
+    required convenience init?(coder decoder: NSCoder) {
+        guard let title = decoder.decodeObject(forKey: "title")
+                as? String,
+              let date = decoder.decodeObject(forKey: "date") as? String,
+              let morningTime = decoder.decodeObject(forKey: "morningTime") as? String,
+              let dayTime = decoder.decodeObject(forKey: "dayTime") as? String,
+              let nightTime = decoder.decodeObject(forKey: "nightTime") as? String
+        else { return nil }
+        self.init(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime)
+    }
+    
+    static func createNewMedicine(with newValue: String) -> MedicineData{
+        print(#fileID, #function, #line, "- createNewMedicine() called / newValue: \(newValue)")
+        return MedicineData(title: newValue, date: newValue, morningTime: newValue, dayTime: newValue, nightTime: newValue)
     }
     
 }

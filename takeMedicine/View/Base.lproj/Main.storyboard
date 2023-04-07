@@ -547,6 +547,7 @@
                         <outlet property="dayDelButton" destination="HgG-LG-3Gi" id="ZHP-cN-Vl8"/>
                         <outlet property="nameTextField" destination="ZaJ-22-oGU" id="lP5-Ac-Alj"/>
                         <outlet property="nightDelButton" destination="VuY-KH-Utr" id="qXZ-lc-c0k"/>
+                        <outlet property="plusBtn" destination="HXQ-jn-2OM" id="SLT-1h-B56"/>
                         <outlet property="textFieldDatePicker" destination="3Cz-K1-fLr" id="HSP-go-Zco"/>
                         <outlet property="textFieldTimeDayPicker" destination="SuA-rV-SBs" id="aWk-zU-z1W"/>
                         <outlet property="textFieldTimeMorningPicker" destination="nE2-gJ-9Uv" id="ZuM-py-ceJ"/>

@@ -14,27 +14,38 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var navToPlusVCBtn: UIButton!
     
-    
     @IBOutlet weak var medicineTableView: UITableView!
     
     let medicineCell = MedicineTableViewCell()
     
     var selectedRows: Set<UUID> = []
     
+    // 데이터소스 - 기존의 UITableViewDataSource를 대체함
+//    var dataSource : NSDiffableDataSourceSnapshot<Section, MedicineData>!
+//
+//    // 스냅샷 - 현재 데이터 상태
+//    var snapshot: NSDiffableDataSourceSnapshot<Section, MedicineData>!
     
-    override func viewDidLoad() { 
+    override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         medicineTableView.dataSource = self
         medicineTableView.delegate = self
         
         medicineTableView.estimatedRowHeight = UITableView.automaticDimension
         
+        // 저장된 데이터 가져오기
+//        if let fetchedMedicine = UserDefaultsManager.shared.getMedicineList() {
+//            print("fetchedMedicine.count: \(fetchedMedicine.count)")
+//            // 데이터 넣고 화면에 보여주기
+//            self.setDataAndApply(with: fetchedMedicine, false)
+//        }
         
         // 더미데이터를 이용하여 초기 화면 체크
         //        self.medicineDataList = MedicineData.getDummies()
     }
-
+    
     
     // 서로의 메모리를 연결하기 위해 반드시 필요함⭐️
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -46,15 +57,15 @@ class ViewController: UIViewController {
             destinationVC.PlusDelegate = self
         }
         if let editDestinationVC = segue.destination as? EditViewController,
-           let editMedicineData = sender as? MedicineData,
-           let indexPath = tableView.indexPathForSelectedRow as IndexPath?{
+           let editMedicineData = sender as? MedicineData{
+            //           let indexPath = tableView.indexPathForSelectedRow as IndexPath?
             
             // EditViewController(editDestinationVC)과 ViewController를 델리겟으로 연결⭐️
             // extension으로 ViewController에 뷰컨트롤러를 정의했기 때문에 ViewController가 Delegate를 준수하기 때문에 self로 연결이 됨
             editDestinationVC.EditDelegate = self
             
             editDestinationVC.editMedicineData = editMedicineData
-            editDestinationVC.tableIndex = indexPath.row
+            //            editDestinationVC.tableIndex = indexPath.row
             
             editDestinationVC.prepareName = editMedicineData.title
             editDestinationVC.prepareDate = editMedicineData.date
@@ -66,16 +77,15 @@ class ViewController: UIViewController {
         
     }
     
-
+    
     
     // 약 추가하기 VC 로드
     @IBAction func plusVCLoaded(_ sender: UIButton) {
         guard let plusVC = self.storyboard?.instantiateViewController(identifier: "PlusViewController") as? PlusViewController else { return }
-//        plusVC.modalPresentationStyle = .fullScreen
+        //        plusVC.modalPresentationStyle = .fullScreen
         plusVC.PlusDelegate = self
         self.present(plusVC, animated: true, completion: nil)
     }
-    
     
     // 삭제버튼
     @IBAction func delBtn(_ sender: UIButton) {
@@ -83,7 +93,45 @@ class ViewController: UIViewController {
         medicineDataManager.medicineDataArray.remove(at: indexPath.row)
         medicineTableView.reloadData()
         
+        
     }
+    
+//    func addMedicine(with data: MedicineData) {
+//        print("ViewController - addMedicine() called / data: \(data)")
+//
+//        // 저장된 데이터 가져오기
+//
+//        var fetchedMedicine : [MedicineData] = []
+//
+//        fetchedMedicine = UserDefaultsManager.shared.getMedicineList() ?? []
+//
+//        // 가져온 데이터에 새 메모 추가하기
+//        fetchedMedicine.append(data)
+//
+//        // 업데이트된 데이터 저장하기
+//        UserDefaultsManager.shared.setMedicineList(with: fetchedMedicine)
+//
+//        // 테이블뷰 갱신
+//
+//    }
+//    func setDataAndApply(with data: [MedicineData], _ animated: Bool) {
+//        print("ViewController - setDataAndApply() called / data: \(data.count)")
+//        data.forEach{ print($0.info) }
+//
+//        // 스냅샷 준비
+//        // 빈 스냅샷
+//        snapshot = NSDiffableDataSourceSnapshot<Section, MedicineData>()
+//
+//        // 섹션 추가
+//        snapshot.appendSections([.normal])
+//
+//        // 방금 추가한 섹션에 아이템 넣기
+//        snapshot.appendItems(data, toSection: .normal)
+//
+//        dataSource.apply(snapshot, animatingDifferences: animated)
+//    }
+    
+    
 }
 
 //MARK: - 데이터 소스 관련
@@ -103,7 +151,7 @@ extension ViewController : UITableViewDataSource {
         let array = medicineDataManager.getMedicineData()
         
         let cellData = array[indexPath.row]
-        print(#fileID, #function, #line, "- cellData: \(cellData)")
+        print(#fileID, #function, #line, "- cellDataType: \(type(of: cellData))")
         
         cell.medicineName?.text = cellData.title
         cell.medicineDate?.text = cellData.date
@@ -112,7 +160,7 @@ extension ViewController : UITableViewDataSource {
         cell.medicineNightTime?.text = cellData.nightTime
         
         // 테이블뷰셀 on/off를 위해 선택 여부 가져옴
-        let isSelected = selectedRows.contains(cellData.id)
+        let isSelected = selectedRows.contains(cellData.uuid)
         cell.configureCell(cellData: cellData, isSelected: isSelected)
         
         
@@ -123,7 +171,7 @@ extension ViewController : UITableViewDataSource {
             guard let self = self else { return }
             
             self.performSegue(withIdentifier: "EditViewController", sender: selectedMedicineData)
-        
+            
         }
         
         return cell
@@ -140,13 +188,15 @@ extension ViewController : UITableViewDelegate {
         
         let selectedData = dataList[indexPath.row]
         
+        //        let itemToBeDeleted = self.dataSource.itemIdentifiers(for: indexPath)
+        
         // 테이블뷰셀 선택시 버튼 보여주기/숨기기
-        if selectedRows.contains(selectedData.id) {
+        if selectedRows.contains(selectedData.uuid) {
             print(#fileID, #function, #line, "- medicineId: \(rowNumber)")
-            selectedRows.remove(selectedData.id)
+            selectedRows.remove(selectedData.uuid)
         } else {
             print(#fileID, #function, #line, "- medicineId: \(rowNumber)")
-            selectedRows.insert(selectedData.id)
+            selectedRows.insert(selectedData.uuid)
         }
         
         tableView.reloadRows(at: [indexPath], with: .automatic)
