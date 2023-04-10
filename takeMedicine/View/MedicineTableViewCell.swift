@@ -24,16 +24,19 @@ class MedicineTableViewCell: UITableViewCell {
     @IBOutlet weak var buttonStackView: UIStackView!
     
     
-    var onCellEditBtnClicked: ((_ cellData: MedicineData) -> Void)? = nil
+    var onCellEditBtnClicked: ((_ cellData: MedicineData, _ indexPath: IndexPath) -> Void)? = nil
+    //    var onCellDeleteBtnClicked: ((_ cellData: MedicineData, _ indexPath: IndexPath) -> Void)? = nil
     
     var medicineData: MedicineData? = nil
+    var currentIndex: IndexPath? = nil
     
     
     // 수정, 삭제 버튼 스택뷰 숨기기 함수
     // 셀 데이터 업데이트
-    func configureCell(cellData: MedicineData, isSelected: Bool){
-
+    func configureCell(cellData: MedicineData, isSelected: Bool, indexPath: IndexPath){
+        
         self.medicineData = cellData
+        self.currentIndex = indexPath
         
         medicineName.text = cellData.title
         medicineDate.text = cellData.date
@@ -57,8 +60,16 @@ class MedicineTableViewCell: UITableViewCell {
     
     @IBAction func onEditBtnClicked(_ sender: UIButton) {
         
-        guard let cellData = self.medicineData else { return }
-        onCellEditBtnClicked?(cellData)
+        guard let cellData = self.medicineData,
+              let indexPath = self.currentIndex else { return }
+        onCellEditBtnClicked?(cellData, indexPath)
     }
-   
+    
+    //    @IBAction func onDeleteBtnClicked(_ sender: UIButton) {
+    //        guard let cellData = self.medicineData,
+    //              let indexPath = self.currentIndex else { return }
+    //        onCellDeleteBtnClicked?(cellData, indexPath)
+    //    }
+    
+    
 }

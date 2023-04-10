@@ -26,10 +26,16 @@ class DataManager {
         medicineDataArray[index] = medicineData
     }
     
+//    func updateMedicine(_ medicineData: MedicineData) {
+//        if let foundIndex = medicineDataArray.firstIndex(where: { $0.id == medicineData.id }) {
+//            medicineDataArray[foundIndex] = medicineData
+//        }
+//    }
 }
 
 protocol MedicineDelegate{
     func addNewMedicine(_ medicineData: MedicineData)
     func getMedicine()
     func update(index: Int, _ medicineData: MedicineData)
+//    func update(_ medicineData: MedicineData)
 }

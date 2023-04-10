@@ -24,7 +24,7 @@ class PlusViewController: UIViewController {
 
     var medicineDataManager = DataManager()
     var viewController = ViewController()
-    var PlusDelegate: MedicineDelegate?
+    var plusDelegate: MedicineDelegate?
     var medicineData: MedicineData?
     
     let datePicker = UIDatePicker()
@@ -154,7 +154,7 @@ class PlusViewController: UIViewController {
         
         let newMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime)
         
-        self.PlusDelegate?.addNewMedicine(newMedicine)
+        self.plusDelegate?.addNewMedicine(newMedicine)
         
         print(#fileID, #function, #line, "- newMedicine: \(newMedicine)")
         

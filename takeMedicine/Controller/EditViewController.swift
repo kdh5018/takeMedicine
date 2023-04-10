@@ -36,7 +36,7 @@ class EditViewController: UIViewController {
     var VC = ViewController()
     var editMedicineCell = MedicineTableViewCell()
 
-    var EditDelegate: MedicineDelegate? = nil
+    var editDelegate: MedicineDelegate? = nil
     
     
     let editDatePicker = UIDatePicker()
@@ -180,7 +180,7 @@ class EditViewController: UIViewController {
         
         // 🥲여기 인덱스에 들어갈 변수 찾는 법..
         print(#fileID, #function, #line, "- editMedicine : \(editMedicine)")
-        self.EditDelegate?.update(index: 0, editMedicine)
+        self.editDelegate?.update(index: tableIndex!, editMedicine)
         
 
         self.dismiss(animated: true)

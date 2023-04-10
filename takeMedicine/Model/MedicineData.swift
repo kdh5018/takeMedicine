@@ -16,7 +16,7 @@ class MedicineData: NSObject, NSCoding, NSSecureCoding, Codable {
     
     static var supportsSecureCoding: Bool = true
     
-    var uuid : UUID = UUID()
+    var id : UUID = UUID()
     
     private (set) var title: String
     private (set) var date: String?
@@ -56,7 +56,7 @@ class MedicineData: NSObject, NSCoding, NSSecureCoding, Codable {
     
     //MARK: - hashable 프로토콜 준수용
     static func == (lhs: MedicineData, rhs: MedicineData) -> Bool {
-        lhs.uuid == rhs.uuid
+        lhs.id == rhs.id
     }
     
     //MARK: - NSCoding을 사용할 때 필요한 것들
