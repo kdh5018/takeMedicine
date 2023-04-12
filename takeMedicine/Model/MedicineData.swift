@@ -25,11 +25,11 @@ class MedicineData: NSObject, NSCoding, NSSecureCoding, Codable {
     private (set) var nightTime: String?
     
     
-//    let title: String
-//    let date: String?
-//    let morningTime: String
-//    let dayTime: String?
-//    let nightTime: String?
+    //    let title: String
+    //    let date: String?
+    //    let morningTime: String
+    //    let dayTime: String?
+    //    let nightTime: String?
     
     /// medicineData 생성자
     /// - Parameters:
@@ -69,8 +69,7 @@ class MedicineData: NSObject, NSCoding, NSSecureCoding, Codable {
     }
     
     required convenience init?(coder decoder: NSCoder) {
-        guard let title = decoder.decodeObject(forKey: "title")
-                as? String,
+        guard let title = decoder.decodeObject(forKey: "title") as? String,
               let date = decoder.decodeObject(forKey: "date") as? String,
               let morningTime = decoder.decodeObject(forKey: "morningTime") as? String,
               let dayTime = decoder.decodeObject(forKey: "dayTime") as? String,

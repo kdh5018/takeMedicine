@@ -7,6 +7,8 @@
 
 import Foundation
 
+/// 로컬 데이터 저장 매니저
+/// 싱글톤 객체
 class UserDefaultsManager {
     
     enum Key: String, CaseIterable {
@@ -17,7 +19,7 @@ class UserDefaultsManager {
     }()
     
     //MARK: - 약 데이터 관련
-    /// 약 목록 추가 및 저장하기
+    /// 약 목록 추가 및 저장하기(encode)
     /// - Parameter newValue: 저장할 값
     func setMedicineList(with newValue: [MedicineData]) {
         print(#fileID, #function, #line, "- newValue.count: \(newValue.count)")
@@ -32,12 +34,12 @@ class UserDefaultsManager {
         }
     }// setMedicineList()
     
-    /// 저장된 약 목록 가져오기
+    /// 저장된 약 목록 가져오기(decode)
     /// - Returns: 저장된 값
     func getMedicineList() -> [MedicineData]? {
         print("UserDefaultsManager - getMedicineList() called")
         if let data = UserDefaults.standard.object(forKey: Key.medicineList.rawValue) as? NSData {
-            print("저장된 데이터: \(data.description)")
+            print("저장된 데이터: \(data)")
             do {
                 let medicineList = try PropertyListDecoder().decode([MedicineData].self, from: data as Data)
                 return medicineList
@@ -47,7 +49,9 @@ class UserDefaultsManager {
         }
         return nil
     } // getMedicineList()
+
     
+    /// 약 목록 삭제
     func clearMedicineList() {
         print("UserDefaultsManager - clearMedicineList() called")
         UserDefaults.standard.removeObject(forKey: Key.medicineList.rawValue)

@@ -85,8 +85,8 @@
 		76D8D16B29AC79AA00F8132A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				76A98844299E007500727AD5 /* DataManager.swift */,
 				7697F40229937CF80092D3F9 /* MedicineData.swift */,
+				76A98844299E007500727AD5 /* DataManager.swift */,
 				764A9FC929D8032900084DFB /* UserDefaultsManager.swift */,
 			);
 			path = Model;

@@ -189,9 +189,9 @@
         <!--Edit View Controller-->
         <scene sceneID="aUK-X5-S9Z">
             <objects>
-                <viewController storyboardIdentifier="EditViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Z1N-Ke-za7" customClass="EditViewController" customModule="takeMedicine" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Z1N-Ke-za7" customClass="EditViewController" customModule="takeMedicine" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8NG-WV-Vyw">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="OZ0-Y2-eL8">
@@ -379,9 +379,9 @@
         <!--Plus View Controller-->
         <scene sceneID="EEI-tx-XwV">
             <objects>
-                <viewController storyboardIdentifier="PlusViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SW6-yj-G1N" customClass="PlusViewController" customModule="takeMedicine" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlusViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SW6-yj-G1N" customClass="PlusViewController" customModule="takeMedicine" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gpu-Zn-O2x">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z3j-C0-dVR">
@@ -460,7 +460,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="tfk-rO-WYW">
-                                <rect key="frame" x="11" y="712" width="368" height="45"/>
+                                <rect key="frame" x="11" y="735" width="368" height="45"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXQ-jn-2OM">
                                         <rect key="frame" x="0.0" y="0.0" width="175" height="45"/>

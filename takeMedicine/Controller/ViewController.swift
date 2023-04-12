@@ -18,29 +18,19 @@ class ViewController: UIViewController {
     
     let medicineCell = MedicineTableViewCell()
     
+    
     var selectedRows: Set<UUID> = []
     
-    // 데이터소스 - 기존의 UITableViewDataSource를 대체함
-//    var dataSource : NSDiffableDataSourceSnapshot<Section, MedicineData>!
-//
-//    // 스냅샷 - 현재 데이터 상태
-//    var snapshot: NSDiffableDataSourceSnapshot<Section, MedicineData>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         
         medicineTableView.dataSource = self
         medicineTableView.delegate = self
         
         medicineTableView.estimatedRowHeight = UITableView.automaticDimension
         
-        // 저장된 데이터 가져오기
-//        if let fetchedMedicine = UserDefaultsManager.shared.getMedicineList() {
-//            print("fetchedMedicine.count: \(fetchedMedicine.count)")
-//            // 데이터 넣고 화면에 보여주기
-//            self.setDataAndApply(with: fetchedMedicine, false)
-//        }
         
         // 더미데이터를 이용하여 초기 화면 체크
         //        self.medicineDataList = MedicineData.getDummies()
@@ -84,7 +74,6 @@ class ViewController: UIViewController {
     // 약 추가하기 VC 로드
     @IBAction func plusVCLoaded(_ sender: UIButton) {
         guard let plusVC = self.storyboard?.instantiateViewController(identifier: "PlusViewController") as? PlusViewController else { return }
-        //        plusVC.modalPresentationStyle = .fullScreen
         plusVC.plusDelegate = self
         self.present(plusVC, animated: true, completion: nil)
     }
@@ -92,9 +81,10 @@ class ViewController: UIViewController {
     // 삭제버튼
     @IBAction func delBtn(_ sender: UIButton) {
         guard let indexPath = (sender.superview?.superview as? UIView)?.indexPathInTableView(medicineTableView) else { return }
-        medicineDataManager.medicineDataArray.remove(at: indexPath.row)
+        medicineDataManager.deleteMedicine(index: indexPath.row)
         medicineTableView.reloadData()
-
+        print(#fileID, #function, #line, "- indexPath.row: \(indexPath.row)")
+        
     }
 
 
@@ -117,7 +107,6 @@ extension ViewController : UITableViewDataSource {
         let array = medicineDataManager.getMedicineData()
         
         let cellData = array[indexPath.row]
-        print(#fileID, #function, #line, "- cellDataType: \(type(of: cellData))")
         
         
         /// MedicineTableVeiwCell에 configureCell에서 업데이트를 해주기 때문에 뷰컨에서 다시 데이터를 받아올 필요 없이 configureCell만 호출해주면 됨
@@ -141,19 +130,9 @@ extension ViewController : UITableViewDataSource {
             let data = (medicineData: selectedMedicineData, indexPath: indexPath)
             
             self.performSegue(withIdentifier: "EditViewController", sender: data)
+            print(#fileID, #function, #line, "- 수정하기 화면 넘어감")
             
         }
-        
-//        cell.onCellDeleteBtnClicked = {
-//            [weak self] (selectedMedicineData: MedicineData, indexPath: IndexPath) in
-//
-//            guard let self = self else { return }
-//            
-//            let data = (medicineData: selectedMedicineData, indexPath: indexPath)
-//
-//            self.delCloser(indexPath: indexPath)
-//
-//        }
         
         
         return cell
@@ -164,18 +143,14 @@ extension ViewController : UITableViewDataSource {
 extension ViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let rowNumber = indexPath.row
-        
         let dataList = medicineDataManager.getMedicineData()
         
         let selectedData = dataList[indexPath.row]
         
         // 테이블뷰셀 선택시 버튼 보여주기/숨기기
         if selectedRows.contains(selectedData.id) {
-            print(#fileID, #function, #line, "- medicineId: \(rowNumber)")
             selectedRows.remove(selectedData.id)
         } else {
-            print(#fileID, #function, #line, "- medicineId: \(rowNumber)")
             selectedRows.insert(selectedData.id)
         }
         
@@ -199,11 +174,11 @@ extension ViewController: MedicineDelegate {
         medicineDataManager.updateMedicine(index: index, medicineData)
         medicineTableView.reloadData()
     }
-    
-    //    func update(_ medicineData: MedicineData) {
-    //        medicineDataManager.updateMedicine(medicineData)
-    //        medicineTableView.reloadData()
-    //    }
+    func delete(index: Int) {
+        medicineDataManager.deleteMedicine(index: index)
+        medicineTableView.reloadData()
+    }
+
 }
 
 
@@ -222,7 +197,7 @@ extension UIView {
 
 
 extension UIViewController {
-    // 화면 터치시 키보드 내리기
+    //MARK: - 화면 터치시 키보드 내리기
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
@@ -235,7 +210,7 @@ extension UIViewController {
 }
 
 extension UIToolbar {
-    // 복용 기간 텍스트필드
+    //MARK: - 복용 기간 텍스트필드
     func dateToolbarPicker(select: Selector) -> UIToolbar {
         let dateToolbar = UIToolbar()
         
@@ -253,7 +228,7 @@ extension UIToolbar {
         return dateToolbar
     }
     
-    // 복용 시간 텍스트필드
+    //MARK: - 복용 시간 텍스트필드
     func TimetoolbarPicker(select: Selector) -> UIToolbar {
         let timeToolbar = UIToolbar()
         

@@ -22,10 +22,7 @@ class PlusViewController: UIViewController {
     @IBOutlet weak var dayDelButton: UIButton!
     @IBOutlet weak var nightDelButton: UIButton!
 
-    var medicineDataManager = DataManager()
-    var viewController = ViewController()
     var plusDelegate: MedicineDelegate?
-    var medicineData: MedicineData?
     
     let datePicker = UIDatePicker()
     let timePicker = UIDatePicker()
@@ -157,6 +154,7 @@ class PlusViewController: UIViewController {
         self.plusDelegate?.addNewMedicine(newMedicine)
         
         print(#fileID, #function, #line, "- newMedicine: \(newMedicine)")
+        
         
         self.dismiss(animated: true)
         

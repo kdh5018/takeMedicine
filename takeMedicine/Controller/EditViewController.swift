@@ -28,13 +28,7 @@ class EditViewController: UIViewController {
     @IBOutlet weak var editDayDelButton: UIButton!
     @IBOutlet weak var editNightDelButton: UIButton!
     
-    
-    var editMedicineDataManager = DataManager()
     var editMedicineData: MedicineData?
-
-    var editDataManager: DataManager?
-    var VC = ViewController()
-    var editMedicineCell = MedicineTableViewCell()
 
     var editDelegate: MedicineDelegate? = nil
     
@@ -67,11 +61,7 @@ class EditViewController: UIViewController {
             editNightTimeTextField.isHidden = true
             editNightDelButton.isHidden = true
         }
-        
-//        editDayTimeTextField.isHidden = true
-//        editDayDelButton.isHidden = true
-//        editNightTimeTextField.isHidden = true
-//        editNightDelButton.isHidden = true
+
         
         self.showDatePicker()
         self.showTimePicker()
@@ -178,7 +168,7 @@ class EditViewController: UIViewController {
         
         let editMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime)
         
-        // 🥲여기 인덱스에 들어갈 변수 찾는 법..
+
         print(#fileID, #function, #line, "- editMedicine : \(editMedicine)")
         self.editDelegate?.update(index: tableIndex!, editMedicine)
         
