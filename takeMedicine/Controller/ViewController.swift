@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     
     let medicineCell = MedicineTableViewCell()
     
-    
+    // 테이블뷰셀 클릭시 버튼 보임/숨김을 위한 행 번호 변수
     var selectedRows: Set<UUID> = []
     
     
@@ -68,8 +68,6 @@ class ViewController: UIViewController {
         }
         
     }
-    
-    
     
     // 약 추가하기 VC 로드
     @IBAction func plusVCLoaded(_ sender: UIButton) {
@@ -195,9 +193,8 @@ extension UIView {
 }
 
 
-
+//MARK: - 화면 터치시 키보드 내리기
 extension UIViewController {
-    //MARK: - 화면 터치시 키보드 내리기
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false

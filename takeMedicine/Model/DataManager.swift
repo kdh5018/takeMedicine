@@ -17,7 +17,6 @@ class DataManager {
         }
     }
     
-    
     /// 새 데이터 추가
     /// - Parameter medicineData:
     func makeNewMedicine(_ medicineData: MedicineData) {
@@ -49,4 +48,5 @@ protocol MedicineDelegate{
     func addNewMedicine(_ medicineData: MedicineData)
     func getMedicine()
     func update(index: Int, _ medicineData: MedicineData)
+    func delete(index: Int)
 }

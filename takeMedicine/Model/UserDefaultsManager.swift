@@ -11,7 +11,7 @@ import Foundation
 /// 싱글톤 객체
 class UserDefaultsManager {
     
-    enum Key: String, CaseIterable {
+    enum Key: String {
         case medicineList
     }
     static let shared: UserDefaultsManager = {

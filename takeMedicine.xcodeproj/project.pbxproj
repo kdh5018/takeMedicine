@@ -20,6 +20,8 @@
 		76A98845299E007500727AD5 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A98844299E007500727AD5 /* DataManager.swift */; };
 		76CAF7202994B7640039DE1B /* PlusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CAF71F2994B7640039DE1B /* PlusViewController.swift */; };
 		76CAF7222994BDB00039DE1B /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CAF7212994BDB00039DE1B /* EditViewController.swift */; };
+		76DE691E29E7CD72003AD29F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 76DE691D29E7CD72003AD29F /* GoogleService-Info.plist */; };
+		76DE692129E7CE5F003AD29F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 76DE692029E7CE5F003AD29F /* FirebaseAnalytics */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,7 @@
 		76A98844299E007500727AD5 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		76CAF71F2994B7640039DE1B /* PlusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusViewController.swift; sourceTree = "<group>"; };
 		76CAF7212994BDB00039DE1B /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		76DE691D29E7CD72003AD29F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76DE692129E7CE5F003AD29F /* FirebaseAnalytics in Frameworks */,
 				7642D666299D1F2B005A5101 /* Fakery in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -78,6 +82,7 @@
 				762EFE2229937290009E55D1 /* Assets.xcassets */,
 				762EFE2429937290009E55D1 /* LaunchScreen.storyboard */,
 				762EFE2729937290009E55D1 /* Info.plist */,
+				76DE691D29E7CD72003AD29F /* GoogleService-Info.plist */,
 			);
 			path = takeMedicine;
 			sourceTree = "<group>";
@@ -129,6 +134,7 @@
 			name = takeMedicine;
 			packageProductDependencies = (
 				7642D665299D1F2B005A5101 /* Fakery */,
+				76DE692029E7CE5F003AD29F /* FirebaseAnalytics */,
 			);
 			productName = takeMedicine;
 			productReference = 762EFE162993728F009E55D1 /* takeMedicine.app */;
@@ -160,6 +166,7 @@
 			mainGroup = 762EFE0D2993728F009E55D1;
 			packageReferences = (
 				7642D664299D1F2B005A5101 /* XCRemoteSwiftPackageReference "Fakery" */,
+				76DE691F29E7CE5F003AD29F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 762EFE172993728F009E55D1 /* Products */;
 			projectDirPath = "";
@@ -176,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				762EFE2629937290009E55D1 /* LaunchScreen.storyboard in Resources */,
+				76DE691E29E7CD72003AD29F /* GoogleService-Info.plist in Resources */,
 				762EFE2329937290009E55D1 /* Assets.xcassets in Resources */,
 				762EFE212993728F009E55D1 /* Main.storyboard in Resources */,
 			);
@@ -272,7 +280,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -326,7 +334,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -430,6 +438,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		76DE691F29E7CE5F003AD29F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -437,6 +453,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7642D664299D1F2B005A5101 /* XCRemoteSwiftPackageReference "Fakery" */;
 			productName = Fakery;
+		};
+		76DE692029E7CE5F003AD29F /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 76DE691F29E7CE5F003AD29F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
