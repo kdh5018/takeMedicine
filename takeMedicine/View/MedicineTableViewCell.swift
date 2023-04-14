@@ -25,6 +25,7 @@ class MedicineTableViewCell: UITableViewCell {
     
     
     var onCellEditBtnClicked: ((_ cellData: MedicineData, _ indexPath: IndexPath) -> Void)? = nil
+    var onCellDeleteBtnClicked: ((_ indexPath: IndexPath) -> Void)? = nil
     
     var medicineData: MedicineData? = nil
     var currentIndex: IndexPath? = nil
@@ -63,5 +64,14 @@ class MedicineTableViewCell: UITableViewCell {
               let indexPath = self.currentIndex else { return }
         onCellEditBtnClicked?(cellData, indexPath)
     }
+    
+    
+    @IBAction func onDeleteBtnClicked(_ sender: UIButton) {
+        
+        guard let indexPath = self.currentIndex else { return }
+        onCellDeleteBtnClicked?(indexPath)
+        
+    }
+    
     
 }

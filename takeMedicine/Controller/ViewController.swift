@@ -21,6 +21,8 @@ class ViewController: UIViewController {
     // 테이블뷰셀 클릭시 버튼 보임/숨김을 위한 행 번호 변수
     var selectedRows: Set<UUID> = []
     
+    var delIndex: Int?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,10 +80,14 @@ class ViewController: UIViewController {
     
     // 삭제버튼
     @IBAction func delBtn(_ sender: UIButton) {
-        guard let indexPath = (sender.superview?.superview as? UIView)?.indexPathInTableView(medicineTableView) else { return }
-        medicineDataManager.deleteMedicine(index: indexPath.row)
+        
+        print(#fileID, #function, #line, "- delIndex: \(delIndex)")
+        medicineDataManager.deleteMedicine(index: delIndex!)
         medicineTableView.reloadData()
-        print(#fileID, #function, #line, "- indexPath.row: \(indexPath.row)")
+        
+//        medicineDataManager.deleteMedicine(index: indexPath.row)
+//        medicineTableView.reloadData()
+//        print(#fileID, #function, #line, "- indexPath.row: \(indexPath.row)")
         
     }
 
@@ -129,9 +135,18 @@ extension ViewController : UITableViewDataSource {
             
             self.performSegue(withIdentifier: "EditViewController", sender: data)
             print(#fileID, #function, #line, "- 수정하기 화면 넘어감")
-            
         }
         
+        // 삭제하기 버튼 클릭하면 해당하는 테이블뷰셀 삭제
+        cell.onCellDeleteBtnClicked = {
+            [weak self] (indexPath: IndexPath) in
+            
+            guard let self = self else { return }
+            
+            self.delIndex = indexPath.row
+            
+            
+        }
         
         return cell
         
@@ -181,16 +196,16 @@ extension ViewController: MedicineDelegate {
 
 
 // 주어진 뷰에서 시작하여 해당 뷰의 superview를 차례대로 올라가며 UITableViewCell을 찾고, UITableViewCell을 찾으면 해당 셀의 indexPath를 UITableView의 indexPath(for:) 메소드를 사용하여 반환
-extension UIView {
-    func indexPathInTableView(_ tableView: UITableView) -> IndexPath? {
-        var view: UIView? = self
-        while view != nil && !(view is UITableViewCell) {
-            view = view?.superview
-        }
-        guard let cell = view as? UITableViewCell else { return nil }
-        return tableView.indexPath(for: cell)
-    }
-}
+//extension UIView {
+//    func indexPathInTableView(_ tableView: UITableView) -> IndexPath? {
+//        var view: UIView? = self
+//        while view != nil && !(view is UITableViewCell) {
+//            view = view?.superview
+//        }
+//        guard let cell = view as? UITableViewCell else { return nil }
+//        return tableView.indexPath(for: cell)
+//    }
+//}
 
 
 //MARK: - 화면 터치시 키보드 내리기

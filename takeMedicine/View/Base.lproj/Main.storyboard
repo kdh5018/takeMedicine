@@ -12,7 +12,7 @@
         <!--View Controller-->
         <scene sceneID="C6x-dJ-LIS">
             <objects>
-                <viewController id="695-tJ-YWJ" customClass="ViewController" customModule="takeMedicine" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="695-tJ-YWJ" customClass="ViewController" customModule="takeMedicine" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DUU-rb-eAb">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -139,6 +139,7 @@
                                                                     <buttonConfiguration key="configuration" style="plain" title="삭제하기"/>
                                                                     <connections>
                                                                         <action selector="delBtn:" destination="695-tJ-YWJ" eventType="touchUpInside" id="dzP-AE-d6B"/>
+                                                                        <action selector="onDeleteBtnClicked:" destination="QIz-2a-yRN" eventType="touchUpInside" id="Exy-nO-Epo"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
