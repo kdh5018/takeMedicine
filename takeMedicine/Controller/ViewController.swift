@@ -77,20 +77,6 @@ class ViewController: UIViewController {
         plusVC.plusDelegate = self
         self.present(plusVC, animated: true, completion: nil)
     }
-    
-    // 삭제버튼
-    @IBAction func delBtn(_ sender: UIButton) {
-        
-        print(#fileID, #function, #line, "- delIndex: \(delIndex)")
-        medicineDataManager.deleteMedicine(index: delIndex!)
-        medicineTableView.reloadData()
-        
-//        medicineDataManager.deleteMedicine(index: indexPath.row)
-//        medicineTableView.reloadData()
-//        print(#fileID, #function, #line, "- indexPath.row: \(indexPath.row)")
-        
-    }
-
 
 }
 
@@ -140,12 +126,12 @@ extension ViewController : UITableViewDataSource {
         // 삭제하기 버튼 클릭하면 해당하는 테이블뷰셀 삭제
         cell.onCellDeleteBtnClicked = {
             [weak self] (indexPath: IndexPath) in
-            
             guard let self = self else { return }
-            
-            self.delIndex = indexPath.row
-            
-            
+            // 넘기거나 하는 다음 과정이 없기 때문에 여기서 바로 지워도 됨
+            print(#fileID, #function, #line, "- indexPath.row: \(indexPath.row)")
+            self.medicineDataManager.deleteMedicine(index: indexPath.row)
+            self.medicineTableView.reloadData()
+
         }
         
         return cell
@@ -193,20 +179,6 @@ extension ViewController: MedicineDelegate {
     }
 
 }
-
-
-// 주어진 뷰에서 시작하여 해당 뷰의 superview를 차례대로 올라가며 UITableViewCell을 찾고, UITableViewCell을 찾으면 해당 셀의 indexPath를 UITableView의 indexPath(for:) 메소드를 사용하여 반환
-//extension UIView {
-//    func indexPathInTableView(_ tableView: UITableView) -> IndexPath? {
-//        var view: UIView? = self
-//        while view != nil && !(view is UITableViewCell) {
-//            view = view?.superview
-//        }
-//        guard let cell = view as? UITableViewCell else { return nil }
-//        return tableView.indexPath(for: cell)
-//    }
-//}
-
 
 //MARK: - 화면 터치시 키보드 내리기
 extension UIViewController {

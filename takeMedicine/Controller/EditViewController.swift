@@ -10,7 +10,7 @@ import UIKit
 //MARK: - 약 수정하기 페이지
 class EditViewController: UIViewController {
     
-    var tableIndex: Int?
+    var tableIndex: Int!
     
     var prepareName: String?
     var prepareDate: String?
@@ -170,7 +170,7 @@ class EditViewController: UIViewController {
         
 
         print(#fileID, #function, #line, "- editMedicine : \(editMedicine)")
-        self.editDelegate?.update(index: tableIndex!, editMedicine)
+        self.editDelegate?.update(index: tableIndex, editMedicine)
         
 
         self.dismiss(animated: true)

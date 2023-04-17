@@ -72,6 +72,4 @@ class MedicineTableViewCell: UITableViewCell {
         onCellDeleteBtnClicked?(indexPath)
         
     }
-    
-    
 }

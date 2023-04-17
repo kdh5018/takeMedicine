@@ -11,7 +11,6 @@ class DataManager {
     var medicineDataArray: [MedicineData] = []
     
     init(){
-        print(#fileID, #function, #line, "- ")
         if let storedMedicineDataArray = UserDefaultsManager.shared.getMedicineList() {
             self.medicineDataArray = storedMedicineDataArray
         }
