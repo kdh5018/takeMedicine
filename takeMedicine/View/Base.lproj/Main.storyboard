@@ -69,7 +69,7 @@
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80d-2C-lGc" userLabel="약 이름">
                                                                             <rect key="frame" x="0.0" y="0.0" width="180" height="27.666666666666668"/>
-                                                                            <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="35"/>
+                                                                            <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="30"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
@@ -97,19 +97,19 @@
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="Aau-zu-oQO"/>
                                                                             </constraints>
-                                                                            <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="25"/>
+                                                                            <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="20"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n2x-NM-Sv2" userLabel="복용 시간2">
                                                                             <rect key="frame" x="0.0" y="31.666666666666664" width="100" height="21.666666666666664"/>
-                                                                            <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="25"/>
+                                                                            <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="20"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="me2-vu-L3M" userLabel="복용 시간3">
                                                                             <rect key="frame" x="0.0" y="63.333333333333321" width="100" height="21.666666666666664"/>
-                                                                            <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="25"/>
+                                                                            <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="20"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
@@ -128,14 +128,8 @@
                                                                     <state key="normal" title="Button"/>
                                                                     <buttonConfiguration key="configuration" style="plain" image="edit"/>
                                                                     <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                            <real key="value" value="15"/>
-                                                                        </userDefinedRuntimeAttribute>
                                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                             <color key="value" systemColor="systemBlueColor"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                            <real key="value" value="2"/>
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                     <connections>
@@ -150,12 +144,6 @@
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                             <color key="value" systemColor="systemRedColor"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                            <real key="value" value="15"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                            <real key="value" value="2"/>
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                     <connections>
@@ -229,9 +217,9 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qah-1v-k4I">
-                                                <rect key="frame" x="258.66666666666669" y="7" width="116.66666666666669" height="36"/>
+                                                <rect key="frame" x="313.66666666666669" y="0.0" width="61.666666666666686" height="50"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="시간 추가하기"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="timePlus"/>
                                                 <connections>
                                                     <action selector="editTimeAdded:" destination="Z1N-Ke-za7" eventType="touchUpInside" id="3mC-DR-oe6"/>
                                                 </connections>
@@ -242,12 +230,11 @@
                                         <constraints>
                                             <constraint firstItem="91J-Vm-Xvb" firstAttribute="centerY" secondItem="Qah-1v-k4I" secondAttribute="centerY" id="CUx-pK-ZtJ"/>
                                             <constraint firstItem="91J-Vm-Xvb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="w8b-Nf-XX2" secondAttribute="leading" constant="20" symbolic="YES" id="FNc-B2-IQ2"/>
-                                            <constraint firstItem="Qah-1v-k4I" firstAttribute="top" secondItem="w8b-Nf-XX2" secondAttribute="top" constant="7" id="KJc-iF-K0k"/>
+                                            <constraint firstItem="Qah-1v-k4I" firstAttribute="top" secondItem="w8b-Nf-XX2" secondAttribute="top" id="KJc-iF-K0k"/>
                                             <constraint firstAttribute="height" constant="50" id="SrA-G1-yL2"/>
                                             <constraint firstAttribute="trailing" secondItem="91J-Vm-Xvb" secondAttribute="trailing" constant="206.33333333333334" id="bDn-dE-sLr"/>
                                             <constraint firstAttribute="trailing" secondItem="Qah-1v-k4I" secondAttribute="trailing" constant="14.666666666666629" id="bmt-2A-zuR"/>
                                             <constraint firstItem="91J-Vm-Xvb" firstAttribute="centerY" secondItem="w8b-Nf-XX2" secondAttribute="centerY" id="buw-XE-YCN"/>
-                                            <constraint firstItem="Qah-1v-k4I" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="91J-Vm-Xvb" secondAttribute="trailing" constant="8" symbolic="YES" id="sLb-fT-C6O"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="EEY-V0-IwW">
@@ -301,11 +288,12 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rGS-8q-b3R">
                                                 <rect key="frame" x="0.0" y="0.0" width="175" height="45"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="width" constant="175" id="6wq-XA-5T2"/>
                                                     <constraint firstAttribute="height" constant="45" id="MvR-7P-4kj"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="175" id="hWG-tg-ogx"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="수정하기"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="edit"/>
                                                 <connections>
                                                     <action selector="btnEdited:" destination="Z1N-Ke-za7" eventType="touchUpInside" id="91V-3E-snP"/>
                                                 </connections>
@@ -313,7 +301,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HjJ-CQ-eb4">
                                                 <rect key="frame" x="193" y="0.0" width="175" height="45"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="취소하기"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="cancel"/>
                                                 <connections>
                                                     <action selector="editCanceled:" destination="Z1N-Ke-za7" eventType="touchUpInside" id="NRj-6I-s48"/>
                                                 </connections>
@@ -335,16 +323,23 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="date-time"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vB-Y6-1Mc">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vB-Y6-1Mc">
                                         <rect key="frame" x="320" y="457" width="40" height="32"/>
-                                        <buttonConfiguration key="configuration" style="plain"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="Whj-09-Mi7"/>
+                                        </constraints>
+                                        <buttonConfiguration key="configuration" style="plain" image="cancel"/>
                                         <connections>
                                             <action selector="editNightDelBtn:" destination="Z1N-Ke-za7" eventType="touchUpInside" id="Pnh-jt-Xmm"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hY8-ef-pIB">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hY8-ef-pIB">
                                         <rect key="frame" x="320" y="382" width="40" height="32"/>
-                                        <buttonConfiguration key="configuration" style="plain"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="unc-2D-2fM"/>
+                                            <constraint firstAttribute="height" constant="32" id="zZP-el-GqL"/>
+                                        </constraints>
+                                        <buttonConfiguration key="configuration" style="plain" image="cancel"/>
                                         <connections>
                                             <action selector="editDayDelBtn:" destination="Z1N-Ke-za7" eventType="touchUpInside" id="fLZ-NL-wa0"/>
                                         </connections>
@@ -415,9 +410,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sEw-Dj-j40">
-                                        <rect key="frame" x="258.66666666666669" y="7" width="116.66666666666669" height="34.333333333333336"/>
+                                        <rect key="frame" x="313.66666666666669" y="0.0" width="61.666666666666686" height="52"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="시간 추가하기"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="timePlus"/>
                                         <connections>
                                             <action selector="timeAdded:" destination="SW6-yj-G1N" eventType="touchUpInside" id="04x-zM-bDX"/>
                                         </connections>
@@ -429,9 +424,8 @@
                                     <constraint firstAttribute="height" constant="50" id="D7j-Lq-mdO"/>
                                     <constraint firstAttribute="trailing" secondItem="CnJ-oj-jyU" secondAttribute="trailing" constant="206.33333333333334" id="Eve-db-UUY"/>
                                     <constraint firstItem="CnJ-oj-jyU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="z3j-C0-dVR" secondAttribute="leading" constant="20" symbolic="YES" id="RQZ-k9-PoD"/>
-                                    <constraint firstItem="sEw-Dj-j40" firstAttribute="top" secondItem="z3j-C0-dVR" secondAttribute="top" constant="7" id="SlD-wa-UwM"/>
+                                    <constraint firstItem="sEw-Dj-j40" firstAttribute="top" secondItem="z3j-C0-dVR" secondAttribute="top" id="SlD-wa-UwM"/>
                                     <constraint firstItem="CnJ-oj-jyU" firstAttribute="centerY" secondItem="z3j-C0-dVR" secondAttribute="centerY" id="g6p-9M-SeC"/>
-                                    <constraint firstItem="sEw-Dj-j40" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="CnJ-oj-jyU" secondAttribute="trailing" constant="8" symbolic="YES" id="lyS-T0-Xch"/>
                                     <constraint firstAttribute="trailing" secondItem="sEw-Dj-j40" secondAttribute="trailing" constant="14.666666666666629" id="ulp-xz-Go9"/>
                                 </constraints>
                             </view>
@@ -483,22 +477,33 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="tfk-rO-WYW">
                                 <rect key="frame" x="11" y="735" width="368" height="45"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXQ-jn-2OM">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXQ-jn-2OM" customClass="CustomButton" customModule="takeMedicine" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="175" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="ZvZ-PM-Yee"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="175" id="dp9-Ji-ZOx"/>
+                                            <constraint firstAttribute="width" constant="175" id="xr7-tg-7dU"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="추가하기"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="pills add"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" systemColor="systemBlueColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="btnAdded:" destination="SW6-yj-G1N" eventType="touchUpInside" id="UZD-WP-XAL"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uHy-aP-eih">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uHy-aP-eih" customClass="CustomButton" customModule="takeMedicine" customModuleProvider="target">
                                         <rect key="frame" x="193" y="0.0" width="175" height="45"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="취소하기"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="cancel"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" systemColor="systemRedColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="btnCanceled:" destination="SW6-yj-G1N" eventType="touchUpInside" id="RDH-wG-Wpo"/>
                                         </connections>
@@ -520,16 +525,23 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="date-time"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VuY-KH-Utr">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VuY-KH-Utr">
                                 <rect key="frame" x="320" y="457" width="40" height="32"/>
-                                <buttonConfiguration key="configuration" style="plain"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="WXu-Kv-Sld"/>
+                                </constraints>
+                                <buttonConfiguration key="configuration" style="plain" image="cancel"/>
                                 <connections>
                                     <action selector="nightDelBtn:" destination="SW6-yj-G1N" eventType="touchUpInside" id="pgD-QU-pBA"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HgG-LG-3Gi">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HgG-LG-3Gi">
                                 <rect key="frame" x="320" y="382" width="40" height="32"/>
-                                <buttonConfiguration key="configuration" style="plain"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="5PU-dM-6DC"/>
+                                    <constraint firstAttribute="width" constant="40" id="RJL-po-LTz"/>
+                                </constraints>
+                                <buttonConfiguration key="configuration" style="plain" image="cancel"/>
                                 <connections>
                                     <action selector="dayDelBtn:" destination="SW6-yj-G1N" eventType="touchUpInside" id="Fhx-Cz-Z5E"/>
                                 </connections>
@@ -580,10 +592,20 @@
             <point key="canvasLocation" x="653.84615384615381" y="-690.28436018957348"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="R7L-CU-YSh">
+            <size key="intrinsicContentSize" width="61.666666666666664" height="51.666666666666664"/>
+        </designable>
+        <designable name="s2B-vZ-Js1">
+            <size key="intrinsicContentSize" width="61.666666666666664" height="51.666666666666664"/>
+        </designable>
+    </designables>
     <resources>
+        <image name="cancel" width="37.5" height="37.5"/>
         <image name="delete" width="37.5" height="37.5"/>
         <image name="edit" width="37.5" height="37.5"/>
         <image name="pills add" width="37.5" height="37.5"/>
+        <image name="timePlus" width="37.5" height="38"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

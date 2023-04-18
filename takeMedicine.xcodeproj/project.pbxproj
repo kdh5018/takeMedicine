@@ -35,6 +35,7 @@
 		762EFE2229937290009E55D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		762EFE2529937290009E55D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		762EFE2729937290009E55D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		763B29F629EE5BDE00860E3D /* takeMedicine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = takeMedicine.entitlements; sourceTree = "<group>"; };
 		764A9FC929D8032900084DFB /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		7655E0222994C14400DECB16 /* MedicineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineTableViewCell.swift; sourceTree = "<group>"; };
 		7697F40229937CF80092D3F9 /* MedicineData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineData.swift; sourceTree = "<group>"; };
@@ -76,6 +77,7 @@
 		762EFE182993728F009E55D1 /* takeMedicine */ = {
 			isa = PBXGroup;
 			children = (
+				763B29F629EE5BDE00860E3D /* takeMedicine.entitlements */,
 				762EFE192993728F009E55D1 /* AppDelegate.swift */,
 				762EFE1B2993728F009E55D1 /* SceneDelegate.swift */,
 				76D8D16B29AC79AA00F8132A /* Model */,
@@ -353,8 +355,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = takeMedicine/takeMedicine.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 887S3AQ8HM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = takeMedicine/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -368,7 +372,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rlaehgns745.takeMedicine;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rlaehgns745.mediApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -384,8 +388,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = takeMedicine/takeMedicine.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 887S3AQ8HM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = takeMedicine/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -399,7 +405,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rlaehgns745.takeMedicine;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rlaehgns745.mediApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
