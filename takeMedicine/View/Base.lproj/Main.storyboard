@@ -593,10 +593,16 @@
         </scene>
     </scenes>
     <designables>
+        <designable name="HXQ-jn-2OM">
+            <size key="intrinsicContentSize" width="61.666666666666664" height="51.666666666666664"/>
+        </designable>
         <designable name="R7L-CU-YSh">
             <size key="intrinsicContentSize" width="61.666666666666664" height="51.666666666666664"/>
         </designable>
         <designable name="s2B-vZ-Js1">
+            <size key="intrinsicContentSize" width="61.666666666666664" height="51.666666666666664"/>
+        </designable>
+        <designable name="uHy-aP-eih">
             <size key="intrinsicContentSize" width="61.666666666666664" height="51.666666666666664"/>
         </designable>
     </designables>

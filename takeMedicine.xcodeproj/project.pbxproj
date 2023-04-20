@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49C542600E636B23CE2B1871 /* Pods_takeMedicine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67A73B419DBEFB5DED085171 /* Pods_takeMedicine.framework */; };
 		762C49D829ED572C00377224 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762C49D729ED572C00377224 /* CustomButton.swift */; };
 		762EFE1A2993728F009E55D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762EFE192993728F009E55D1 /* AppDelegate.swift */; };
 		762EFE1C2993728F009E55D1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762EFE1B2993728F009E55D1 /* SceneDelegate.swift */; };
@@ -14,6 +15,7 @@
 		762EFE212993728F009E55D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 762EFE1F2993728F009E55D1 /* Main.storyboard */; };
 		762EFE2329937290009E55D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 762EFE2229937290009E55D1 /* Assets.xcassets */; };
 		762EFE2629937290009E55D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 762EFE2429937290009E55D1 /* LaunchScreen.storyboard */; };
+		763B29FA29F0F85100860E3D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 763B29F929F0F85100860E3D /* GoogleService-Info.plist */; };
 		7642D666299D1F2B005A5101 /* Fakery in Frameworks */ = {isa = PBXBuildFile; productRef = 7642D665299D1F2B005A5101 /* Fakery */; };
 		764A9FCA29D8032900084DFB /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764A9FC929D8032900084DFB /* UserDefaultsManager.swift */; };
 		7655E0232994C14400DECB16 /* MedicineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7655E0222994C14400DECB16 /* MedicineTableViewCell.swift */; };
@@ -21,11 +23,11 @@
 		76A98845299E007500727AD5 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A98844299E007500727AD5 /* DataManager.swift */; };
 		76CAF7202994B7640039DE1B /* PlusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CAF71F2994B7640039DE1B /* PlusViewController.swift */; };
 		76CAF7222994BDB00039DE1B /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CAF7212994BDB00039DE1B /* EditViewController.swift */; };
-		76DE691E29E7CD72003AD29F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 76DE691D29E7CD72003AD29F /* GoogleService-Info.plist */; };
-		76DE692129E7CE5F003AD29F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 76DE692029E7CE5F003AD29F /* FirebaseAnalytics */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		412F4827A6414AFCF1320D83 /* Pods-takeMedicine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-takeMedicine.debug.xcconfig"; path = "Pods/Target Support Files/Pods-takeMedicine/Pods-takeMedicine.debug.xcconfig"; sourceTree = "<group>"; };
+		67A73B419DBEFB5DED085171 /* Pods_takeMedicine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_takeMedicine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		762C49D729ED572C00377224 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		762EFE162993728F009E55D1 /* takeMedicine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = takeMedicine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		762EFE192993728F009E55D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -36,13 +38,14 @@
 		762EFE2529937290009E55D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		762EFE2729937290009E55D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		763B29F629EE5BDE00860E3D /* takeMedicine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = takeMedicine.entitlements; sourceTree = "<group>"; };
+		763B29F929F0F85100860E3D /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		764A9FC929D8032900084DFB /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		7655E0222994C14400DECB16 /* MedicineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineTableViewCell.swift; sourceTree = "<group>"; };
 		7697F40229937CF80092D3F9 /* MedicineData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineData.swift; sourceTree = "<group>"; };
 		76A98844299E007500727AD5 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		76CAF71F2994B7640039DE1B /* PlusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusViewController.swift; sourceTree = "<group>"; };
 		76CAF7212994BDB00039DE1B /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
-		76DE691D29E7CD72003AD29F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D1236EAF376C0B5930833289 /* Pods-takeMedicine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-takeMedicine.release.xcconfig"; path = "Pods/Target Support Files/Pods-takeMedicine/Pods-takeMedicine.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,19 +53,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76DE692129E7CE5F003AD29F /* FirebaseAnalytics in Frameworks */,
 				7642D666299D1F2B005A5101 /* Fakery in Frameworks */,
+				49C542600E636B23CE2B1871 /* Pods_takeMedicine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		566F2962724952B837ED47C0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				67A73B419DBEFB5DED085171 /* Pods_takeMedicine.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		762EFE0D2993728F009E55D1 = {
 			isa = PBXGroup;
 			children = (
 				762EFE182993728F009E55D1 /* takeMedicine */,
 				762EFE172993728F009E55D1 /* Products */,
+				EC461DB5F0551D5C59FA3690 /* Pods */,
+				566F2962724952B837ED47C0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -85,8 +98,8 @@
 				76D8D16D29AC79BD00F8132A /* Controller */,
 				762EFE2229937290009E55D1 /* Assets.xcassets */,
 				762EFE2429937290009E55D1 /* LaunchScreen.storyboard */,
+				763B29F929F0F85100860E3D /* GoogleService-Info.plist */,
 				762EFE2729937290009E55D1 /* Info.plist */,
-				76DE691D29E7CD72003AD29F /* GoogleService-Info.plist */,
 			);
 			path = takeMedicine;
 			sourceTree = "<group>";
@@ -121,6 +134,15 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		EC461DB5F0551D5C59FA3690 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				412F4827A6414AFCF1320D83 /* Pods-takeMedicine.debug.xcconfig */,
+				D1236EAF376C0B5930833289 /* Pods-takeMedicine.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -128,9 +150,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 762EFE2A29937290009E55D1 /* Build configuration list for PBXNativeTarget "takeMedicine" */;
 			buildPhases = (
+				BAA9325B2C5A8492A67DB6AC /* [CP] Check Pods Manifest.lock */,
 				762EFE122993728F009E55D1 /* Sources */,
 				762EFE132993728F009E55D1 /* Frameworks */,
 				762EFE142993728F009E55D1 /* Resources */,
+				E8B2313BF8ABEE4DB03760DB /* [CP] Embed Pods Frameworks */,
+				A5768F71C13FC2AF7FD41CE0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -139,7 +164,6 @@
 			name = takeMedicine;
 			packageProductDependencies = (
 				7642D665299D1F2B005A5101 /* Fakery */,
-				76DE692029E7CE5F003AD29F /* FirebaseAnalytics */,
 			);
 			productName = takeMedicine;
 			productReference = 762EFE162993728F009E55D1 /* takeMedicine.app */;
@@ -171,7 +195,6 @@
 			mainGroup = 762EFE0D2993728F009E55D1;
 			packageReferences = (
 				7642D664299D1F2B005A5101 /* XCRemoteSwiftPackageReference "Fakery" */,
-				76DE691F29E7CE5F003AD29F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 762EFE172993728F009E55D1 /* Products */;
 			projectDirPath = "";
@@ -188,13 +211,93 @@
 			buildActionMask = 2147483647;
 			files = (
 				762EFE2629937290009E55D1 /* LaunchScreen.storyboard in Resources */,
-				76DE691E29E7CD72003AD29F /* GoogleService-Info.plist in Resources */,
+				763B29FA29F0F85100860E3D /* GoogleService-Info.plist in Resources */,
 				762EFE2329937290009E55D1 /* Assets.xcassets in Resources */,
 				762EFE212993728F009E55D1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A5768F71C13FC2AF7FD41CE0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-takeMedicine/Pods-takeMedicine-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BAA9325B2C5A8492A67DB6AC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-takeMedicine-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E8B2313BF8ABEE4DB03760DB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-takeMedicine/Pods-takeMedicine-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCoreInternal/FirebaseCoreInternal.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseMessaging/FirebaseMessaging.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreInternal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseMessaging.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-takeMedicine/Pods-takeMedicine-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		762EFE122993728F009E55D1 /* Sources */ = {
@@ -352,6 +455,7 @@
 		};
 		762EFE2B29937290009E55D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 412F4827A6414AFCF1320D83 /* Pods-takeMedicine.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -385,6 +489,7 @@
 		};
 		762EFE2C29937290009E55D1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1236EAF376C0B5930833289 /* Pods-takeMedicine.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -448,14 +553,6 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		76DE691F29E7CE5F003AD29F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -463,11 +560,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7642D664299D1F2B005A5101 /* XCRemoteSwiftPackageReference "Fakery" */;
 			productName = Fakery;
-		};
-		76DE692029E7CE5F003AD29F /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 76DE691F29E7CE5F003AD29F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
