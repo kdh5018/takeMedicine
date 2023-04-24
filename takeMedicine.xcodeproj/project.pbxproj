@@ -155,7 +155,6 @@
 				762EFE132993728F009E55D1 /* Frameworks */,
 				762EFE142993728F009E55D1 /* Resources */,
 				E8B2313BF8ABEE4DB03760DB /* [CP] Embed Pods Frameworks */,
-				A5768F71C13FC2AF7FD41CE0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -194,7 +193,7 @@
 			);
 			mainGroup = 762EFE0D2993728F009E55D1;
 			packageReferences = (
-				7642D664299D1F2B005A5101 /* XCRemoteSwiftPackageReference "Fakery" */,
+				7642D664299D1F2B005A5101 /* XCRemoteSwiftPackageReference "Fakery.git" */,
 			);
 			productRefGroup = 762EFE172993728F009E55D1 /* Products */;
 			projectDirPath = "";
@@ -220,25 +219,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A5768F71C13FC2AF7FD41CE0 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-takeMedicine/Pods-takeMedicine-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		BAA9325B2C5A8492A67DB6AC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -267,34 +247,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-takeMedicine/Pods-takeMedicine-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCoreInternal/FirebaseCoreInternal.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseMessaging/FirebaseMessaging.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-takeMedicine/Pods-takeMedicine-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreInternal.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseMessaging.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-takeMedicine/Pods-takeMedicine-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-takeMedicine/Pods-takeMedicine-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-takeMedicine/Pods-takeMedicine-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -545,7 +506,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		7642D664299D1F2B005A5101 /* XCRemoteSwiftPackageReference "Fakery" */ = {
+		7642D664299D1F2B005A5101 /* XCRemoteSwiftPackageReference "Fakery.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/vadymmarkov/Fakery.git";
 			requirement = {
@@ -558,7 +519,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		7642D665299D1F2B005A5101 /* Fakery */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7642D664299D1F2B005A5101 /* XCRemoteSwiftPackageReference "Fakery" */;
+			package = 7642D664299D1F2B005A5101 /* XCRemoteSwiftPackageReference "Fakery.git" */;
 			productName = Fakery;
 		};
 /* End XCSwiftPackageProductDependency section */

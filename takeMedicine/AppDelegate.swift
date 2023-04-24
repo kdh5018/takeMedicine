@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import UserNotifications
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,23 +19,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         if #available(iOS 10.0, *) {
-          // For iOS 10 display notification (sent via APNS)
-          UNUserNotificationCenter.current().delegate = self
-
-          let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-          UNUserNotificationCenter.current().requestAuthorization(
-            options: authOptions,
-            completionHandler: { _, _ in }
-          )
-        } else {
-          let settings: UIUserNotificationSettings =
-            UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-          application.registerUserNotificationSettings(settings)
-        }
-
-        application.registerForRemoteNotifications()
-        
-        Messaging.messaging().delegate = self
+                    // For iOS 10 display notification (sent via APNS)
+                    UNUserNotificationCenter.current().delegate = self
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound] ;UNUserNotificationCenter.current().requestAuthorization( options: authOptions, completionHandler: {_, _ in })
+                }
+                else {
+                    let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil); application.registerUserNotificationSettings(settings)
+                }
+                application.registerForRemoteNotifications()
+                
+        Messaging.messaging().delegate = self; Messaging.messaging().token { token, error in
+                    if let error = error {
+                        print("Error fetching FCM registration token: \(error)")
+                    }
+                    else if let token = token {
+                        print("FCM registration token: \(token)")
+                    }
+                }
         
         return true
     }
@@ -55,18 +56,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 }
 
-extension AppDelegate: UNUserNotificationCenterDelegate {
-
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-      Messaging.messaging().apnsToken = deviceToken
+extension AppDelegate : MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print("파이어베이스 토큰: \(fcmToken)")
     }
-    
 }
 
-extension AppDelegate: MessagingDelegate {
-    
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print("fcmToken: \(fcmToken)")
+extension AppDelegate : UNUserNotificationCenterDelegate {
+
+    // 푸시알림이 수신되었을 때 수행되는 메소드
+    func userNotificationCenter(_ center: UNUserNotificationCenter,willPresent notification: UNNotification,withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("메시지 수신")
+        completionHandler([.alert, .badge, .sound])
     }
-    
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter,didReceive response: UNNotificationResponse,withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        completionHandler()
+    }
 }
