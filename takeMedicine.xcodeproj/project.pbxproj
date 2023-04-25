@@ -15,7 +15,6 @@
 		762EFE212993728F009E55D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 762EFE1F2993728F009E55D1 /* Main.storyboard */; };
 		762EFE2329937290009E55D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 762EFE2229937290009E55D1 /* Assets.xcassets */; };
 		762EFE2629937290009E55D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 762EFE2429937290009E55D1 /* LaunchScreen.storyboard */; };
-		763B29FA29F0F85100860E3D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 763B29F929F0F85100860E3D /* GoogleService-Info.plist */; };
 		7642D666299D1F2B005A5101 /* Fakery in Frameworks */ = {isa = PBXBuildFile; productRef = 7642D665299D1F2B005A5101 /* Fakery */; };
 		764A9FCA29D8032900084DFB /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764A9FC929D8032900084DFB /* UserDefaultsManager.swift */; };
 		7655E0232994C14400DECB16 /* MedicineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7655E0222994C14400DECB16 /* MedicineTableViewCell.swift */; };
@@ -38,7 +37,6 @@
 		762EFE2529937290009E55D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		762EFE2729937290009E55D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		763B29F629EE5BDE00860E3D /* takeMedicine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = takeMedicine.entitlements; sourceTree = "<group>"; };
-		763B29F929F0F85100860E3D /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		764A9FC929D8032900084DFB /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		7655E0222994C14400DECB16 /* MedicineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineTableViewCell.swift; sourceTree = "<group>"; };
 		7697F40229937CF80092D3F9 /* MedicineData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineData.swift; sourceTree = "<group>"; };
@@ -98,7 +96,6 @@
 				76D8D16D29AC79BD00F8132A /* Controller */,
 				762EFE2229937290009E55D1 /* Assets.xcassets */,
 				762EFE2429937290009E55D1 /* LaunchScreen.storyboard */,
-				763B29F929F0F85100860E3D /* GoogleService-Info.plist */,
 				762EFE2729937290009E55D1 /* Info.plist */,
 			);
 			path = takeMedicine;
@@ -210,7 +207,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				762EFE2629937290009E55D1 /* LaunchScreen.storyboard in Resources */,
-				763B29FA29F0F85100860E3D /* GoogleService-Info.plist in Resources */,
 				762EFE2329937290009E55D1 /* Assets.xcassets in Resources */,
 				762EFE212993728F009E55D1 /* Main.storyboard in Resources */,
 			);
