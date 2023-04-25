@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import UserNotifications
 
 //MARK: - 메인 페이지
 class ViewController: UIViewController {
     
     var medicineDataManager = DataManager()
+    
+    var medicineData: MedicineData?
     
     @IBOutlet weak var navToPlusVCBtn: UIButton!
     
@@ -21,24 +24,59 @@ class ViewController: UIViewController {
     // 테이블뷰셀 클릭시 버튼 보임/숨김을 위한 행 번호 변수
     var selectedRows: Set<UUID> = []
     
-    var delIndex: Int?
+    let userNotificationCenter = UNUserNotificationCenter.current()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
+        
+
         medicineTableView.dataSource = self
         medicineTableView.delegate = self
         
         medicineTableView.estimatedRowHeight = UITableView.automaticDimension
+        
+        requestNotificationAuthorization()
+        sendNotification(seconds: 10)
         
         
         // 더미데이터를 이용하여 초기 화면 체크
         //        self.medicineDataList = MedicineData.getDummies()
     }
     
+    //MARK: - 로컬 노티피케이션 사용을 위한 함수
+    func requestNotificationAuthorization() {
+        let authOptions = UNAuthorizationOptions(arrayLiteral: .alert, .badge, .sound)
+
+        userNotificationCenter.requestAuthorization(options: authOptions) { success, error in
+            if let error = error {
+                print("Error: \(error)")
+            }
+        }
+    }
+
+    func sendNotification(seconds: Double) {
+        let notificationContent = UNMutableNotificationContent()
+        let time =
+
+        notificationContent.title = "약 먹을 시간입니다💊"
+        notificationContent.body = "약약약약"
+
+        let timeComponents = Calendar.current.dateComponents([.hour, .minute], from: time)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: timeComponents, repeats: false)
+        let request = UNNotificationRequest(identifier: "testNotification",
+                                            content: notificationContent,
+                                            trigger: trigger)
+
+        userNotificationCenter.add(request) { error in
+            if let error = error {
+                print("Notification Error: ", error)
+            }
+        }
+    }
     
+    //MARK: - 메모리 연결
     // 서로의 메모리를 연결하기 위해 반드시 필요함⭐️
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
@@ -66,7 +104,6 @@ class ViewController: UIViewController {
             editDestinationVC.prepareMorningTime = editMedicineData.morningTime
             editDestinationVC.prepareDayTime = editMedicineData.dayTime
             editDestinationVC.prepareNightTime = editMedicineData.nightTime
-            
         }
         
     }
@@ -127,6 +164,7 @@ extension ViewController : UITableViewDataSource {
         cell.onCellDeleteBtnClicked = {
             [weak self] (indexPath: IndexPath) in
             guard let self = self else { return }
+            
             // 넘기거나 하는 다음 과정이 없기 때문에 여기서 바로 지워도 됨
             print(#fileID, #function, #line, "- indexPath.row: \(indexPath.row)")
             self.medicineDataManager.deleteMedicine(index: indexPath.row)
@@ -193,8 +231,9 @@ extension UIViewController {
     }
 }
 
+//MARK: - 텍스트필드 관련
 extension UIToolbar {
-    //MARK: - 복용 기간 텍스트필드
+    /// 복용 기간 텍스트필드
     func dateToolbarPicker(select: Selector) -> UIToolbar {
         let dateToolbar = UIToolbar()
         
@@ -212,7 +251,7 @@ extension UIToolbar {
         return dateToolbar
     }
     
-    //MARK: - 복용 시간 텍스트필드
+    /// 복용 시간 텍스트필드
     func TimetoolbarPicker(select: Selector) -> UIToolbar {
         let timeToolbar = UIToolbar()
         
@@ -230,5 +269,17 @@ extension UIToolbar {
         return timeToolbar
     }
 }
+//MARK: - 로컬 노티피케이션 델리겟
+extension ViewController: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
 
-
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .badge, .sound])
+    }
+}

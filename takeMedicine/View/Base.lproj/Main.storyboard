@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="695-tJ-YWJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="695-tJ-YWJ">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,8 +21,8 @@
                                 <rect key="frame" x="0.0" y="47" width="390" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="약먹었니?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q64-V2-gf7" userLabel="약먹었니?(앱 이름)">
-                                        <rect key="frame" x="20" y="3.6666666666666643" width="143" height="42.666666666666664"/>
-                                        <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="35"/>
+                                        <rect key="frame" x="19.999999999999993" y="6.6666666666666643" width="122.33333333333331" height="36.666666666666664"/>
+                                        <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="30"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -120,13 +120,13 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="rGf-bf-PfR" userLabel="BtnStackView">
                                                             <rect key="frame" x="0.0" y="95" width="330" height="45"/>
                                                             <subviews>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s2B-vZ-Js1" customClass="CustomButton" customModule="takeMedicine" customModuleProvider="target">
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s2B-vZ-Js1" customClass="CustomButton" customModule="takeMedicine" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="156" height="45"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="45" id="DTp-Cd-zlV"/>
                                                                     </constraints>
-                                                                    <state key="normal" title="Button"/>
-                                                                    <buttonConfiguration key="configuration" style="plain" image="edit"/>
+                                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                    <state key="normal" image="edit"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                             <color key="value" systemColor="systemBlueColor"/>
@@ -137,10 +137,10 @@
                                                                         <segue destination="Z1N-Ke-za7" kind="show" identifier="EditViewController" id="z4B-7q-GcW"/>
                                                                     </connections>
                                                                 </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7L-CU-YSh" customClass="CustomButton" customModule="takeMedicine" customModuleProvider="target">
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7L-CU-YSh" customClass="CustomButton" customModule="takeMedicine" customModuleProvider="target">
                                                                     <rect key="frame" x="174" y="0.0" width="156" height="45"/>
-                                                                    <state key="normal" title="Button"/>
-                                                                    <buttonConfiguration key="configuration" style="plain" image="delete"/>
+                                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                    <state key="normal" image="delete"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                             <color key="value" systemColor="systemRedColor"/>
@@ -208,18 +208,18 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w8b-Nf-XX2">
-                                        <rect key="frame" x="0.0" y="47" width="390" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="약 수정하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91J-Vm-Xvb">
-                                                <rect key="frame" x="20" y="3.6666666666666643" width="163.66666666666666" height="42.666666666666664"/>
-                                                <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="35"/>
+                                                <rect key="frame" x="20" y="6.6666666666666679" width="163.66666666666666" height="36.666666666666657"/>
+                                                <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="30"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qah-1v-k4I">
-                                                <rect key="frame" x="313.66666666666669" y="0.0" width="61.666666666666686" height="50"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="timePlus"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qah-1v-k4I">
+                                                <rect key="frame" x="337.66666666666669" y="0.0" width="37.666666666666686" height="50"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" image="timePlus"/>
                                                 <connections>
                                                     <action selector="editTimeAdded:" destination="Z1N-Ke-za7" eventType="touchUpInside" id="3mC-DR-oe6"/>
                                                 </connections>
@@ -229,8 +229,8 @@
                                         <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                         <constraints>
                                             <constraint firstItem="91J-Vm-Xvb" firstAttribute="centerY" secondItem="Qah-1v-k4I" secondAttribute="centerY" id="CUx-pK-ZtJ"/>
-                                            <constraint firstItem="91J-Vm-Xvb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="w8b-Nf-XX2" secondAttribute="leading" constant="20" symbolic="YES" id="FNc-B2-IQ2"/>
                                             <constraint firstItem="Qah-1v-k4I" firstAttribute="top" secondItem="w8b-Nf-XX2" secondAttribute="top" id="KJc-iF-K0k"/>
+                                            <constraint firstItem="91J-Vm-Xvb" firstAttribute="leading" secondItem="w8b-Nf-XX2" secondAttribute="leading" constant="20" id="STY-vB-gTi"/>
                                             <constraint firstAttribute="height" constant="50" id="SrA-G1-yL2"/>
                                             <constraint firstAttribute="trailing" secondItem="91J-Vm-Xvb" secondAttribute="trailing" constant="206.33333333333334" id="bDn-dE-sLr"/>
                                             <constraint firstAttribute="trailing" secondItem="Qah-1v-k4I" secondAttribute="trailing" constant="14.666666666666629" id="bmt-2A-zuR"/>
@@ -238,7 +238,7 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="EEY-V0-IwW">
-                                        <rect key="frame" x="25.000000000000007" y="162" width="92.666666666666686" height="173"/>
+                                        <rect key="frame" x="25.000000000000007" y="115" width="92.666666666666686" height="173"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="약 이름 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9l-cd-k68" userLabel="약 이름">
                                                 <rect key="frame" x="17.333333333333336" y="0.0" width="75.333333333333314" height="24.333333333333332"/>
@@ -261,9 +261,9 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="NBN-7r-Sdn">
-                                        <rect key="frame" x="122" y="157" width="180" height="110"/>
+                                        <rect key="frame" x="122" y="110" width="180" height="110"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="복용하는 약을 입력해 주세요" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3Fs-7B-6xQ" userLabel="약 이름 텍스트필드">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="복용하는 약을 입력해 주세요" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Fs-7B-6xQ" userLabel="약 이름 텍스트필드">
                                                 <rect key="frame" x="0.0" y="0.0" width="180" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="wzl-iO-lwz"/>
@@ -283,25 +283,25 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="N3M-u9-7tr">
-                                        <rect key="frame" x="11" y="735" width="368" height="45"/>
+                                        <rect key="frame" x="11" y="769" width="368" height="45"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rGS-8q-b3R">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rGS-8q-b3R">
                                                 <rect key="frame" x="0.0" y="0.0" width="175" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="175" id="6wq-XA-5T2"/>
                                                     <constraint firstAttribute="height" constant="45" id="MvR-7P-4kj"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="175" id="hWG-tg-ogx"/>
                                                 </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="edit"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" image="edit"/>
                                                 <connections>
                                                     <action selector="btnEdited:" destination="Z1N-Ke-za7" eventType="touchUpInside" id="91V-3E-snP"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HjJ-CQ-eb4">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HjJ-CQ-eb4">
                                                 <rect key="frame" x="193" y="0.0" width="175" height="45"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="cancel"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" image="cancel"/>
                                                 <connections>
                                                     <action selector="editCanceled:" destination="Z1N-Ke-za7" eventType="touchUpInside" id="NRj-6I-s48"/>
                                                 </connections>
@@ -309,22 +309,28 @@
                                         </subviews>
                                     </stackView>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="원하는 시간을 설정해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TMS-tZ-1il" userLabel="복용 시간2 텍스트필드">
-                                        <rect key="frame" x="122" y="381" width="185" height="34"/>
+                                        <rect key="frame" x="122" y="334" width="180" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="180" id="Qm0-Ba-bv5"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="date-time"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="원하는 시간을 설정해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ssw-Bx-G46" userLabel="복용 시간3 텍스트필드">
-                                        <rect key="frame" x="122" y="456" width="185" height="34"/>
+                                        <rect key="frame" x="122" y="409" width="180" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="date-time"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="원하는 시간을 설정해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wdb-Te-Qxx" userLabel="복용 시간1 텍스트필드">
-                                        <rect key="frame" x="122" y="307" width="185" height="34"/>
+                                        <rect key="frame" x="122" y="260" width="180" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="180" id="Wzj-Si-fVv"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="date-time"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vB-Y6-1Mc">
-                                        <rect key="frame" x="320" y="457" width="40" height="32"/>
+                                        <rect key="frame" x="315" y="410" width="45" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="Whj-09-Mi7"/>
                                         </constraints>
@@ -334,7 +340,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hY8-ef-pIB">
-                                        <rect key="frame" x="320" y="382" width="40" height="32"/>
+                                        <rect key="frame" x="315" y="335" width="40" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="unc-2D-2fM"/>
                                             <constraint firstAttribute="height" constant="32" id="zZP-el-GqL"/>
@@ -370,7 +376,6 @@
                                     <constraint firstItem="WGj-nj-xOD" firstAttribute="trailing" secondItem="4vB-Y6-1Mc" secondAttribute="trailing" constant="30" id="ssa-SX-lF3"/>
                                     <constraint firstItem="hY8-ef-pIB" firstAttribute="leading" secondItem="TMS-tZ-1il" secondAttribute="trailing" constant="13" id="vzn-LE-4SJ"/>
                                     <constraint firstAttribute="trailing" secondItem="w8b-Nf-XX2" secondAttribute="trailing" id="wuq-BU-SAX"/>
-                                    <constraint firstItem="WGj-nj-xOD" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wdb-Te-Qxx" secondAttribute="trailing" symbolic="YES" id="xry-qH-oDr"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -401,18 +406,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z3j-C0-dVR">
-                                <rect key="frame" x="0.0" y="47" width="390" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="약 추가하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CnJ-oj-jyU">
-                                        <rect key="frame" x="20" y="3.6666666666666643" width="163.66666666666666" height="42.666666666666664"/>
-                                        <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="35"/>
+                                        <rect key="frame" x="20" y="6.6666666666666679" width="163.66666666666666" height="36.666666666666657"/>
+                                        <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="30"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sEw-Dj-j40">
-                                        <rect key="frame" x="313.66666666666669" y="0.0" width="61.666666666666686" height="52"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="timePlus"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sEw-Dj-j40">
+                                        <rect key="frame" x="337.66666666666669" y="0.0" width="37.666666666666686" height="38"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="timePlus"/>
                                         <connections>
                                             <action selector="timeAdded:" destination="SW6-yj-G1N" eventType="touchUpInside" id="04x-zM-bDX"/>
                                         </connections>
@@ -423,14 +428,14 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="D7j-Lq-mdO"/>
                                     <constraint firstAttribute="trailing" secondItem="CnJ-oj-jyU" secondAttribute="trailing" constant="206.33333333333334" id="Eve-db-UUY"/>
-                                    <constraint firstItem="CnJ-oj-jyU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="z3j-C0-dVR" secondAttribute="leading" constant="20" symbolic="YES" id="RQZ-k9-PoD"/>
+                                    <constraint firstItem="CnJ-oj-jyU" firstAttribute="leading" secondItem="z3j-C0-dVR" secondAttribute="leading" constant="20" id="Poe-03-K9s"/>
                                     <constraint firstItem="sEw-Dj-j40" firstAttribute="top" secondItem="z3j-C0-dVR" secondAttribute="top" id="SlD-wa-UwM"/>
                                     <constraint firstItem="CnJ-oj-jyU" firstAttribute="centerY" secondItem="z3j-C0-dVR" secondAttribute="centerY" id="g6p-9M-SeC"/>
                                     <constraint firstAttribute="trailing" secondItem="sEw-Dj-j40" secondAttribute="trailing" constant="14.666666666666629" id="ulp-xz-Go9"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="xvG-W8-Juu">
-                                <rect key="frame" x="25.000000000000007" y="162" width="92.666666666666686" height="173"/>
+                                <rect key="frame" x="25.000000000000007" y="115" width="92.666666666666686" height="173"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="약 이름 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ia-aO-YlP" userLabel="약 이름">
                                         <rect key="frame" x="17.333333333333336" y="0.0" width="75.333333333333314" height="24.333333333333332"/>
@@ -453,9 +458,9 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="uqE-ut-3CI">
-                                <rect key="frame" x="122" y="157" width="180" height="110"/>
+                                <rect key="frame" x="122" y="110" width="180" height="110"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="복용하는 약을 입력해 주세요" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ZaJ-22-oGU" userLabel="약 이름 텍스트필드">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="복용하는 약을 입력해 주세요" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZaJ-22-oGU" userLabel="약 이름 텍스트필드">
                                         <rect key="frame" x="0.0" y="0.0" width="180" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="RYj-Av-Nnt"/>
@@ -475,17 +480,17 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="tfk-rO-WYW">
-                                <rect key="frame" x="11" y="735" width="368" height="45"/>
+                                <rect key="frame" x="11" y="769" width="368" height="45"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXQ-jn-2OM" customClass="CustomButton" customModule="takeMedicine" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXQ-jn-2OM" customClass="CustomButton" customModule="takeMedicine" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="175" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="ZvZ-PM-Yee"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="175" id="dp9-Ji-ZOx"/>
                                             <constraint firstAttribute="width" constant="175" id="xr7-tg-7dU"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="pills add"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="pills add"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                 <color key="value" systemColor="systemBlueColor"/>
@@ -495,10 +500,10 @@
                                             <action selector="btnAdded:" destination="SW6-yj-G1N" eventType="touchUpInside" id="UZD-WP-XAL"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uHy-aP-eih" customClass="CustomButton" customModule="takeMedicine" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uHy-aP-eih" customClass="CustomButton" customModule="takeMedicine" customModuleProvider="target">
                                         <rect key="frame" x="193" y="0.0" width="175" height="45"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="cancel"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="cancel"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                 <color key="value" systemColor="systemRedColor"/>
@@ -511,22 +516,28 @@
                                 </subviews>
                             </stackView>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="원하는 시간을 설정해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SuA-rV-SBs" userLabel="복용 시간2 텍스트필드">
-                                <rect key="frame" x="122" y="381" width="185" height="34"/>
+                                <rect key="frame" x="122" y="334" width="180" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="026-gj-kPu"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="date-time"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="원하는 시간을 설정해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2bi-tA-mpa" userLabel="복용 시간3 텍스트필드">
-                                <rect key="frame" x="122" y="456" width="185" height="34"/>
+                                <rect key="frame" x="122" y="409" width="180" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="date-time"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="원하는 시간을 설정해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nE2-gJ-9Uv" userLabel="복용 시간1 텍스트필드">
-                                <rect key="frame" x="122" y="307" width="185" height="34"/>
+                                <rect key="frame" x="122" y="260" width="180" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="8et-S5-gNg"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="date-time"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VuY-KH-Utr">
-                                <rect key="frame" x="320" y="457" width="40" height="32"/>
+                                <rect key="frame" x="315" y="410" width="45" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="WXu-Kv-Sld"/>
                                 </constraints>
@@ -536,7 +547,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HgG-LG-3Gi">
-                                <rect key="frame" x="320" y="382" width="40" height="32"/>
+                                <rect key="frame" x="315" y="335" width="40" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="5PU-dM-6DC"/>
                                     <constraint firstAttribute="width" constant="40" id="RJL-po-LTz"/>
@@ -544,6 +555,35 @@
                                 <buttonConfiguration key="configuration" style="plain" image="cancel"/>
                                 <connections>
                                     <action selector="dayDelBtn:" destination="SW6-yj-G1N" eventType="touchUpInside" id="Fhx-Cz-Z5E"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QJk-LZ-29b">
+                                <rect key="frame" x="304" y="185" width="85" height="31"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="날짜">
+                                            <attributes>
+                                                <font key="NSFont" size="13" name="AppleSDGothicNeo-Regular"/>
+                                                <font key="NSOriginalFont" size="13" name="Verdana"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content=" ">
+                                            <attributes>
+                                                <font key="NSFont" size="13" name="Verdana"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="초기화">
+                                            <attributes>
+                                                <font key="NSFont" size="13" name="AppleSDGothicNeo-Regular"/>
+                                                <font key="NSOriginalFont" size="13" name="Verdana"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="dateInitialized:" destination="SW6-yj-G1N" eventType="touchUpInside" id="n3U-LJ-Kg8"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -565,7 +605,9 @@
                             <constraint firstItem="2bi-tA-mpa" firstAttribute="top" secondItem="SuA-rV-SBs" secondAttribute="bottom" constant="41" id="dls-ZH-YLa"/>
                             <constraint firstItem="tfk-rO-WYW" firstAttribute="leading" secondItem="yIS-Qz-lOX" secondAttribute="leading" constant="11" id="dw4-gB-E3y"/>
                             <constraint firstItem="uqE-ut-3CI" firstAttribute="top" secondItem="z3j-C0-dVR" secondAttribute="bottom" constant="60" id="eld-i8-hZl"/>
+                            <constraint firstItem="QJk-LZ-29b" firstAttribute="top" secondItem="z3j-C0-dVR" secondAttribute="bottom" constant="135" id="hhL-IU-8bM"/>
                             <constraint firstItem="z3j-C0-dVR" firstAttribute="leading" secondItem="gpu-Zn-O2x" secondAttribute="leading" id="jGM-y1-atz"/>
+                            <constraint firstItem="QJk-LZ-29b" firstAttribute="leading" secondItem="3Cz-K1-fLr" secondAttribute="trailing" constant="2" id="jgt-lV-PZa"/>
                             <constraint firstItem="yIS-Qz-lOX" firstAttribute="trailing" secondItem="tfk-rO-WYW" secondAttribute="trailing" constant="11" id="nNj-CA-9fZ"/>
                             <constraint firstItem="yIS-Qz-lOX" firstAttribute="bottom" secondItem="tfk-rO-WYW" secondAttribute="bottom" constant="30" id="o7d-yF-BnA"/>
                             <constraint firstItem="SuA-rV-SBs" firstAttribute="leading" secondItem="yIS-Qz-lOX" secondAttribute="leading" constant="122" id="s3H-Jd-p4f"/>
@@ -594,16 +636,16 @@
     </scenes>
     <designables>
         <designable name="HXQ-jn-2OM">
-            <size key="intrinsicContentSize" width="61.666666666666664" height="51.666666666666664"/>
+            <size key="intrinsicContentSize" width="37.666666666666664" height="37.666666666666664"/>
         </designable>
         <designable name="R7L-CU-YSh">
-            <size key="intrinsicContentSize" width="61.666666666666664" height="51.666666666666664"/>
+            <size key="intrinsicContentSize" width="37.666666666666664" height="37.666666666666664"/>
         </designable>
         <designable name="s2B-vZ-Js1">
-            <size key="intrinsicContentSize" width="61.666666666666664" height="51.666666666666664"/>
+            <size key="intrinsicContentSize" width="37.666666666666664" height="37.666666666666664"/>
         </designable>
         <designable name="uHy-aP-eih">
-            <size key="intrinsicContentSize" width="61.666666666666664" height="51.666666666666664"/>
+            <size key="intrinsicContentSize" width="37.666666666666664" height="37.666666666666664"/>
         </designable>
     </designables>
     <resources>

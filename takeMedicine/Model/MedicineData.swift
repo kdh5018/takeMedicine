@@ -8,9 +8,6 @@
 import Foundation
 //import Fakery
 
-enum Section {
-    case normal, pinned
-}
 
 class MedicineData: NSObject, NSCoding, NSSecureCoding, Codable {
     

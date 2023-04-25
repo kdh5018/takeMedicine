@@ -17,8 +17,8 @@ class MedicineTableViewCell: UITableViewCell {
     @IBOutlet weak var medicineName: UILabel!
     @IBOutlet weak var medicineDate: UILabel!
     @IBOutlet weak var medicineMorningTime: UILabel!
-    @IBOutlet weak var medicineDayTime: UILabel!
-    @IBOutlet weak var medicineNightTime: UILabel!
+    @IBOutlet weak var medicineDayTime: UILabel?
+    @IBOutlet weak var medicineNightTime: UILabel?
     
     // 테이블 뷰 셀에 있는 수정,삭제 버튼 스택뷰
     @IBOutlet weak var buttonStackView: UIStackView!
@@ -41,8 +41,8 @@ class MedicineTableViewCell: UITableViewCell {
         medicineName.text = cellData.title
         medicineDate.text = cellData.date
         medicineMorningTime.text = cellData.morningTime
-        medicineDayTime.text = cellData.dayTime
-        medicineNightTime.text = cellData.nightTime
+        medicineDayTime?.text = cellData.dayTime
+        medicineNightTime?.text = cellData.nightTime
         
         buttonStackView.isHidden = !isSelected
     }

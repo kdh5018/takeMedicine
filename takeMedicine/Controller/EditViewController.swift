@@ -36,6 +36,7 @@ class EditViewController: UIViewController {
     let editDatePicker = UIDatePicker()
     let editTimePicker = UIDatePicker()
     
+    
     /// 시간 추가하기 버튼 클릭 시 복용 시간 추가 기능 구현
     var clickCount = 0
     
@@ -53,15 +54,15 @@ class EditViewController: UIViewController {
         editNightTimeTextField.text = prepareNightTime
 
         // if EditViewController를 열었을 때, 시간 텍스트필드가 비어 있으면 비어있는 텍스트필드는 숨기고 작성된 텍스트필드만 보이게
-        if editDayTimeTextField.text == nil {
-            editDayTimeTextField.isHidden = true
-            editDayDelButton.isHidden = true
-        }
-        if editNightTimeTextField == nil {
-            editNightTimeTextField.isHidden = true
-            editNightDelButton.isHidden = true
-        }
-
+//        if editDayTimeTextField.text == nil {
+//            editDayTimeTextField.isHidden = true
+//            editDayDelButton.isHidden = true
+//        }
+//        if editNightTimeTextField.text == nil {
+//            editNightTimeTextField.isHidden = true
+//            editNightDelButton.isHidden = true
+//        }
+        
         
         self.showDatePicker()
         self.showTimePicker()
@@ -138,7 +139,6 @@ class EditViewController: UIViewController {
             editNightDelButton.isHidden = false
         }
     }
-    
     
     @IBAction func editDayDelBtn(_ sender: UIButton) {
         editDayTimeTextField.isHidden = true

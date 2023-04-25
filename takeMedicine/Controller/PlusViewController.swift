@@ -18,12 +18,12 @@ class PlusViewController: UIViewController {
     @IBOutlet weak var textFieldTimeNightPicker: UITextField!
     
     @IBOutlet weak var plusBtn: UIButton!
-    
+
     @IBOutlet weak var dayDelButton: UIButton!
     @IBOutlet weak var nightDelButton: UIButton!
 
     var plusDelegate: MedicineDelegate?
-    
+
     let datePicker = UIDatePicker()
     let timePicker = UIDatePicker()
     
@@ -32,6 +32,11 @@ class PlusViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        if nameTextField.text == nil && textFieldTimeMorningPicker.text == nil {
+//            plusBtn.isEnabled = false
+//        }
+
         
         // 키보드 return시 내려가게 하기 위해 델리겟 설정
         nameTextField.delegate = self
@@ -117,6 +122,10 @@ class PlusViewController: UIViewController {
         }
     }
     
+    @IBAction func dateInitialized(_ sender: UIButton) {
+        textFieldDatePicker.text = ""
+    }
+    
     @IBAction func dayDelBtn(_ sender: UIButton) {
         textFieldTimeDayPicker.isHidden = true
         dayDelButton.isHidden = true
@@ -135,7 +144,7 @@ class PlusViewController: UIViewController {
     }
     
     @IBAction func btnAdded(_ sender: UIButton) {
-        
+    
         // 새로운 약 추가
         let title = nameTextField.text ?? ""
         
@@ -154,6 +163,8 @@ class PlusViewController: UIViewController {
         self.plusDelegate?.addNewMedicine(newMedicine)
         
         print(#fileID, #function, #line, "- newMedicine: \(newMedicine)")
+        
+
         
         
         self.dismiss(animated: true)
