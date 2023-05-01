@@ -18,12 +18,21 @@ class PlusViewController: UIViewController {
     @IBOutlet weak var textFieldTimeNightPicker: UITextField!
     
     @IBOutlet weak var plusBtn: UIButton!
-
+    
     @IBOutlet weak var dayDelButton: UIButton!
     @IBOutlet weak var nightDelButton: UIButton!
-
+    
     var plusDelegate: MedicineDelegate?
-
+    
+    var notificationDateComponents: [DateComponents] = []
+    
+    // 각 날짜 구성 요소에 대한 알림 요청 생성
+    var notificationRequests: [UNNotificationRequest] = []
+    var notificationIdentifiers: [String] = []
+    
+    var hour = 0
+    var minute = 0
+    
     let datePicker = UIDatePicker()
     let timePicker = UIDatePicker()
     
@@ -33,10 +42,10 @@ class PlusViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        if nameTextField.text == nil && textFieldTimeMorningPicker.text == nil {
-//            plusBtn.isEnabled = false
-//        }
-
+        //        if nameTextField.text == nil && textFieldTimeMorningPicker.text == nil {
+        //            plusBtn.isEnabled = false
+        //        }
+        
         
         // 키보드 return시 내려가게 하기 위해 델리겟 설정
         nameTextField.delegate = self
@@ -92,6 +101,19 @@ class PlusViewController: UIViewController {
         formatter.dateFormat = "H시 mm분"
         let selectedTime = formatter.string(from: timePicker.date)
         
+        // 지정한 시간에 알림 보내기 위한 시, 분 데이터 변수에 저장
+        let time = timePicker.date
+        let hour = Calendar.current.component(.hour, from: time)
+        let minute = Calendar.current.component(.minute, from: time)
+        
+        var dateComponents = DateComponents()
+        dateComponents.calendar = Calendar.current
+        dateComponents.hour = hour
+        dateComponents.minute = minute
+        
+        notificationDateComponents.append(dateComponents)
+        
+        // 텍스트필드 데이터 입력되면 보이게끔
         if textFieldTimeMorningPicker.isEditing {
             textFieldTimeMorningPicker.text = selectedTime
         } else if textFieldTimeDayPicker.isEditing {
@@ -110,6 +132,7 @@ class PlusViewController: UIViewController {
         self.showTime(timePicker: timePicker)
         view.endEditing(true)
     }
+    
     
     @IBAction func timeAdded(_ sender: UIButton) {
         clickCount += 1
@@ -143,8 +166,41 @@ class PlusViewController: UIViewController {
         }
     }
     
-    @IBAction func btnAdded(_ sender: UIButton) {
+    //MARK: - 로컬 노티피케이션 사용을 위한 함수
+    func notificationSet(title: String) {
+        let content = UNMutableNotificationContent()
+        content.title = "약 먹었니?"
+        content.body = "\(title)을 먹을 시간입니다💊"
+        content.sound = .default
+
+        for dateComponents in notificationDateComponents {
+            // 트리거 반복 이벤트 만들기
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+            // 요청 생성
+            let uuidString = UUID().uuidString
+            let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+            notificationRequests.append(request)
+            notificationIdentifiers.append(uuidString)
+            
+            let notificationCenter = UNUserNotificationCenter.current()
+            notificationCenter.add(request) { (error) in
+                if error != nil {
+                    print("error: \(error)")
+                }
+            }
+        }
+    }
     
+    func deleteNotification() {
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: notificationIdentifiers)
+    }
+
+    
+    
+    
+    @IBAction func btnAdded(_ sender: UIButton) {
+        
         // 새로운 약 추가
         let title = nameTextField.text ?? ""
         
@@ -162,10 +218,8 @@ class PlusViewController: UIViewController {
         
         self.plusDelegate?.addNewMedicine(newMedicine)
         
-        print(#fileID, #function, #line, "- newMedicine: \(newMedicine)")
         
-
-        
+        notificationSet(title: title)
         
         self.dismiss(animated: true)
         

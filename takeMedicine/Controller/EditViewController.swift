@@ -33,6 +33,12 @@ class EditViewController: UIViewController {
     var editDelegate: MedicineDelegate? = nil
     
     
+    var notificationDateComponents: [DateComponents] = []
+    
+    var hour = 0
+    var minute = 0
+    
+    
     let editDatePicker = UIDatePicker()
     let editTimePicker = UIDatePicker()
     
@@ -110,6 +116,19 @@ class EditViewController: UIViewController {
         formatter.dateFormat = "H시 mm분"
         let selectedTime = formatter.string(from: timePicker.date)
         
+        // 지정한 시간에 알림 보내기 위한 시, 분 데이터 변수에 저장
+        let time = timePicker.date
+        let hour = Calendar.current.component(.hour, from: time)
+        let minute = Calendar.current.component(.minute, from: time)
+        
+        var dateComponents = DateComponents()
+        dateComponents.calendar = Calendar.current
+        dateComponents.hour = hour
+        dateComponents.minute = minute
+        
+        notificationDateComponents.append(dateComponents)
+        
+        // 텍스트필드 데이터 입력되면 보이게끔
         if editMorningTimeTextField.isEditing {
             editMorningTimeTextField.text = selectedTime
         } else if editDayTimeTextField.isEditing {
@@ -144,13 +163,18 @@ class EditViewController: UIViewController {
         editDayTimeTextField.isHidden = true
         editDayDelButton.isHidden = true
         clickCount = 0
+        editDayTimeTextField.text = ""
+        
     }
     
     @IBAction func editNightDelBtn(_ sender: UIButton) {
         editNightTimeTextField.isHidden = true
         editNightDelButton.isHidden = true
         clickCount = 1
+        editNightTimeTextField.text = ""
+        
     }
+
     
     
     @IBAction func btnEdited(_ sender: UIButton) {
@@ -168,10 +192,41 @@ class EditViewController: UIViewController {
         
         let editMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime)
         
-
-        print(#fileID, #function, #line, "- editMedicine : \(editMedicine)")
         self.editDelegate?.update(index: tableIndex, editMedicine)
+        print(#fileID, #function, #line, "- dayTime: \(prepareDayTime)")
+        print(#fileID, #function, #line, "- nightTime; \(prepareNightTime)")
         
+        //MARK: - 로컬 노티피케이션 사용을 위한 함수
+        func notificationSet() {
+            let content = UNMutableNotificationContent()
+            content.title = "약 먹었니?"
+            content.body = "\(title)을 먹을 시간입니다💊"
+            content.sound = .default
+            
+            // 각 날짜 구성 요소에 대한 알림 요청 생성
+            var notificationRequests: [UNNotificationRequest] = []
+            
+            for dateComponents in notificationDateComponents {
+                // 트리거 반복 이벤트 만들기
+                let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+                // 요청 생성
+                let uuidString = UUID().uuidString
+                let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+                notificationRequests.append(request)
+                let notificationCenter = UNUserNotificationCenter.current()
+                notificationCenter.add(request) { (error) in
+                    if error != nil {
+                        print("error: \(error)")
+                    }
+                }
+            }
+        }
+        
+
+        
+        
+        
+        notificationSet()
 
         self.dismiss(animated: true)
     }

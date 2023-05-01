@@ -15,6 +15,10 @@ class ViewController: UIViewController {
     
     var medicineData: MedicineData?
     
+    let EV = EditViewController()
+    
+    let PV = PlusViewController()
+    
     @IBOutlet weak var navToPlusVCBtn: UIButton!
     
     @IBOutlet weak var medicineTableView: UITableView!
@@ -30,51 +34,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-
         medicineTableView.dataSource = self
         medicineTableView.delegate = self
         
         medicineTableView.estimatedRowHeight = UITableView.automaticDimension
-        
-        requestNotificationAuthorization()
-        sendNotification(seconds: 10)
         
         
         // 더미데이터를 이용하여 초기 화면 체크
         //        self.medicineDataList = MedicineData.getDummies()
     }
     
-    //MARK: - 로컬 노티피케이션 사용을 위한 함수
-    func requestNotificationAuthorization() {
-        let authOptions = UNAuthorizationOptions(arrayLiteral: .alert, .badge, .sound)
-
-        userNotificationCenter.requestAuthorization(options: authOptions) { success, error in
-            if let error = error {
-                print("Error: \(error)")
-            }
-        }
-    }
-
-    func sendNotification(seconds: Double) {
-        let notificationContent = UNMutableNotificationContent()
-        let time =
-
-        notificationContent.title = "약 먹을 시간입니다💊"
-        notificationContent.body = "약약약약"
-
-        let timeComponents = Calendar.current.dateComponents([.hour, .minute], from: time)
-        let trigger = UNCalendarNotificationTrigger(dateMatching: timeComponents, repeats: false)
-        let request = UNNotificationRequest(identifier: "testNotification",
-                                            content: notificationContent,
-                                            trigger: trigger)
-
-        userNotificationCenter.add(request) { error in
-            if let error = error {
-                print("Notification Error: ", error)
-            }
-        }
-    }
     
     //MARK: - 메모리 연결
     // 서로의 메모리를 연결하기 위해 반드시 필요함⭐️
@@ -88,7 +57,7 @@ class ViewController: UIViewController {
         }
         if let editDestinationVC = segue.destination as? EditViewController,
            let selectedData = sender as? (medicineData: MedicineData, indexPath: IndexPath){
-
+            
             // EditViewController(editDestinationVC)과 ViewController를 델리겟으로 연결⭐️
             // extension으로 ViewController에 뷰컨트롤러를 정의했기 때문에 ViewController가 Delegate를 준수하기 때문에 self로 연결이 됨
             editDestinationVC.editDelegate = self
@@ -114,8 +83,9 @@ class ViewController: UIViewController {
         plusVC.plusDelegate = self
         self.present(plusVC, animated: true, completion: nil)
     }
-
+    
 }
+
 
 //MARK: - 데이터 소스 관련
 extension ViewController : UITableViewDataSource {
@@ -137,15 +107,16 @@ extension ViewController : UITableViewDataSource {
         
         
         /// MedicineTableVeiwCell에 configureCell에서 업데이트를 해주기 때문에 뷰컨에서 다시 데이터를 받아올 필요 없이 configureCell만 호출해주면 됨
-//        cell.medicineName?.text = cellData.title
-//        cell.medicineDate?.text = cellData.date
-//        cell.medicineMorningTime?.text = cellData.morningTime
-//        cell.medicineDayTime?.text = cellData.dayTime
-//        cell.medicineNightTime?.text = cellData.nightTime
+        //        cell.medicineName?.text = cellData.title
+        //        cell.medicineDate?.text = cellData.date
+        //        cell.medicineMorningTime?.text = cellData.morningTime
+        //        cell.medicineDayTime?.text = cellData.dayTime
+        //        cell.medicineNightTime?.text = cellData.nightTime
         
         // 테이블뷰셀 on/off를 위해 선택 여부 가져옴
         let isSelected = selectedRows.contains(cellData.id)
         cell.configureCell(cellData: cellData, isSelected: isSelected, indexPath: indexPath)
+        print(cellData.id)
         
         
         // 수정하기 버튼 클릭시 EditViewController 띄워줌
@@ -167,9 +138,12 @@ extension ViewController : UITableViewDataSource {
             
             // 넘기거나 하는 다음 과정이 없기 때문에 여기서 바로 지워도 됨
             print(#fileID, #function, #line, "- indexPath.row: \(indexPath.row)")
+            
+            // 알림 삭제
+            PV.deleteNotification()
+            
             self.medicineDataManager.deleteMedicine(index: indexPath.row)
             self.medicineTableView.reloadData()
-
         }
         
         return cell
@@ -215,7 +189,7 @@ extension ViewController: MedicineDelegate {
         medicineDataManager.deleteMedicine(index: index)
         medicineTableView.reloadData()
     }
-
+    
 }
 
 //MARK: - 화면 터치시 키보드 내리기
@@ -276,7 +250,7 @@ extension ViewController: UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         completionHandler()
     }
-
+    
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
