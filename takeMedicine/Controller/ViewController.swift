@@ -19,6 +19,10 @@ class ViewController: UIViewController {
     
     let PV = PlusViewController()
     
+    var deleteDate: [DateComponents] = []
+    
+    let today = Date()
+    
     @IBOutlet weak var navToPlusVCBtn: UIButton!
     
     @IBOutlet weak var medicineTableView: UITableView!
@@ -34,6 +38,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(#fileID, #function, #line, "- today: \(today)")
+        
         medicineTableView.dataSource = self
         medicineTableView.delegate = self
         
@@ -42,6 +48,12 @@ class ViewController: UIViewController {
         
         // 더미데이터를 이용하여 초기 화면 체크
         //        self.medicineDataList = MedicineData.getDummies()
+    }
+    
+    func pastDateDeleted() {
+//        if today > deleteDate {
+//
+//        }
     }
     
     

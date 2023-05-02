@@ -164,7 +164,7 @@
 			);
 			mainGroup = 762EFE0D2993728F009E55D1;
 			packageReferences = (
-				7642D664299D1F2B005A5101 /* XCRemoteSwiftPackageReference "Fakery.git" */,
+				7642D664299D1F2B005A5101 /* XCRemoteSwiftPackageReference "Fakery" */,
 			);
 			productRefGroup = 762EFE172993728F009E55D1 /* Products */;
 			projectDirPath = "";
@@ -358,7 +358,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -391,7 +391,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -432,7 +432,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		7642D664299D1F2B005A5101 /* XCRemoteSwiftPackageReference "Fakery.git" */ = {
+		7642D664299D1F2B005A5101 /* XCRemoteSwiftPackageReference "Fakery" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/vadymmarkov/Fakery.git";
 			requirement = {
@@ -445,7 +445,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		7642D665299D1F2B005A5101 /* Fakery */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7642D664299D1F2B005A5101 /* XCRemoteSwiftPackageReference "Fakery.git" */;
+			package = 7642D664299D1F2B005A5101 /* XCRemoteSwiftPackageReference "Fakery" */;
 			productName = Fakery;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -15,11 +15,11 @@ class MedicineData: NSObject, NSCoding, NSSecureCoding, Codable {
     
     var id : UUID = UUID()
     
-    private (set) var title: String
-    private (set) var date: String?
-    private (set) var morningTime: String
-    private (set) var dayTime: String?
-    private (set) var nightTime: String?
+    var title: String
+    var date: String?
+    var morningTime: String
+    var dayTime: String?
+    var nightTime: String?
     
     
     //    let title: String

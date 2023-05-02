@@ -24,7 +24,11 @@ class PlusViewController: UIViewController {
     
     var plusDelegate: MedicineDelegate?
     
-    var notificationDateComponents: [DateComponents] = []
+    // 날짜 값 저장하는 배열
+    var deleteDateComponents: [DateComponents] = []
+    
+    // 시간 값 저장하는 배열
+    var notificationTimeComponents: [DateComponents] = []
     
     // 각 날짜 구성 요소에 대한 알림 요청 생성
     var notificationRequests: [UNNotificationRequest] = []
@@ -41,11 +45,11 @@ class PlusViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // 복용 시간 미입력시 약 추가 동작 안 되게끔 구현
+        plusBtnEnabled()
         
-        //        if nameTextField.text == nil && textFieldTimeMorningPicker.text == nil {
-        //            plusBtn.isEnabled = false
-        //        }
-        
+        print(#fileID, #function, #line, "- deleteDateComponents타입: \(type(of: deleteDateComponents))")
         
         // 키보드 return시 내려가게 하기 위해 델리겟 설정
         nameTextField.delegate = self
@@ -59,6 +63,26 @@ class PlusViewController: UIViewController {
         self.showTimePicker()
         
         self.hideKeyboardWhenTappedAround()
+    }
+    
+    // 뷰컨트롤러에 지난 날짜 삭제하기 위한 입력한 날짜 저장한 배열 전송
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if let destinationVC = segue.destination as? ViewController {
+            destinationVC.deleteDate = self.deleteDateComponents
+        }
+    }
+    
+    // 시간을 입력해야만 저장 버튼 활성화되게끔 하는 함수
+    func plusBtnEnabled() {
+        plusBtn.isEnabled = false
+        textFieldTimeMorningPicker.addTarget(self, action: #selector(textFieldDidChange), for: .editingDidEnd)
+    }
+    
+    @objc func textFieldDidChange() {
+        if textFieldTimeMorningPicker.text != "" {
+            plusBtn.isEnabled = true
+        }
     }
     
     /// 복용 기간 설정을 위한 데이트피커
@@ -92,13 +116,27 @@ class PlusViewController: UIViewController {
     
     @objc func showDate(datePicker: UIDatePicker) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "M월 dd일까지"
+        dateFormatter.dateFormat = "M월 d일까지"
         self.textFieldDatePicker.text = dateFormatter.string(from: datePicker.date)
+        
+        let date = datePicker.date
+        let year = Calendar.current.component(.year, from: date)
+        let month = Calendar.current.component(.month, from: date)
+        let day = Calendar.current.component(.day, from: date)
+        
+        var dateComponents = DateComponents()
+        dateComponents.calendar = Calendar.current
+        dateComponents.year = year
+        dateComponents.month = month
+        dateComponents.day = day
+        
+        // 날짜 값 배열에 넣기
+        deleteDateComponents.append(dateComponents)
     }
     
     @objc func showTime(timePicker: UIDatePicker) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "H시 mm분"
+        formatter.dateFormat = "H시 m분"
         let selectedTime = formatter.string(from: timePicker.date)
         
         // 지정한 시간에 알림 보내기 위한 시, 분 데이터 변수에 저장
@@ -106,12 +144,13 @@ class PlusViewController: UIViewController {
         let hour = Calendar.current.component(.hour, from: time)
         let minute = Calendar.current.component(.minute, from: time)
         
-        var dateComponents = DateComponents()
-        dateComponents.calendar = Calendar.current
-        dateComponents.hour = hour
-        dateComponents.minute = minute
+        var timeComponents = DateComponents()
+        timeComponents.calendar = Calendar.current
+        timeComponents.hour = hour
+        timeComponents.minute = minute
         
-        notificationDateComponents.append(dateComponents)
+        // 시간 값 배열에 넣기
+        notificationTimeComponents.append(timeComponents)
         
         // 텍스트필드 데이터 입력되면 보이게끔
         if textFieldTimeMorningPicker.isEditing {
@@ -145,10 +184,6 @@ class PlusViewController: UIViewController {
         }
     }
     
-    @IBAction func dateInitialized(_ sender: UIButton) {
-        textFieldDatePicker.text = ""
-    }
-    
     @IBAction func dayDelBtn(_ sender: UIButton) {
         textFieldTimeDayPicker.isHidden = true
         dayDelButton.isHidden = true
@@ -173,9 +208,9 @@ class PlusViewController: UIViewController {
         content.body = "\(title)을 먹을 시간입니다💊"
         content.sound = .default
 
-        for dateComponents in notificationDateComponents {
+        for timeComponents in notificationTimeComponents {
             // 트리거 반복 이벤트 만들기
-            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: timeComponents, repeats: true)
             // 요청 생성
             let uuidString = UUID().uuidString
             let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)

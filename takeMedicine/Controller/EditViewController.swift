@@ -28,16 +28,17 @@ class EditViewController: UIViewController {
     @IBOutlet weak var editDayDelButton: UIButton!
     @IBOutlet weak var editNightDelButton: UIButton!
     
+    @IBOutlet weak var plusBtn: UIButton!
+    
+    
     var editMedicineData: MedicineData?
 
     var editDelegate: MedicineDelegate? = nil
-    
     
     var notificationDateComponents: [DateComponents] = []
     
     var hour = 0
     var minute = 0
-    
     
     let editDatePicker = UIDatePicker()
     let editTimePicker = UIDatePicker()
@@ -60,22 +61,25 @@ class EditViewController: UIViewController {
         editNightTimeTextField.text = prepareNightTime
 
         // if EditViewController를 열었을 때, 시간 텍스트필드가 비어 있으면 비어있는 텍스트필드는 숨기고 작성된 텍스트필드만 보이게
-//        if editDayTimeTextField.text == nil {
-//            editDayTimeTextField.isHidden = true
-//            editDayDelButton.isHidden = true
-//        }
-//        if editNightTimeTextField.text == nil {
-//            editNightTimeTextField.isHidden = true
-//            editNightDelButton.isHidden = true
-//        }
-        
-        
+        editDayTimeTextField.isHidden = true
+        editDayDelButton.isHidden = true
+        if editDayTimeTextField.text != "" {
+            editDayTimeTextField.isHidden = false
+            editDayDelButton.isHidden = false
+        }
+        editNightTimeTextField.isHidden = true
+        editNightDelButton.isHidden = true
+        if editNightTimeTextField.text != "" {
+            editNightTimeTextField.isHidden = false
+            editNightDelButton.isHidden = false
+        }
+
         self.showDatePicker()
         self.showTimePicker()
         
         self.hideKeyboardWhenTappedAround()
     }
-    
+        
     /// 복용 기간 설정을 위한 데이트피커
     func showDatePicker() {
         editDatePicker.datePickerMode = .date
@@ -107,13 +111,13 @@ class EditViewController: UIViewController {
     
     @objc func showDate(datePicker: UIDatePicker) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "M월 dd일까지"
+        dateFormatter.dateFormat = "M월 d일까지"
         self.editDateTextField.text = dateFormatter.string(from: datePicker.date)
     }
     
     @objc func showTime(timePicker: UIDatePicker) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "H시 mm분"
+        formatter.dateFormat = "H시 m분"
         let selectedTime = formatter.string(from: timePicker.date)
         
         // 지정한 시간에 알림 보내기 위한 시, 분 데이터 변수에 저장
@@ -159,11 +163,13 @@ class EditViewController: UIViewController {
         }
     }
     
+    
     @IBAction func editDayDelBtn(_ sender: UIButton) {
         editDayTimeTextField.isHidden = true
         editDayDelButton.isHidden = true
         clickCount = 0
         editDayTimeTextField.text = ""
+        editMedicineData?.dayTime = ""
         
     }
     
@@ -172,7 +178,7 @@ class EditViewController: UIViewController {
         editNightDelButton.isHidden = true
         clickCount = 1
         editNightTimeTextField.text = ""
-        
+        editMedicineData?.nightTime = ""
     }
 
     
@@ -193,8 +199,6 @@ class EditViewController: UIViewController {
         let editMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime)
         
         self.editDelegate?.update(index: tableIndex, editMedicine)
-        print(#fileID, #function, #line, "- dayTime: \(prepareDayTime)")
-        print(#fileID, #function, #line, "- nightTime; \(prepareNightTime)")
         
         //MARK: - 로컬 노티피케이션 사용을 위한 함수
         func notificationSet() {
@@ -221,11 +225,7 @@ class EditViewController: UIViewController {
                 }
             }
         }
-        
 
-        
-        
-        
         notificationSet()
 
         self.dismiss(animated: true)
