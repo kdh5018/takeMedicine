@@ -152,7 +152,7 @@ extension ViewController : UITableViewDataSource {
             print(#fileID, #function, #line, "- indexPath.row: \(indexPath.row)")
             
             // 알림 삭제
-            PV.deleteNotification()
+            PV.deleteNotification(array[indexPath.row].notiIds)
             
             self.medicineDataManager.deleteMedicine(index: indexPath.row)
             self.medicineTableView.reloadData()

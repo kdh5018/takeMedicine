@@ -30,6 +30,7 @@ class EditViewController: UIViewController {
     
     @IBOutlet weak var plusBtn: UIButton!
     
+    let PV = PlusViewController()
     
     var editMedicineData: MedicineData?
 
@@ -180,12 +181,49 @@ class EditViewController: UIViewController {
         editNightTimeTextField.text = ""
         editMedicineData?.nightTime = ""
     }
+    
+    //MARK: - 로컬 노티피케이션 사용을 위한 함수
+    func notificationSet(title: String) -> [String] {
+        let content = UNMutableNotificationContent()
+        content.title = "약 먹었니?"
+        content.body = "\(title)을 먹을 시간입니다💊"
+        content.sound = .default
+        
+        var notificationIds: [String] = []
+        
+        // 각 날짜 구성 요소에 대한 알림 요청 생성
+        var notificationRequests: [UNNotificationRequest] = []
+        
+        let uuidString = UUID().uuidString
+        
+        for dateComponents in notificationDateComponents {
+            // 트리거 반복 이벤트 만들기
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+            // 요청 생성
+            
+            let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+            
+            notificationRequests.append(request)
+            notificationIds.append(uuidString)
+            
+            let notificationCenter = UNUserNotificationCenter.current()
+            notificationCenter.add(request) { (error) in
+                if error != nil {
+                    print("error: \(error)")
+                }
+            }
+        }
+        return notificationIds
+    }
 
-    
-    
+
     @IBAction func btnEdited(_ sender: UIButton) {
         
         let title = editNameTextField.text ?? ""
+        
+        let scheduledIds = notificationSet(title: title)
+        
+//        PV.deleteNotification(scheduledIds)
         
         guard let dateInput = editDateTextField.text else {
             return
@@ -196,39 +234,18 @@ class EditViewController: UIViewController {
         let dayTime = editDayTimeTextField.text ?? ""
         let nightTime = editNightTimeTextField.text ?? ""
         
-        let editMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime)
+        
+        
+        let editMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime, notiIds: scheduledIds)
         
         self.editDelegate?.update(index: tableIndex, editMedicine)
         
-        //MARK: - 로컬 노티피케이션 사용을 위한 함수
-        func notificationSet() {
-            let content = UNMutableNotificationContent()
-            content.title = "약 먹었니?"
-            content.body = "\(title)을 먹을 시간입니다💊"
-            content.sound = .default
-            
-            // 각 날짜 구성 요소에 대한 알림 요청 생성
-            var notificationRequests: [UNNotificationRequest] = []
-            
-            for dateComponents in notificationDateComponents {
-                // 트리거 반복 이벤트 만들기
-                let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-                // 요청 생성
-                let uuidString = UUID().uuidString
-                let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
-                notificationRequests.append(request)
-                let notificationCenter = UNUserNotificationCenter.current()
-                notificationCenter.add(request) { (error) in
-                    if error != nil {
-                        print("error: \(error)")
-                    }
-                }
-            }
-        }
+        print(#fileID, #function, #line, "- notiIDs: \(scheduledIds)")
 
-        notificationSet()
-
+        
         self.dismiss(animated: true)
+        
+        
     }
     
     @IBAction func editCanceled(_ sender: UIButton) {

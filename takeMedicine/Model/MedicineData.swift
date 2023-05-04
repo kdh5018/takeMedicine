@@ -20,13 +20,7 @@ class MedicineData: NSObject, NSCoding, NSSecureCoding, Codable {
     var morningTime: String
     var dayTime: String?
     var nightTime: String?
-    
-    
-    //    let title: String
-    //    let date: String?
-    //    let morningTime: String
-    //    let dayTime: String?
-    //    let nightTime: String?
+    var notiIds: [String] = []
     
     /// medicineData 생성자
     /// - Parameters:
@@ -35,19 +29,20 @@ class MedicineData: NSObject, NSCoding, NSSecureCoding, Codable {
     ///   - morningTime: 복용 시간1
     ///   - dayTime: 복용 시간2
     ///   - nightTime: 복용 시간3
-    init(title: String, date: String, morningTime: String, dayTime: String?, nightTime: String?) {
+    ///   - notiIds: 알림 삭제를 위한 테이블뷰셀별로의 고유 번호
+    init(title: String, date: String, morningTime: String, dayTime: String?, nightTime: String?, notiIds: [String]) {
         
         self.title = title
         self.date = date
         self.morningTime = morningTime
         self.dayTime = dayTime
         self.nightTime = nightTime
-        
+        self.notiIds = notiIds
     }
     //MARK: - 모델 데이터 확인용
     var info : String {
         get{
-            return "title: \(title), date: \(date), morningTime: \(morningTime), dayTime: \(dayTime), nightTime: \(nightTime)"
+            return "title: \(title), date: \(date), morningTime: \(morningTime), dayTime: \(dayTime), nightTime: \(nightTime), notiIds: \(notiIds)"
         }
     }
     
@@ -63,6 +58,7 @@ class MedicineData: NSObject, NSCoding, NSSecureCoding, Codable {
         coder.encode(self.morningTime, forKey: "morningTime")
         coder.encode(self.dayTime, forKey: "dayTime")
         coder.encode(self.nightTime, forKey: "nightTime")
+        coder.encode(self.notiIds, forKey: "notiIds")
     }
     
     required convenience init?(coder decoder: NSCoder) {
@@ -70,16 +66,12 @@ class MedicineData: NSObject, NSCoding, NSSecureCoding, Codable {
               let date = decoder.decodeObject(forKey: "date") as? String,
               let morningTime = decoder.decodeObject(forKey: "morningTime") as? String,
               let dayTime = decoder.decodeObject(forKey: "dayTime") as? String,
-              let nightTime = decoder.decodeObject(forKey: "nightTime") as? String
+              let nightTime = decoder.decodeObject(forKey: "nightTime") as? String,
+              let notiIds = decoder.decodeObject(forKey: "notiIds") as? [String]
         else { return nil }
-        self.init(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime)
+        self.init(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime, notiIds: notiIds)
     }
-    
-    static func createNewMedicine(with newValue: String) -> MedicineData{
-        print(#fileID, #function, #line, "- createNewMedicine() called / newValue: \(newValue)")
-        return MedicineData(title: newValue, date: newValue, morningTime: newValue, dayTime: newValue, nightTime: newValue)
-    }
-    
+
 }
 
 //MARK: - 목업데이터 헬퍼
