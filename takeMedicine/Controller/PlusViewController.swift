@@ -24,11 +24,15 @@ class PlusViewController: UIViewController {
     
     var plusDelegate: MedicineDelegate?
     
-    // 날짜 값 저장하는 배열
+    // 설정한 날짜가 지나면 그 데이터를 지우기 위한 날짜 값 저장하는 배열
     var deleteDateComponents: [DateComponents] = []
     
     // 시간 값 저장하는 배열
     var notificationTimeComponents: [DateComponents] = []
+    
+    // 각 날짜 구성 요소에 대한 알림 요청 생성
+    var notificationRequests: [UNNotificationRequest] = []
+    var notificationIds: [String] = []
     
     var hour = 0
     var minute = 0
@@ -41,7 +45,7 @@ class PlusViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // 복용 시간 미입력시 약 추가 동작 안 되게끔 구현
         plusBtnEnabled()
         
@@ -198,7 +202,7 @@ class PlusViewController: UIViewController {
     }
     
     //MARK: - 로컬 노티피케이션 사용을 위한 함수
-    
+
     
     /// 로컬 노티피케이션 사용을 위한 함수
     /// - Parameter title: 알림 이름
@@ -209,17 +213,13 @@ class PlusViewController: UIViewController {
         content.body = "\(title)을 먹을 시간입니다💊"
         content.sound = .default
         
-        // 각 날짜 구성 요소에 대한 알림 요청 생성
-        var notificationRequests: [UNNotificationRequest] = []
-        var notificationIDs: [String] = []
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.removeAllPendingNotificationRequests()
         
-        // 이 상태면 알림이 한 번만 울리지만 복용 시간이 2개 이상 들어가면 마지막 시간에 대한 알림만 울림
-        let uuidString = UUID().uuidString
-        notificationIDs.append(uuidString)
-        
-
         for timeComponents in notificationTimeComponents {
-
+            let uuidString = UUID().uuidString
+            
+            
             // 트리거 반복 이벤트 만들기
             let trigger = UNCalendarNotificationTrigger(dateMatching: timeComponents, repeats: true)
             // 요청 생성
@@ -227,24 +227,25 @@ class PlusViewController: UIViewController {
             notificationRequests.append(request)
             
             print(#fileID, #function, #line, "- uuidString: \(uuidString)")
-
-            let notificationCenter = UNUserNotificationCenter.current()
+            
+            
             notificationCenter.add(request) { (error) in
                 if error != nil {
                     print("error: \(error)")
                 }
             }
+            notificationIds.append(uuidString)
         }
         
-        return notificationIDs
+        return notificationIds
     }
     
     func deleteNotification(_ notiIds: [String]) {
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.removePendingNotificationRequests(withIdentifiers: notiIds)
-
+        
     }
-
+    
     
     
     
@@ -262,14 +263,12 @@ class PlusViewController: UIViewController {
         let morningTime = textFieldTimeMorningPicker.text ?? ""
         let dayTime = textFieldTimeDayPicker.text ?? ""
         let nightTime = textFieldTimeNightPicker.text ?? ""
-                
+        
         let scheduledNotiIds = notificationSet(title: title)
         
         let newMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime, notiIds: scheduledNotiIds)
         
         self.plusDelegate?.addNewMedicine(newMedicine)
-        
-
         
         self.dismiss(animated: true)
         

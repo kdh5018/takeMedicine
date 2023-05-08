@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import UserNotifications
 
 //MARK: - 메인 페이지
 class ViewController: UIViewController {
@@ -31,9 +30,7 @@ class ViewController: UIViewController {
     
     // 테이블뷰셀 클릭시 버튼 보임/숨김을 위한 행 번호 변수
     var selectedRows: Set<UUID> = []
-    
-    let userNotificationCenter = UNUserNotificationCenter.current()
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -144,13 +141,11 @@ extension ViewController : UITableViewDataSource {
         }
         
         // 삭제하기 버튼 클릭하면 해당하는 테이블뷰셀 삭제
+        // 넘기거나 하는 다음 과정이 없기 때문에 여기서 바로 지워도 됨
         cell.onCellDeleteBtnClicked = {
             [weak self] (indexPath: IndexPath) in
             guard let self = self else { return }
-            
-            // 넘기거나 하는 다음 과정이 없기 때문에 여기서 바로 지워도 됨
-            print(#fileID, #function, #line, "- indexPath.row: \(indexPath.row)")
-            
+
             // 알림 삭제
             PV.deleteNotification(array[indexPath.row].notiIds)
             
@@ -253,19 +248,5 @@ extension UIToolbar {
         timeToolbar.isUserInteractionEnabled = true
         
         return timeToolbar
-    }
-}
-//MARK: - 로컬 노티피케이션 델리겟
-extension ViewController: UNUserNotificationCenterDelegate {
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler: @escaping () -> Void) {
-        completionHandler()
-    }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.alert, .badge, .sound])
     }
 }

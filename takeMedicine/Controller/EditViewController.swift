@@ -9,7 +9,7 @@ import UIKit
 
 //MARK: - 약 수정하기 페이지
 class EditViewController: UIViewController {
-    
+
     var tableIndex: Int!
     
     var prepareName: String?
@@ -36,7 +36,12 @@ class EditViewController: UIViewController {
 
     var editDelegate: MedicineDelegate? = nil
     
-    var notificationDateComponents: [DateComponents] = []
+    // 시간 값 저장하는 배열
+    var notificationTimeComponents: [DateComponents] = []
+    
+    // 각 날짜 구성 요소에 대한 알림 요청 생성
+    var notificationRequests: [UNNotificationRequest] = []
+    var notificationIds: [String] = []
     
     var hour = 0
     var minute = 0
@@ -131,7 +136,7 @@ class EditViewController: UIViewController {
         dateComponents.hour = hour
         dateComponents.minute = minute
         
-        notificationDateComponents.append(dateComponents)
+        notificationTimeComponents.append(dateComponents)
         
         // 텍스트필드 데이터 입력되면 보이게끔
         if editMorningTimeTextField.isEditing {
@@ -189,41 +194,45 @@ class EditViewController: UIViewController {
         content.body = "\(title)을 먹을 시간입니다💊"
         content.sound = .default
         
-        var notificationIds: [String] = []
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.removeAllPendingNotificationRequests()
         
-        // 각 날짜 구성 요소에 대한 알림 요청 생성
-        var notificationRequests: [UNNotificationRequest] = []
-        
-        let uuidString = UUID().uuidString
-        
-        for dateComponents in notificationDateComponents {
+        for timeComponents in notificationTimeComponents {
+            let uuidString = UUID().uuidString
+            
+            
             // 트리거 반복 이벤트 만들기
-            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: timeComponents, repeats: true)
             // 요청 생성
-            
             let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
-            
             notificationRequests.append(request)
-            notificationIds.append(uuidString)
             
-            let notificationCenter = UNUserNotificationCenter.current()
+            print(#fileID, #function, #line, "- uuidString: \(uuidString)")
+            
+            
             notificationCenter.add(request) { (error) in
                 if error != nil {
                     print("error: \(error)")
                 }
             }
+            notificationIds.append(uuidString)
         }
+        
         return notificationIds
     }
 
 
     @IBAction func btnEdited(_ sender: UIButton) {
         
+        
         let title = editNameTextField.text ?? ""
         
         let scheduledIds = notificationSet(title: title)
         
-//        PV.deleteNotification(scheduledIds)
+        print(#fileID, #function, #line, "- ScheduledIds: \(scheduledIds)")
+        
+        notificationRequests.removeAll()
+        notificationIds.removeAll()
         
         guard let dateInput = editDateTextField.text else {
             return
@@ -234,14 +243,13 @@ class EditViewController: UIViewController {
         let dayTime = editDayTimeTextField.text ?? ""
         let nightTime = editNightTimeTextField.text ?? ""
         
+        let editScheduledIds = notificationSet(title: title)
         
-        
-        let editMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime, notiIds: scheduledIds)
+        let editMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime, notiIds: editScheduledIds)
         
         self.editDelegate?.update(index: tableIndex, editMedicine)
         
-        print(#fileID, #function, #line, "- notiIDs: \(scheduledIds)")
-
+        print(#fileID, #function, #line, "- editScheduledIds: \(editScheduledIds)")
         
         self.dismiss(animated: true)
         

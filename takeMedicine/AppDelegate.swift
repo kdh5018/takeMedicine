@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import UserNotifications
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,8 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        UNUserNotificationCenter.current().delegate = self
+        // 알림 센터 불러오기
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self
         
+        // 알림 권한 종류 만들기
+        let option = UNAuthorizationOptions(arrayLiteral: [.alert, .badge, .sound])
+        
+        // 알림 권한 요청
+        center.requestAuthorization(options: option) { success, error in
+            if let error = error {
+                            print("에러 발생: \(error.localizedDescription)")
+                        }
+        }
         return true
     }
     
