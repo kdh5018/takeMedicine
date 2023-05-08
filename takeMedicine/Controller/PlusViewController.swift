@@ -25,7 +25,7 @@ class PlusViewController: UIViewController {
     var plusDelegate: MedicineDelegate?
     
     // 설정한 날짜가 지나면 그 데이터를 지우기 위한 날짜 값 저장하는 배열
-    var deleteDateComponents: [DateComponents] = []
+    var deleteDateComponents: [Int: DateComponents] = [:]
     
     // 시간 값 저장하는 배열
     var notificationTimeComponents: [DateComponents] = []
@@ -48,9 +48,7 @@ class PlusViewController: UIViewController {
         
         // 복용 시간 미입력시 약 추가 동작 안 되게끔 구현
         plusBtnEnabled()
-        
-        print(#fileID, #function, #line, "- deleteDateComponents타입: \(type(of: deleteDateComponents))")
-        
+
         // 키보드 return시 내려가게 하기 위해 델리겟 설정
         nameTextField.delegate = self
         
@@ -131,12 +129,14 @@ class PlusViewController: UIViewController {
         dateComponents.day = day
         
         // 날짜 값 배열에 넣기
-        deleteDateComponents.append(dateComponents)
+        let key = deleteDateComponents.count
+        deleteDateComponents[key] = dateComponents
+
     }
     
     @objc func showTime(timePicker: UIDatePicker) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "H시 m분"
+        formatter.dateFormat = "a h시 m분"
         let selectedTime = formatter.string(from: timePicker.date)
         
         // 지정한 시간에 알림 보내기 위한 시, 분 데이터 변수에 저장

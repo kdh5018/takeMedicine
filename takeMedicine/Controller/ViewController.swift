@@ -18,9 +18,8 @@ class ViewController: UIViewController {
     
     let PV = PlusViewController()
     
-    var deleteDate: [DateComponents] = []
-    
-    let today = Date()
+    // 기간이 지난 날짜를 자동으로 삭제하기 위한 딕셔너리
+    var deleteDate: [Int : DateComponents] = [:]
     
     @IBOutlet weak var navToPlusVCBtn: UIButton!
     
@@ -30,13 +29,12 @@ class ViewController: UIViewController {
     
     // 테이블뷰셀 클릭시 버튼 보임/숨김을 위한 행 번호 변수
     var selectedRows: Set<UUID> = []
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(#fileID, #function, #line, "- today: \(today)")
-        
+        pastDateDeleted()
+
         medicineTableView.dataSource = self
         medicineTableView.delegate = self
         
@@ -47,11 +45,27 @@ class ViewController: UIViewController {
         //        self.medicineDataList = MedicineData.getDummies()
     }
     
+    // 지정한 날짜보다 기간이 지나면 자동으로 삭제해주는 함수
     func pastDateDeleted() {
-//        if today > deleteDate {
-//
-//        }
+            
+        let today = Date()
+        let calendar = Calendar.current
+        let dateKeys = Array(deleteDate.keys)
+        let dateComponentsArray = Array(deleteDate.values)
+        let dateArray = dateComponentsArray.compactMap { calendar.date(from: $0) }
+            
+        for (index, date) in dateArray.enumerated() {
+            if today > date {
+                let key = dateKeys[index]
+                deleteDate.removeValue(forKey: key)
+            }
+        }
+        UserDefaultsManager.shared.clearMedicineList()
+        medicineTableView.reloadData()
     }
+
+
+
     
     
     //MARK: - 메모리 연결
@@ -125,8 +139,6 @@ extension ViewController : UITableViewDataSource {
         // 테이블뷰셀 on/off를 위해 선택 여부 가져옴
         let isSelected = selectedRows.contains(cellData.id)
         cell.configureCell(cellData: cellData, isSelected: isSelected, indexPath: indexPath)
-        print(cellData.id)
-        
         
         // 수정하기 버튼 클릭시 EditViewController 띄워줌
         cell.onCellEditBtnClicked = {
@@ -145,7 +157,8 @@ extension ViewController : UITableViewDataSource {
         cell.onCellDeleteBtnClicked = {
             [weak self] (indexPath: IndexPath) in
             guard let self = self else { return }
-
+            
+            
             // 알림 삭제
             PV.deleteNotification(array[indexPath.row].notiIds)
             

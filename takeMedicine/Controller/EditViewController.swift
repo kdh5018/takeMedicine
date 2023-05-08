@@ -123,7 +123,7 @@ class EditViewController: UIViewController {
     
     @objc func showTime(timePicker: UIDatePicker) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "H시 m분"
+        formatter.dateFormat = "a h시 m분"
         let selectedTime = formatter.string(from: timePicker.date)
         
         // 지정한 시간에 알림 보내기 위한 시, 분 데이터 변수에 저장
@@ -136,6 +136,7 @@ class EditViewController: UIViewController {
         dateComponents.hour = hour
         dateComponents.minute = minute
         
+        // 시간 값 배열에 넣기
         notificationTimeComponents.append(dateComponents)
         
         // 텍스트필드 데이터 입력되면 보이게끔
@@ -207,9 +208,6 @@ class EditViewController: UIViewController {
             let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
             notificationRequests.append(request)
             
-            print(#fileID, #function, #line, "- uuidString: \(uuidString)")
-            
-            
             notificationCenter.add(request) { (error) in
                 if error != nil {
                     print("error: \(error)")
@@ -229,8 +227,6 @@ class EditViewController: UIViewController {
         
         let scheduledIds = notificationSet(title: title)
         
-        print(#fileID, #function, #line, "- ScheduledIds: \(scheduledIds)")
-        
         notificationRequests.removeAll()
         notificationIds.removeAll()
         
@@ -248,8 +244,6 @@ class EditViewController: UIViewController {
         let editMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime, notiIds: editScheduledIds)
         
         self.editDelegate?.update(index: tableIndex, editMedicine)
-        
-        print(#fileID, #function, #line, "- editScheduledIds: \(editScheduledIds)")
         
         self.dismiss(animated: true)
         
