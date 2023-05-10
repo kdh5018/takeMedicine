@@ -315,7 +315,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="7ud-ld-niG">
-                                <rect key="frame" x="11" y="769" width="368" height="45"/>
+                                <rect key="frame" x="11" y="739" width="368" height="45"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tSZ-1r-uoP" customClass="CustomButton" customModule="takeMedicine" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="175" height="45"/>
@@ -381,7 +381,7 @@
                             <constraint firstItem="G3o-6T-gsu" firstAttribute="trailing" secondItem="odP-Od-4AZ" secondAttribute="trailing" constant="30" id="VGU-lK-trY"/>
                             <constraint firstItem="1FR-gh-AGM" firstAttribute="top" secondItem="hiz-4B-cvY" secondAttribute="bottom" constant="60" id="cq4-m2-mpc"/>
                             <constraint firstItem="1FR-gh-AGM" firstAttribute="leading" secondItem="G3o-6T-gsu" secondAttribute="leading" constant="122" id="ewe-V3-rCt"/>
-                            <constraint firstItem="G3o-6T-gsu" firstAttribute="bottom" secondItem="7ud-ld-niG" secondAttribute="bottom" constant="30" id="krp-fo-tsh"/>
+                            <constraint firstItem="G3o-6T-gsu" firstAttribute="bottom" secondItem="7ud-ld-niG" secondAttribute="bottom" constant="60" id="krp-fo-tsh"/>
                             <constraint firstItem="n2K-TE-6li" firstAttribute="leading" secondItem="1FR-gh-AGM" secondAttribute="leading" id="l9O-wV-7qS"/>
                             <constraint firstItem="1Yt-NB-xCC" firstAttribute="leading" secondItem="1FR-gh-AGM" secondAttribute="leading" id="n8B-Xm-q5Z"/>
                             <constraint firstItem="7ud-ld-niG" firstAttribute="leading" secondItem="G3o-6T-gsu" secondAttribute="leading" constant="11" id="nds-tf-btd"/>
@@ -488,7 +488,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="tfk-rO-WYW">
-                                <rect key="frame" x="11" y="769" width="368" height="45"/>
+                                <rect key="frame" x="11" y="739" width="368" height="45"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXQ-jn-2OM" customClass="CustomButton" customModule="takeMedicine" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="175" height="45"/>
@@ -588,7 +588,7 @@
                             <constraint firstItem="2bi-tA-mpa" firstAttribute="leading" secondItem="uqE-ut-3CI" secondAttribute="leading" id="hLt-wV-jSc"/>
                             <constraint firstItem="z3j-C0-dVR" firstAttribute="leading" secondItem="gpu-Zn-O2x" secondAttribute="leading" id="jGM-y1-atz"/>
                             <constraint firstItem="yIS-Qz-lOX" firstAttribute="trailing" secondItem="tfk-rO-WYW" secondAttribute="trailing" constant="11" id="nNj-CA-9fZ"/>
-                            <constraint firstItem="yIS-Qz-lOX" firstAttribute="bottom" secondItem="tfk-rO-WYW" secondAttribute="bottom" constant="30" id="o7d-yF-BnA"/>
+                            <constraint firstItem="yIS-Qz-lOX" firstAttribute="bottom" secondItem="tfk-rO-WYW" secondAttribute="bottom" constant="60" id="o7d-yF-BnA"/>
                             <constraint firstItem="VuY-KH-Utr" firstAttribute="trailing" secondItem="HgG-LG-3Gi" secondAttribute="trailing" id="oE3-8q-poS"/>
                             <constraint firstItem="2bi-tA-mpa" firstAttribute="leading" secondItem="yIS-Qz-lOX" secondAttribute="leading" constant="122" id="tzz-3P-wYS"/>
                             <constraint firstItem="xvG-W8-Juu" firstAttribute="top" secondItem="z3j-C0-dVR" secondAttribute="bottom" constant="65" id="wPp-ir-141"/>
@@ -613,26 +613,6 @@
             <point key="canvasLocation" x="653.84615384615381" y="-690.28436018957348"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="HXQ-jn-2OM">
-            <size key="intrinsicContentSize" width="37.666666666666664" height="37.666666666666664"/>
-        </designable>
-        <designable name="R7L-CU-YSh">
-            <size key="intrinsicContentSize" width="37.666666666666664" height="37.666666666666664"/>
-        </designable>
-        <designable name="Rma-v5-cY2">
-            <size key="intrinsicContentSize" width="37.666666666666664" height="37.666666666666664"/>
-        </designable>
-        <designable name="s2B-vZ-Js1">
-            <size key="intrinsicContentSize" width="37.666666666666664" height="37.666666666666664"/>
-        </designable>
-        <designable name="tSZ-1r-uoP">
-            <size key="intrinsicContentSize" width="37.666666666666664" height="37.666666666666664"/>
-        </designable>
-        <designable name="uHy-aP-eih">
-            <size key="intrinsicContentSize" width="37.666666666666664" height="37.666666666666664"/>
-        </designable>
-    </designables>
     <resources>
         <image name="cancel" width="37.5" height="37.5"/>
         <image name="delete" width="37.5" height="37.5"/>

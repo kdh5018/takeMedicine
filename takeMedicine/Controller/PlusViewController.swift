@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 
 //MARK: - 약 추가하기 페이지
-class PlusViewController: UIViewController {
+class PlusViewController: UIViewController, GADBannerViewDelegate {
+    
+    var bannerView: GADBannerView!
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var textFieldDatePicker: UITextField!
@@ -46,6 +49,20 @@ class PlusViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // In this case, we instantiate the banner with desired ad size.
+        // 배너 사이즈 설정
+        bannerView = GADBannerView(adSize: GADAdSizeBanner)
+
+        // 광고 배너의 아이디 설정
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.rootViewController = self
+        
+        // 광고 로드
+        bannerView.load(GADRequest())
+        
+        // 델리겟을 배너에 연결
+        bannerView.delegate = self
+        
         // 복용 시간 미입력시 약 추가 동작 안 되게끔 구현
         plusBtnEnabled()
 
@@ -61,6 +78,57 @@ class PlusViewController: UIViewController {
         self.showTimePicker()
         
         self.hideKeyboardWhenTappedAround()
+    }
+    
+    // 화면에 배너뷰를 추가
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        // 오토레이아웃으로 뷰를 설정
+      bannerView.translatesAutoresizingMaskIntoConstraints = false
+        //루트뷰에 배너를 추가
+      view.addSubview(bannerView)
+        // 앵커를 설정하여 오토레이아웃 설정
+      view.addConstraints(
+        [NSLayoutConstraint(item: bannerView,
+                            attribute: .bottom,
+                            relatedBy: .equal,
+                            toItem: view.safeAreaLayoutGuide,
+                            attribute: .bottom,
+                            multiplier: 1,
+                            constant: 0),
+         NSLayoutConstraint(item: bannerView,
+                            attribute: .centerX,
+                            relatedBy: .equal,
+                            toItem: view,
+                            attribute: .centerX,
+                            multiplier: 1,
+                            constant: 0)
+        ])
+     }
+    //MARK: - GADBannerViewDelegate 메소드
+    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+      print("bannerViewDidReceiveAd")
+        // 화면에 배너뷰를 추가
+        addBannerViewToView(bannerView)
+    }
+
+    func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
+      print("bannerView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+
+    func bannerViewDidRecordImpression(_ bannerView: GADBannerView) {
+      print("bannerViewDidRecordImpression")
+    }
+
+    func bannerViewWillPresentScreen(_ bannerView: GADBannerView) {
+      print("bannerViewWillPresentScreen")
+    }
+
+    func bannerViewWillDismissScreen(_ bannerView: GADBannerView) {
+      print("bannerViewWillDIsmissScreen")
+    }
+
+    func bannerViewDidDismissScreen(_ bannerView: GADBannerView) {
+      print("bannerViewDidDismissScreen")
     }
     
     // 뷰컨트롤러에 지난 날짜 삭제하기 위한 입력한 날짜 저장한 배열 전송
@@ -291,3 +359,5 @@ extension PlusViewController: UITextFieldDelegate {
         return false
     }
 }
+
+

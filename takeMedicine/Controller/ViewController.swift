@@ -60,6 +60,7 @@ class ViewController: UIViewController {
                 deleteDate.removeValue(forKey: key)
             }
         }
+        
         UserDefaultsManager.shared.clearMedicineList()
         medicineTableView.reloadData()
     }

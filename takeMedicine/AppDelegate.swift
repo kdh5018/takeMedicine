@@ -7,11 +7,12 @@
 
 import UIKit
 import UserNotifications
+import GoogleMobileAds
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    
+    // 앱이 런칭이 완료되었을 때
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -28,6 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             print("에러 발생: \(error.localizedDescription)")
                         }
         }
+        
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        
         return true
     }
     

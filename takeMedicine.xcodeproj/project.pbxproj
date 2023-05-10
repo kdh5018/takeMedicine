@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22770E232697862F1CE6D699 /* Pods_takeMedicine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96D52927FC8E7B1AA53D9CE1 /* Pods_takeMedicine.framework */; };
 		762EFE1A2993728F009E55D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762EFE192993728F009E55D1 /* AppDelegate.swift */; };
 		762EFE1C2993728F009E55D1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762EFE1B2993728F009E55D1 /* SceneDelegate.swift */; };
 		762EFE1E2993728F009E55D1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762EFE1D2993728F009E55D1 /* ViewController.swift */; };
@@ -20,9 +21,11 @@
 		76A98845299E007500727AD5 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A98844299E007500727AD5 /* DataManager.swift */; };
 		76CAF7202994B7640039DE1B /* PlusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CAF71F2994B7640039DE1B /* PlusViewController.swift */; };
 		76CAF7222994BDB00039DE1B /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CAF7212994BDB00039DE1B /* EditViewController.swift */; };
+		76FA42732A0B53BB006A2AAA /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 76FA42722A0B53BB006A2AAA /* GoogleMobileAds */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3CC8C48E61C113EDE95FEE38 /* Pods-takeMedicine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-takeMedicine.debug.xcconfig"; path = "Target Support Files/Pods-takeMedicine/Pods-takeMedicine.debug.xcconfig"; sourceTree = "<group>"; };
 		762EFE162993728F009E55D1 /* takeMedicine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = takeMedicine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		762EFE192993728F009E55D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		762EFE1B2993728F009E55D1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +41,8 @@
 		76A98844299E007500727AD5 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		76CAF71F2994B7640039DE1B /* PlusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusViewController.swift; sourceTree = "<group>"; };
 		76CAF7212994BDB00039DE1B /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		886020EBEC13FE76E5B1AE64 /* Pods-takeMedicine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-takeMedicine.release.xcconfig"; path = "Target Support Files/Pods-takeMedicine/Pods-takeMedicine.release.xcconfig"; sourceTree = "<group>"; };
+		96D52927FC8E7B1AA53D9CE1 /* Pods_takeMedicine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_takeMedicine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,18 +50,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76FA42732A0B53BB006A2AAA /* GoogleMobileAds in Frameworks */,
 				7642D666299D1F2B005A5101 /* Fakery in Frameworks */,
+				22770E232697862F1CE6D699 /* Pods_takeMedicine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6697DBF9C7444985FDB8AD2B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				96D52927FC8E7B1AA53D9CE1 /* Pods_takeMedicine.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		762EFE0D2993728F009E55D1 = {
 			isa = PBXGroup;
 			children = (
 				762EFE182993728F009E55D1 /* takeMedicine */,
 				762EFE172993728F009E55D1 /* Products */,
+				E87F65391F54DF3437551882 /* Pods */,
+				6697DBF9C7444985FDB8AD2B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,6 +130,15 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		E87F65391F54DF3437551882 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3CC8C48E61C113EDE95FEE38 /* Pods-takeMedicine.debug.xcconfig */,
+				886020EBEC13FE76E5B1AE64 /* Pods-takeMedicine.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -120,6 +146,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 762EFE2A29937290009E55D1 /* Build configuration list for PBXNativeTarget "takeMedicine" */;
 			buildPhases = (
+				2C445F742F713E2248F8DA76 /* [CP] Check Pods Manifest.lock */,
 				762EFE122993728F009E55D1 /* Sources */,
 				762EFE132993728F009E55D1 /* Frameworks */,
 				762EFE142993728F009E55D1 /* Resources */,
@@ -131,6 +158,7 @@
 			name = takeMedicine;
 			packageProductDependencies = (
 				7642D665299D1F2B005A5101 /* Fakery */,
+				76FA42722A0B53BB006A2AAA /* GoogleMobileAds */,
 			);
 			productName = takeMedicine;
 			productReference = 762EFE162993728F009E55D1 /* takeMedicine.app */;
@@ -162,6 +190,7 @@
 			mainGroup = 762EFE0D2993728F009E55D1;
 			packageReferences = (
 				7642D664299D1F2B005A5101 /* XCRemoteSwiftPackageReference "Fakery" */,
+				76FA42712A0B53BB006A2AAA /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 762EFE172993728F009E55D1 /* Products */;
 			projectDirPath = "";
@@ -184,6 +213,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2C445F742F713E2248F8DA76 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-takeMedicine-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		762EFE122993728F009E55D1 /* Sources */ = {
@@ -228,6 +282,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -259,10 +314,10 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
+				ENABLE_TESTABILITY = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -288,6 +343,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -321,7 +377,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -340,6 +396,7 @@
 		};
 		762EFE2B29937290009E55D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3CC8C48E61C113EDE95FEE38 /* Pods-takeMedicine.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -360,6 +417,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rlaehgns745.mediApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -373,6 +431,7 @@
 		};
 		762EFE2C29937290009E55D1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 886020EBEC13FE76E5B1AE64 /* Pods-takeMedicine.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -393,6 +452,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rlaehgns745.mediApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -436,6 +496,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		76FA42712A0B53BB006A2AAA /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -443,6 +511,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7642D664299D1F2B005A5101 /* XCRemoteSwiftPackageReference "Fakery" */;
 			productName = Fakery;
+		};
+		76FA42722A0B53BB006A2AAA /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 76FA42712A0B53BB006A2AAA /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
