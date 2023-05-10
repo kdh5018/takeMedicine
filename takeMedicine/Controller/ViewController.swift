@@ -47,28 +47,24 @@ class ViewController: UIViewController {
     
     // 지정한 날짜보다 기간이 지나면 자동으로 삭제해주는 함수
     func pastDateDeleted() {
-            
+
         let today = Date()
         let calendar = Calendar.current
         let dateKeys = Array(deleteDate.keys)
         let dateComponentsArray = Array(deleteDate.values)
         let dateArray = dateComponentsArray.compactMap { calendar.date(from: $0) }
-            
+
         for (index, date) in dateArray.enumerated() {
             if today > date {
                 let key = dateKeys[index]
                 deleteDate.removeValue(forKey: key)
             }
         }
-        
+
         UserDefaultsManager.shared.clearMedicineList()
         medicineTableView.reloadData()
     }
 
-
-
-    
-    
     //MARK: - 메모리 연결
     // 서로의 메모리를 연결하기 위해 반드시 필요함⭐️
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

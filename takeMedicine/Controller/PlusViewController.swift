@@ -282,27 +282,32 @@ class PlusViewController: UIViewController, GADBannerViewDelegate {
         content.sound = .default
         
         let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.removeAllPendingNotificationRequests()
-        
-        for timeComponents in notificationTimeComponents {
+
+        var addedTimeComponents = Set<DateComponents>()
+
+        notificationIds = notificationTimeComponents.compactMap { timeComponents in
+            // 이미 추가된 시간대의 정보인 경우, nil을 반환하여 notificationIds 배열에 추가되지 않도록 함
+            guard !addedTimeComponents.contains(timeComponents) else { return nil }
+
             let uuidString = UUID().uuidString
-            
-            
+
             // 트리거 반복 이벤트 만들기
             let trigger = UNCalendarNotificationTrigger(dateMatching: timeComponents, repeats: true)
             // 요청 생성
             let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
             notificationRequests.append(request)
-            
             print(#fileID, #function, #line, "- uuidString: \(uuidString)")
-            
-            
+
             notificationCenter.add(request) { (error) in
                 if error != nil {
                     print("error: \(error)")
                 }
             }
-            notificationIds.append(uuidString)
+
+            // 추가된 시간대의 정보를 addedTimeComponents에 추가
+            addedTimeComponents.insert(timeComponents)
+
+            return uuidString
         }
         
         return notificationIds
@@ -313,10 +318,7 @@ class PlusViewController: UIViewController, GADBannerViewDelegate {
         notificationCenter.removePendingNotificationRequests(withIdentifiers: notiIds)
         
     }
-    
-    
-    
-    
+
     @IBAction func btnAdded(_ sender: UIButton) {
         
         // 새로운 약 추가
@@ -339,6 +341,7 @@ class PlusViewController: UIViewController, GADBannerViewDelegate {
         self.plusDelegate?.addNewMedicine(newMedicine)
         
         self.dismiss(animated: true)
+        print(#fileID, #function, #line, "- 새로 추가된 약: \(newMedicine)")
         
     }
     

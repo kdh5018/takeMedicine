@@ -265,25 +265,34 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
         content.sound = .default
         
         let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.removeAllPendingNotificationRequests()
         
-        for timeComponents in notificationTimeComponents {
+        var addedTimeComponents = Set<DateComponents>()
+
+        notificationIds = notificationTimeComponents.compactMap { timeComponents in
+            // 이미 추가된 시간대의 정보인 경우, nil을 반환하여 notificationIds 배열에 추가되지 않도록 함
+            guard !addedTimeComponents.contains(timeComponents) else { return nil }
+            
             let uuidString = UUID().uuidString
-            
-            
+
             // 트리거 반복 이벤트 만들기
             let trigger = UNCalendarNotificationTrigger(dateMatching: timeComponents, repeats: true)
             // 요청 생성
             let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
             notificationRequests.append(request)
-            
+            print(#fileID, #function, #line, "- uuidString: \(uuidString)")
+
             notificationCenter.add(request) { (error) in
                 if error != nil {
                     print("error: \(error)")
                 }
             }
-            notificationIds.append(uuidString)
+            
+            // 추가된 시간대의 정보를 addedTimeComponents에 추가
+            addedTimeComponents.insert(timeComponents)
+            
+            return uuidString
         }
+
         
         return notificationIds
     }
@@ -293,8 +302,6 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
         
         
         let title = editNameTextField.text ?? ""
-        
-        let scheduledIds = notificationSet(title: title)
         
         notificationRequests.removeAll()
         notificationIds.removeAll()
