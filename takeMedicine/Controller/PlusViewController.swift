@@ -136,6 +136,7 @@ class PlusViewController: UIViewController, GADBannerViewDelegate {
         super.prepare(for: segue, sender: sender)
         if let destinationVC = segue.destination as? ViewController {
             destinationVC.deleteDate = self.deleteDateComponents
+            destinationVC.medicineData?.notiIds = self.notificationIds
         }
     }
     
@@ -303,13 +304,10 @@ class PlusViewController: UIViewController, GADBannerViewDelegate {
                     print("error: \(error)")
                 }
             }
-
             // 추가된 시간대의 정보를 addedTimeComponents에 추가
             addedTimeComponents.insert(timeComponents)
-
             return uuidString
         }
-        
         return notificationIds
     }
     

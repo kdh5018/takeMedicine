@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     
     // 기간이 지난 날짜를 자동으로 삭제하기 위한 딕셔너리
     var deleteDate: [Int : DateComponents] = [:]
+    var notiIds : [String] = []
     
     @IBOutlet weak var navToPlusVCBtn: UIButton!
     
@@ -58,6 +59,7 @@ class ViewController: UIViewController {
             if today > date {
                 let key = dateKeys[index]
                 deleteDate.removeValue(forKey: key)
+                PV.deleteNotification(notiIds)
             }
         }
 
