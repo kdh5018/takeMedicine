@@ -258,7 +258,7 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
     }
     
     //MARK: - 로컬 노티피케이션 사용을 위한 함수
-    func notificationSet(title: String) -> [String] {
+    func editNotificationSet(title: String) -> [String] {
         let content = UNMutableNotificationContent()
         content.title = "약 먹었니?"
         content.body = "\(title)을 먹을 시간입니다💊"
@@ -280,6 +280,7 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
             let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
             notificationRequests.append(request)
             print(#fileID, #function, #line, "- uuidString: \(uuidString)")
+            
 
             notificationCenter.add(request) { (error) in
                 if error != nil {
@@ -292,20 +293,18 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
             
             return uuidString
         }
-
-        
         return notificationIds
+
     }
 
 
     @IBAction func btnEdited(_ sender: UIButton) {
-        
-        
-        let title = editNameTextField.text ?? ""
-        
+
         notificationRequests.removeAll()
         notificationIds.removeAll()
-        
+
+        let title = editNameTextField.text ?? ""
+
         guard let dateInput = editDateTextField.text else {
             return
         }
@@ -315,14 +314,16 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
         let dayTime = editDayTimeTextField.text ?? ""
         let nightTime = editNightTimeTextField.text ?? ""
         
-        let editScheduledIds = notificationSet(title: title)
+        let editScheduledIds = editNotificationSet(title: title)
         
         let editMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime, notiIds: editScheduledIds)
         
         self.editDelegate?.update(index: tableIndex, editMedicine)
         
-        self.dismiss(animated: true)
+        print(#fileID, #function, #line, "- 노티리퀘: \(notificationRequests)")
         
+        
+        self.dismiss(animated: true)
         
     }
     

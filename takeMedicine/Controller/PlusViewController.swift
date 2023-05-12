@@ -339,7 +339,7 @@ class PlusViewController: UIViewController, GADBannerViewDelegate {
         self.plusDelegate?.addNewMedicine(newMedicine)
         
         self.dismiss(animated: true)
-        print(#fileID, #function, #line, "- 새로 추가된 약: \(newMedicine)")
+        print(#fileID, #function, #line, "- 추가 노티리퀘스트: \(notificationRequests)")
         
     }
     
@@ -360,5 +360,4 @@ extension PlusViewController: UITextFieldDelegate {
         return false
     }
 }
-
 

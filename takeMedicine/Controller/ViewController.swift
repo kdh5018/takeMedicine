@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        pastDateDeleted()
+//        pastDateDeleted()
 
         medicineTableView.dataSource = self
         medicineTableView.delegate = self
@@ -47,25 +47,25 @@ class ViewController: UIViewController {
     }
     
     // 지정한 날짜보다 기간이 지나면 자동으로 삭제해주는 함수
-    func pastDateDeleted() {
-
-        let today = Date()
-        let calendar = Calendar.current
-        let dateKeys = Array(deleteDate.keys)
-        let dateComponentsArray = Array(deleteDate.values)
-        let dateArray = dateComponentsArray.compactMap { calendar.date(from: $0) }
-
-        for (index, date) in dateArray.enumerated() {
-            if today > date {
-                let key = dateKeys[index]
-                deleteDate.removeValue(forKey: key)
-                PV.deleteNotification(notiIds)
-            }
-        }
-
-        UserDefaultsManager.shared.clearMedicineList()
-        medicineTableView.reloadData()
-    }
+//    func pastDateDeleted() {
+//
+//        let today = Date()
+//        let calendar = Calendar.current
+//        let dateKeys = Array(deleteDate.keys)
+//        let dateComponentsArray = Array(deleteDate.values)
+//        let dateArray = dateComponentsArray.compactMap { calendar.date(from: $0) }
+//
+//        for (index, date) in dateArray.enumerated() {
+//            if today > date {
+//                let key = dateKeys[index]
+//                deleteDate.removeValue(forKey: key)
+//                PV.deleteNotification(notiIds)
+//            }
+//        }
+//
+//        UserDefaultsManager.shared.clearMedicineList()
+//        medicineTableView.reloadData()
+//    }
 
     //MARK: - 메모리 연결
     // 서로의 메모리를 연결하기 위해 반드시 필요함⭐️
@@ -161,7 +161,12 @@ extension ViewController : UITableViewDataSource {
             // 알림 삭제
             PV.deleteNotification(array[indexPath.row].notiIds)
             
-            self.medicineDataManager.deleteMedicine(index: indexPath.row)
+            let currentList = medicineDataManager.getMedicineData()
+            let itemToBeDeleted = currentList[indexPath.row]
+            
+            // 데이터 삭제
+//            self.medicineDataManager.deleteMedicine(index: indexPath.row)
+            self.medicineDataManager.deleteMedicineWithUUID(uuid: itemToBeDeleted.id)
             self.medicineTableView.reloadData()
         }
         
@@ -204,8 +209,12 @@ extension ViewController: MedicineDelegate {
         medicineDataManager.updateMedicine(index: index, medicineData)
         medicineTableView.reloadData()
     }
-    func delete(index: Int) {
-        medicineDataManager.deleteMedicine(index: index)
+//    func delete(index: Int) {
+//        medicineDataManager.deleteMedicine(index: index)
+//        medicineTableView.reloadData()
+//    }
+    func deleteWithUUID(uuid: UUID) {
+        medicineDataManager.deleteMedicineWithUUID(uuid: uuid)
         medicineTableView.reloadData()
     }
     
