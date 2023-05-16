@@ -10,10 +10,10 @@ import GoogleMobileAds
 
 //MARK: - 약 수정하기 페이지
 class EditViewController: UIViewController, GADBannerViewDelegate {
-
+    
     var bannerView: GADBannerView!
     
-    var tableIndex: Int!
+    //    var tableIndex: Int!
     
     var prepareName: String?
     var prepareDate: String?
@@ -36,7 +36,7 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
     let PV = PlusViewController()
     
     var editMedicineData: MedicineData?
-
+    
     var editDelegate: MedicineDelegate? = nil
     
     // 시간 값 저장하는 배열
@@ -45,6 +45,8 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
     // 각 날짜 구성 요소에 대한 알림 요청 생성
     var notificationRequests: [UNNotificationRequest] = []
     var notificationIds: [String] = []
+    
+    var editAddedTimeComponents = Set<DateComponents>()
     
     var hour = 0
     var minute = 0
@@ -63,7 +65,7 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
         // In this case, we instantiate the banner with desired ad size.
         // 배너 사이즈 설정
         bannerView = GADBannerView(adSize: GADAdSizeBanner)
-
+        
         // 광고 배너의 아이디 설정
         bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         bannerView.rootViewController = self
@@ -82,7 +84,7 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
         editMorningTimeTextField.text = prepareMorningTime
         editDayTimeTextField.text = prepareDayTime
         editNightTimeTextField.text = prepareNightTime
-
+        
         // if EditViewController를 열었을 때, 시간 텍스트필드가 비어 있으면 비어있는 텍스트필드는 숨기고 작성된 텍스트필드만 보이게
         editDayTimeTextField.isHidden = true
         editDayDelButton.isHidden = true
@@ -96,7 +98,9 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
             editNightTimeTextField.isHidden = false
             editNightDelButton.isHidden = false
         }
-
+        
+        
+        
         self.showDatePicker()
         self.showTimePicker()
         
@@ -106,55 +110,55 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
     // 화면에 배너뷰를 추가
     func addBannerViewToView(_ bannerView: GADBannerView) {
         // 오토레이아웃으로 뷰를 설정
-      bannerView.translatesAutoresizingMaskIntoConstraints = false
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
         //루트뷰에 배너를 추가
-      view.addSubview(bannerView)
+        view.addSubview(bannerView)
         // 앵커를 설정하여 오토레이아웃 설정
-      view.addConstraints(
-        [NSLayoutConstraint(item: bannerView,
-                            attribute: .bottom,
-                            relatedBy: .equal,
-                            toItem: view.safeAreaLayoutGuide,
-                            attribute: .bottom,
-                            multiplier: 1,
-                            constant: 0),
-         NSLayoutConstraint(item: bannerView,
-                            attribute: .centerX,
-                            relatedBy: .equal,
-                            toItem: view,
-                            attribute: .centerX,
-                            multiplier: 1,
-                            constant: 0)
-        ])
-     }
+        view.addConstraints(
+            [NSLayoutConstraint(item: bannerView,
+                                attribute: .bottom,
+                                relatedBy: .equal,
+                                toItem: view.safeAreaLayoutGuide,
+                                attribute: .bottom,
+                                multiplier: 1,
+                                constant: 0),
+             NSLayoutConstraint(item: bannerView,
+                                attribute: .centerX,
+                                relatedBy: .equal,
+                                toItem: view,
+                                attribute: .centerX,
+                                multiplier: 1,
+                                constant: 0)
+            ])
+    }
     
     //MARK: - GADBannerViewDelegate 메소드
     func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
-      print("bannerViewDidReceiveAd")
+        print("bannerViewDidReceiveAd")
         // 화면에 배너뷰를 추가
         addBannerViewToView(bannerView)
     }
-
+    
     func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
-      print("bannerView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+        print("bannerView:didFailToReceiveAdWithError: \(error.localizedDescription)")
     }
-
+    
     func bannerViewDidRecordImpression(_ bannerView: GADBannerView) {
-      print("bannerViewDidRecordImpression")
+        print("bannerViewDidRecordImpression")
     }
-
+    
     func bannerViewWillPresentScreen(_ bannerView: GADBannerView) {
-      print("bannerViewWillPresentScreen")
+        print("bannerViewWillPresentScreen")
     }
-
+    
     func bannerViewWillDismissScreen(_ bannerView: GADBannerView) {
-      print("bannerViewWillDIsmissScreen")
+        print("bannerViewWillDIsmissScreen")
     }
-
+    
     func bannerViewDidDismissScreen(_ bannerView: GADBannerView) {
-      print("bannerViewDidDismissScreen")
+        print("bannerViewDidDismissScreen")
     }
-        
+    
     /// 복용 기간 설정을 위한 데이트피커
     func showDatePicker() {
         editDatePicker.datePickerMode = .date
@@ -172,7 +176,7 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
         editTimePicker.preferredDatePickerStyle = .wheels
         editTimePicker.minimumDate = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())
         editTimePicker.maximumDate = Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: Date())
-        editTimePicker.addTarget(self, action: #selector(showTime(timePicker:)), for: .valueChanged)
+        editTimePicker.addTarget(self, action: #selector(showTime(timePicker:)), for: .editingDidEnd)
         
         editMorningTimeTextField.inputView = editTimePicker
         editDayTimeTextField.inputView = editTimePicker
@@ -189,6 +193,7 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
         dateFormatter.dateFormat = "M월 d일까지"
         self.editDateTextField.text = dateFormatter.string(from: datePicker.date)
     }
+
     
     @objc func showTime(timePicker: UIDatePicker) {
         let formatter = DateFormatter()
@@ -259,19 +264,18 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
     
     //MARK: - 로컬 노티피케이션 사용을 위한 함수
     func editNotificationSet(title: String) -> [String] {
+
+        editAddedTimeComponents.removeAll()
+        
         let content = UNMutableNotificationContent()
         content.title = "약 먹었니?"
         content.body = "\(title)을 먹을 시간입니다💊"
         content.sound = .default
         
         let notificationCenter = UNUserNotificationCenter.current()
-        
-        var addedTimeComponents = Set<DateComponents>()
 
         notificationIds = notificationTimeComponents.compactMap { timeComponents in
-            // 이미 추가된 시간대의 정보인 경우, nil을 반환하여 notificationIds 배열에 추가되지 않도록 함
-            guard !addedTimeComponents.contains(timeComponents) else { return nil }
-            
+
             let uuidString = UUID().uuidString
 
             // 트리거 반복 이벤트 만들기
@@ -280,17 +284,17 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
             let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
             notificationRequests.append(request)
             print(#fileID, #function, #line, "- uuidString: \(uuidString)")
-            
+
 
             notificationCenter.add(request) { (error) in
                 if error != nil {
                     print("error: \(error)")
                 }
             }
-            
+
             // 추가된 시간대의 정보를 addedTimeComponents에 추가
-            addedTimeComponents.insert(timeComponents)
-            
+            editAddedTimeComponents.insert(timeComponents)
+
             return uuidString
         }
         return notificationIds
@@ -300,12 +304,10 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
 
     @IBAction func btnEdited(_ sender: UIButton) {
 
-        notificationRequests.removeAll()
-        notificationIds.removeAll()
-
         let title = editNameTextField.text ?? ""
 
-        guard let dateInput = editDateTextField.text else {
+        guard let dateInput = editDateTextField.text,
+        let editMedicineData = editMedicineData else {
             return
         }
     
@@ -314,13 +316,26 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
         let dayTime = editDayTimeTextField.text ?? ""
         let nightTime = editNightTimeTextField.text ?? ""
         
+        editMedicineData.title = title
+        editMedicineData.date = date
+        editMedicineData.morningTime = morningTime
+        editMedicineData.dayTime = dayTime
+        editMedicineData.nightTime = nightTime
+        
         let editScheduledIds = editNotificationSet(title: title)
         
-        let editMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime, notiIds: editScheduledIds)
+        editMedicineData.notiIds = editScheduledIds
         
-        self.editDelegate?.update(index: tableIndex, editMedicine)
+//        let editMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime, notiIds: editScheduledIds)
         
-        print(#fileID, #function, #line, "- 노티리퀘: \(notificationRequests)")
+        print(#fileID, #function, #line, "- editScheduledIds: \(editScheduledIds)")
+        
+        
+//        self.editDelegate?.update(index: tableIndex, editMedicine)
+        self.editDelegate?.update(uuid: editMedicineData.id, editMedicineData)
+        
+        print(#fileID, #function, #line, "- notificationRequest: \(notificationRequests)")
+        print(#fileID, #function, #line, "- morningTime: \(morningTime)")
         
         
         self.dismiss(animated: true)

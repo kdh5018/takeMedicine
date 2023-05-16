@@ -22,6 +22,9 @@ class ViewController: UIViewController {
     var deleteDate: [Int : DateComponents] = [:]
     var notiIds : [String] = []
     
+    // 알림을 위한 시간 추가
+    var addedTimeComponents = Set<DateComponents>()
+    
     @IBOutlet weak var navToPlusVCBtn: UIButton!
     
     @IBOutlet weak var medicineTableView: UITableView!
@@ -76,6 +79,7 @@ class ViewController: UIViewController {
             // PlusViewController(destinationVC)과 ViewController를 델리겟으로 연결⭐️
             // extension으로 ViewController에 뷰컨트롤러를 정의했기 때문에 ViewController가 Delegate를 준수하기 때문에 self로 연결이 됨
             destinationVC.plusDelegate = self
+            destinationVC.plusAddedTimeComponents = self.addedTimeComponents
         }
         if let editDestinationVC = segue.destination as? EditViewController,
            let selectedData = sender as? (medicineData: MedicineData, indexPath: IndexPath){
@@ -85,10 +89,11 @@ class ViewController: UIViewController {
             editDestinationVC.editDelegate = self
             
             let editMedicineData = selectedData.medicineData
-            let indexPath = selectedData.indexPath
+//            let indexPath = selectedData.indexPath
             
             editDestinationVC.editMedicineData = editMedicineData
-            editDestinationVC.tableIndex = indexPath.row
+            editDestinationVC.editAddedTimeComponents = self.addedTimeComponents
+//            editDestinationVC.tableIndex = indexPath.row
             
             editDestinationVC.prepareName = editMedicineData.title
             editDestinationVC.prepareDate = editMedicineData.date
@@ -98,6 +103,7 @@ class ViewController: UIViewController {
         }
         
     }
+    
     
     // 약 추가하기 VC 로드
     @IBAction func plusVCLoaded(_ sender: UIButton) {
@@ -144,6 +150,9 @@ extension ViewController : UITableViewDataSource {
             [weak self] (selectedMedicineData: MedicineData, indexPath: IndexPath) in
             
             guard let self = self else { return }
+            
+            // 수정 전 기존 알림 데이터 삭제
+            PV.deleteNotification(array[indexPath.row].notiIds)
             
             let data = (medicineData: selectedMedicineData, indexPath: indexPath)
             
@@ -205,15 +214,28 @@ extension ViewController: MedicineDelegate {
         medicineTableView.reloadData()
     }
     
-    func update(index: Int, _ medicineData: MedicineData) {
-        medicineDataManager.updateMedicine(index: index, medicineData)
+    func update(uuid: UUID, _ medicineData: MedicineData) {
+        
+//        // 1. 현재 해당 아이디를 가진 데이터 찾기
+        guard let foundMedicineData: MedicineData = medicineDataManager.getMedicineData().first(where: { $0.id == uuid }) else { return }
+//        guard let deletedMedicineData: MedicineData = medicineDataManager.getMedicineData().first(where: { $0.id != uuid }) else { return }
+//
+//        // 2. 해당하는 데이터의 알림 [ID]
+        let notiIdsToBeDeleted: [String] = foundMedicineData.notiIds
+//
+        // 3. 기존 알림들 지우기
+        
+//        PV.deleteNotification(notiIdsToBeDeleted)
+        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: notiIdsToBeDeleted)
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: notiIdsToBeDeleted)
+//        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        
+        // 4. 추가된 알림 등록하기
+        medicineDataManager.updateMedicine(uuid: uuid, medicineData)
         medicineTableView.reloadData()
     }
-//    func delete(index: Int) {
-//        medicineDataManager.deleteMedicine(index: index)
-//        medicineTableView.reloadData()
-//    }
-    func deleteWithUUID(uuid: UUID) {
+
+    func delete(uuid: UUID) {
         medicineDataManager.deleteMedicineWithUUID(uuid: uuid)
         medicineTableView.reloadData()
     }

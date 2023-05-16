@@ -37,6 +37,8 @@ class PlusViewController: UIViewController, GADBannerViewDelegate {
     var notificationRequests: [UNNotificationRequest] = []
     var notificationIds: [String] = []
     
+    var plusAddedTimeComponents = Set<DateComponents>()
+    
     var hour = 0
     var minute = 0
     
@@ -138,6 +140,9 @@ class PlusViewController: UIViewController, GADBannerViewDelegate {
             destinationVC.deleteDate = self.deleteDateComponents
             destinationVC.medicineData?.notiIds = self.notificationIds
         }
+        if let destinationVC = segue.destination as? EditViewController {
+            destinationVC.editAddedTimeComponents = self.plusAddedTimeComponents
+        }
     }
     
     // 시간을 입력해야만 저장 버튼 활성화되게끔 하는 함수
@@ -169,7 +174,7 @@ class PlusViewController: UIViewController, GADBannerViewDelegate {
         timePicker.preferredDatePickerStyle = .wheels
         timePicker.minimumDate = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())
         timePicker.maximumDate = Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: Date())
-        timePicker.addTarget(self, action: #selector(showTime(timePicker:)), for: .valueChanged)
+        timePicker.addTarget(self, action: #selector(showTime(timePicker:)), for: .editingDidEnd)
         
         textFieldTimeMorningPicker.inputView = timePicker
         textFieldTimeDayPicker.inputView = timePicker
@@ -284,11 +289,7 @@ class PlusViewController: UIViewController, GADBannerViewDelegate {
         
         let notificationCenter = UNUserNotificationCenter.current()
 
-        var addedTimeComponents = Set<DateComponents>()
-
         notificationIds = notificationTimeComponents.compactMap { timeComponents in
-            // 이미 추가된 시간대의 정보인 경우, nil을 반환하여 notificationIds 배열에 추가되지 않도록 함
-            guard !addedTimeComponents.contains(timeComponents) else { return nil }
 
             let uuidString = UUID().uuidString
 
@@ -305,7 +306,7 @@ class PlusViewController: UIViewController, GADBannerViewDelegate {
                 }
             }
             // 추가된 시간대의 정보를 addedTimeComponents에 추가
-            addedTimeComponents.insert(timeComponents)
+            plusAddedTimeComponents.insert(timeComponents)
             return uuidString
         }
         return notificationIds
@@ -314,6 +315,7 @@ class PlusViewController: UIViewController, GADBannerViewDelegate {
     func deleteNotification(_ notiIds: [String]) {
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.removePendingNotificationRequests(withIdentifiers: notiIds)
+        notificationCenter.removeDeliveredNotifications(withIdentifiers: notiIds)
         
     }
 
