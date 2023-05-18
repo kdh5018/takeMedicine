@@ -37,7 +37,7 @@ class PlusViewController: UIViewController, GADBannerViewDelegate {
     var notificationRequests: [UNNotificationRequest] = []
     var notificationIds: [String] = []
     
-    var plusAddedTimeComponents = Set<DateComponents>()
+    var addedTimeComponents = Set<DateComponents>()
     
     var hour = 0
     var minute = 0
@@ -138,10 +138,10 @@ class PlusViewController: UIViewController, GADBannerViewDelegate {
         super.prepare(for: segue, sender: sender)
         if let destinationVC = segue.destination as? ViewController {
             destinationVC.deleteDate = self.deleteDateComponents
-            destinationVC.medicineData?.notiIds = self.notificationIds
+            destinationVC.notiIds = self.notificationIds
         }
         if let destinationVC = segue.destination as? EditViewController {
-            destinationVC.editAddedTimeComponents = self.plusAddedTimeComponents
+            destinationVC.editAddedTimeComponents = self.addedTimeComponents
         }
     }
     
@@ -306,7 +306,7 @@ class PlusViewController: UIViewController, GADBannerViewDelegate {
                 }
             }
             // 추가된 시간대의 정보를 addedTimeComponents에 추가
-            plusAddedTimeComponents.insert(timeComponents)
+            addedTimeComponents.insert(timeComponents)
             return uuidString
         }
         return notificationIds
@@ -342,6 +342,7 @@ class PlusViewController: UIViewController, GADBannerViewDelegate {
         
         self.dismiss(animated: true)
         print(#fileID, #function, #line, "- 추가 노티리퀘스트: \(notificationRequests)")
+        print(#fileID, #function, #line, "- 플러스뷰컨에서 추가된 노티 아이디: \(notificationIds)")
         
     }
     

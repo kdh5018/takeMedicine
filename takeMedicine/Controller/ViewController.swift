@@ -22,9 +22,6 @@ class ViewController: UIViewController {
     var deleteDate: [Int : DateComponents] = [:]
     var notiIds : [String] = []
     
-    // 알림을 위한 시간 추가
-    var addedTimeComponents = Set<DateComponents>()
-    
     @IBOutlet weak var navToPlusVCBtn: UIButton!
     
     @IBOutlet weak var medicineTableView: UITableView!
@@ -79,27 +76,26 @@ class ViewController: UIViewController {
             // PlusViewController(destinationVC)과 ViewController를 델리겟으로 연결⭐️
             // extension으로 ViewController에 뷰컨트롤러를 정의했기 때문에 ViewController가 Delegate를 준수하기 때문에 self로 연결이 됨
             destinationVC.plusDelegate = self
-            destinationVC.plusAddedTimeComponents = self.addedTimeComponents
         }
         if let editDestinationVC = segue.destination as? EditViewController,
-           let selectedData = sender as? (medicineData: MedicineData, indexPath: IndexPath){
+           let data = sender as? ([String], (medicineData: MedicineData, indexPath: IndexPath)){
             
             // EditViewController(editDestinationVC)과 ViewController를 델리겟으로 연결⭐️
             // extension으로 ViewController에 뷰컨트롤러를 정의했기 때문에 ViewController가 Delegate를 준수하기 때문에 self로 연결이 됨
             editDestinationVC.editDelegate = self
             
-            let editMedicineData = selectedData.medicineData
-//            let indexPath = selectedData.indexPath
+            let editMedicineData = data.1.medicineData
             
             editDestinationVC.editMedicineData = editMedicineData
-            editDestinationVC.editAddedTimeComponents = self.addedTimeComponents
-//            editDestinationVC.tableIndex = indexPath.row
             
             editDestinationVC.prepareName = editMedicineData.title
             editDestinationVC.prepareDate = editMedicineData.date
             editDestinationVC.prepareMorningTime = editMedicineData.morningTime
             editDestinationVC.prepareDayTime = editMedicineData.dayTime
             editDestinationVC.prepareNightTime = editMedicineData.nightTime
+            
+            let existedNotiIds = data.0
+            editDestinationVC.existedNotiIds = existedNotiIds
         }
         
     }
@@ -151,12 +147,19 @@ extension ViewController : UITableViewDataSource {
             
             guard let self = self else { return }
             
-            // 수정 전 기존 알림 데이터 삭제
-            PV.deleteNotification(array[indexPath.row].notiIds)
+            // 수정 전 기존 알림 데이터 삭제 -> 여기서 삭제하면 안 되고 수정하기 버튼을 눌렀을 때 기존 알림 삭제가 되어야 함
+//            PV.deleteNotification(array[indexPath.row].notiIds)
             
             let data = (medicineData: selectedMedicineData, indexPath: indexPath)
+//            self.performSegue(withIdentifier: "EditViewController", sender: data)
+
+            let existedNotiIds = array[indexPath.row].notiIds
+            self.performSegue(withIdentifier: "EditViewController", sender: (existedNotiIds, data))
             
-            self.performSegue(withIdentifier: "EditViewController", sender: data)
+            print(#fileID, #function, #line, "- 추가된 노티 아이디: \(array[indexPath.row].notiIds)")
+            print(#fileID, #function, #line, "- 에딧뷰컨으로 넘긴 아이디: \(existedNotiIds)")
+            
+            
             print(#fileID, #function, #line, "- 수정하기 화면 넘어감")
         }
         
@@ -214,21 +217,20 @@ extension ViewController: MedicineDelegate {
         medicineTableView.reloadData()
     }
     
+    // 고쳐야 하는 부분 후보 1.
     func update(uuid: UUID, _ medicineData: MedicineData) {
         
-//        // 1. 현재 해당 아이디를 가진 데이터 찾기
+        // 1. 현재 해당 아이디를 가진 데이터 찾기
         guard let foundMedicineData: MedicineData = medicineDataManager.getMedicineData().first(where: { $0.id == uuid }) else { return }
-//        guard let deletedMedicineData: MedicineData = medicineDataManager.getMedicineData().first(where: { $0.id != uuid }) else { return }
-//
-//        // 2. 해당하는 데이터의 알림 [ID]
+
+        // 2. 해당하는 데이터의 알림 [ID]
         let notiIdsToBeDeleted: [String] = foundMedicineData.notiIds
-//
-        // 3. 기존 알림들 지우기
         
-//        PV.deleteNotification(notiIdsToBeDeleted)
-        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: notiIdsToBeDeleted)
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: notiIdsToBeDeleted)
-//        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        print(#fileID, #function, #line, "- 뷰컨 처음에 생긴 기존 아이디: \(notiIdsToBeDeleted)")
+
+        // 3. 기존 알림들 지우기
+//        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: notiIdsToBeDeleted)
+
         
         // 4. 추가된 알림 등록하기
         medicineDataManager.updateMedicine(uuid: uuid, medicineData)

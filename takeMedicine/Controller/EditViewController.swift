@@ -46,6 +46,9 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
     var notificationRequests: [UNNotificationRequest] = []
     var notificationIds: [String] = []
     
+    // 뷰컨에서 넘어온 노티아이디
+    var existedNotiIds: [String] = []
+    
     var editAddedTimeComponents = Set<DateComponents>()
     
     var hour = 0
@@ -61,6 +64,8 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("(에딧뷰컨)뷰컨에서 넘어온 existNotiIds: \(existedNotiIds)")
         
         // In this case, we instantiate the banner with desired ad size.
         // 배너 사이즈 설정
@@ -193,7 +198,7 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
         dateFormatter.dateFormat = "M월 d일까지"
         self.editDateTextField.text = dateFormatter.string(from: datePicker.date)
     }
-
+    
     
     @objc func showTime(timePicker: UIDatePicker) {
         let formatter = DateFormatter()
@@ -264,8 +269,6 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
     
     //MARK: - 로컬 노티피케이션 사용을 위한 함수
     func editNotificationSet(title: String) -> [String] {
-
-        editAddedTimeComponents.removeAll()
         
         let content = UNMutableNotificationContent()
         content.title = "약 먹었니?"
@@ -273,44 +276,79 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
         content.sound = .default
         
         let notificationCenter = UNUserNotificationCenter.current()
-
+        // if 노티 아이디를 비교해서 노티 아이디가 같으면 그 데이터는 지우지 않고 노티아이디가 다르면 그 데이터만 새로 만들기
+        
         notificationIds = notificationTimeComponents.compactMap { timeComponents in
-
-            let uuidString = UUID().uuidString
-
-            // 트리거 반복 이벤트 만들기
-            let trigger = UNCalendarNotificationTrigger(dateMatching: timeComponents, repeats: true)
-            // 요청 생성
-            let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
-            notificationRequests.append(request)
-            print(#fileID, #function, #line, "- uuidString: \(uuidString)")
-
-
-            notificationCenter.add(request) { (error) in
-                if error != nil {
-                    print("error: \(error)")
+            
+            if let existingId = existedNotiIds.first(where: { $0.contains(timeComponents.description)}) {
+                print(#fileID, #function, #line, "- 에딧뷰컨 기존에 존재하던 아이디: \(existingId)")
+                
+//                let existingId = UUID().uuidString
+                
+                // 트리거 반복 이벤트 만들기
+                let trigger = UNCalendarNotificationTrigger(dateMatching: timeComponents, repeats: true)
+                // 요청 생성
+                let request = UNNotificationRequest(identifier: existingId, content: content, trigger: trigger)
+                notificationRequests.append(request)
+                print(#fileID, #function, #line, "- uuidString: \(existingId)")
+                
+                print(#fileID, #function, #line, "- 에딧뷰컨 알림 요청할 때 기존의 데이터: \(existingId)")
+                
+                
+                notificationCenter.add(request) { (error) in
+                    if error != nil {
+                        print("error: \(error)")
+                    }
                 }
+                
+                // 추가된 시간대의 정보를 addedTimeComponents에 추가
+                editAddedTimeComponents.insert(timeComponents)
+
+                return existingId
+                
+            } else {
+                let uuidString = UUID().uuidString
+                
+                // 트리거 반복 이벤트 만들기
+                let trigger = UNCalendarNotificationTrigger(dateMatching: timeComponents, repeats: true)
+                // 요청 생성
+                let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+                notificationRequests.append(request)
+                print(#fileID, #function, #line, "- uuidString: \(uuidString)")
+                
+                print(#fileID, #function, #line, "- 에딧뷰컨 알림 요청할 때 생기는 아이디들: \(uuidString)")
+                
+                
+                notificationCenter.add(request) { (error) in
+                    if error != nil {
+                        print("error: \(error)")
+                    }
+                }
+                
+                // 추가된 시간대의 정보를 addedTimeComponents에 추가
+                editAddedTimeComponents.insert(timeComponents)
+                
+                return uuidString
             }
-
-            // 추가된 시간대의 정보를 addedTimeComponents에 추가
-            editAddedTimeComponents.insert(timeComponents)
-
-            return uuidString
+            
         }
+        print(#fileID, #function, #line, "- 에딧뷰컨에서 기존?과 추가된 시간이 담긴 배열: \(editAddedTimeComponents)")
         return notificationIds
-
+        
     }
-
-
+    
+    
     @IBAction func btnEdited(_ sender: UIButton) {
-
+        
+        // 여기서 기존의 알림이 삭제가 되어야 함
+        
         let title = editNameTextField.text ?? ""
-
+        
         guard let dateInput = editDateTextField.text,
-        let editMedicineData = editMedicineData else {
+              let editMedicineData = editMedicineData else {
             return
         }
-    
+        
         let date = dateInput.isEmpty ? "매일" : dateInput
         let morningTime = editMorningTimeTextField.text ?? ""
         let dayTime = editDayTimeTextField.text ?? ""
@@ -326,12 +364,9 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
         
         editMedicineData.notiIds = editScheduledIds
         
-//        let editMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime, notiIds: editScheduledIds)
-        
         print(#fileID, #function, #line, "- editScheduledIds: \(editScheduledIds)")
+        print(#fileID, #function, #line, "- 에딧뷰컨 수정버튼 누를 때 생기는 아이디들: \(editScheduledIds)")
         
-        
-//        self.editDelegate?.update(index: tableIndex, editMedicine)
         self.editDelegate?.update(uuid: editMedicineData.id, editMedicineData)
         
         print(#fileID, #function, #line, "- notificationRequest: \(notificationRequests)")
