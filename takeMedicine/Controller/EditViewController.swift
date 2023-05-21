@@ -275,63 +275,85 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
         content.body = "\(title)을 먹을 시간입니다💊"
         content.sound = .default
         
-        let notificationCenter = UNUserNotificationCenter.current()
+//        let notificationCenter = UNUserNotificationCenter.current()
         // if 노티 아이디를 비교해서 노티 아이디가 같으면 그 데이터는 지우지 않고 노티아이디가 다르면 그 데이터만 새로 만들기
+        // 기존 알림 리퀘스트 지우는 기능 빼놔서 나중에 수정하기 버튼 누를 때 넣어야 함⭐️
         
-        notificationIds = notificationTimeComponents.compactMap { timeComponents in
-            
-            if let existingId = existedNotiIds.first(where: { $0.contains(timeComponents.description)}) {
-                print(#fileID, #function, #line, "- 에딧뷰컨 기존에 존재하던 아이디: \(existingId)")
-                
-//                let existingId = UUID().uuidString
-                
-                // 트리거 반복 이벤트 만들기
-                let trigger = UNCalendarNotificationTrigger(dateMatching: timeComponents, repeats: true)
-                // 요청 생성
-                let request = UNNotificationRequest(identifier: existingId, content: content, trigger: trigger)
-                notificationRequests.append(request)
-                print(#fileID, #function, #line, "- uuidString: \(existingId)")
-                
-                print(#fileID, #function, #line, "- 에딧뷰컨 알림 요청할 때 기존의 데이터: \(existingId)")
-                
-                
-                notificationCenter.add(request) { (error) in
-                    if error != nil {
-                        print("error: \(error)")
-                    }
-                }
-                
-                // 추가된 시간대의 정보를 addedTimeComponents에 추가
-                editAddedTimeComponents.insert(timeComponents)
+//        notificationIds = notificationTimeComponents.compactMap { timeComponents in
+//
+//            if let existingId = existedNotiIds.first(where: { $0.contains(timeComponents.description)}) {
+//                print(#fileID, #function, #line, "- 에딧뷰컨 기존에 존재하던 아이디: \(existingId)")
+//
+////                let existingId = UUID().uuidString
+//
+//                // 트리거 반복 이벤트 만들기
+//                let trigger = UNCalendarNotificationTrigger(dateMatching: timeComponents, repeats: true)
+//                // 요청 생성
+//                let request = UNNotificationRequest(identifier: existingId, content: content, trigger: trigger)
+//                notificationRequests.append(request)
+//                print(#fileID, #function, #line, "- uuidString: \(existingId)")
+//
+//                print(#fileID, #function, #line, "- 에딧뷰컨 알림 요청할 때 기존의 데이터: \(existingId)")
+//
+//
+//                notificationCenter.add(request) { (error) in
+//                    if error != nil {
+//                        print("error: \(error)")
+//                    }
+//                }
+//
+//                // 추가된 시간대의 정보를 addedTimeComponents에 추가
+//                editAddedTimeComponents.insert(timeComponents)
+//
+//                return existingId
+//
+//            } else {
+//                let uuidString = UUID().uuidString
+//
+//                // 트리거 반복 이벤트 만들기
+//                let trigger = UNCalendarNotificationTrigger(dateMatching: timeComponents, repeats: true)
+//                // 요청 생성
+//                let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+//                notificationRequests.append(request)
+//                print(#fileID, #function, #line, "- uuidString: \(uuidString)")
+//
+//                print(#fileID, #function, #line, "- 에딧뷰컨 알림 요청할 때 생기는 아이디들: \(uuidString)")
+//
+//
+//                notificationCenter.add(request) { (error) in
+//                    if error != nil {
+//                        print("error: \(error)")
+//                    }
+//                }
+//
+//                // 추가된 시간대의 정보를 addedTimeComponents에 추가
+//                editAddedTimeComponents.insert(timeComponents)
+//
+//                return uuidString
+//            }
+//
+//        }
 
-                return existingId
-                
-            } else {
-                let uuidString = UUID().uuidString
-                
-                // 트리거 반복 이벤트 만들기
-                let trigger = UNCalendarNotificationTrigger(dateMatching: timeComponents, repeats: true)
-                // 요청 생성
-                let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
-                notificationRequests.append(request)
-                print(#fileID, #function, #line, "- uuidString: \(uuidString)")
-                
-                print(#fileID, #function, #line, "- 에딧뷰컨 알림 요청할 때 생기는 아이디들: \(uuidString)")
-                
-                
-                notificationCenter.add(request) { (error) in
-                    if error != nil {
-                        print("error: \(error)")
-                    }
-                }
-                
-                // 추가된 시간대의 정보를 addedTimeComponents에 추가
-                editAddedTimeComponents.insert(timeComponents)
-                
-                return uuidString
-            }
+        notificationIds = notificationTimeComponents.compactMap{ timeComponents in
             
+            let notificationCenter = UNUserNotificationCenter.current()
+            
+            let uuidString = UUID().uuidString
+            
+            let trigger = UNCalendarNotificationTrigger(dateMatching: timeComponents, repeats: true)
+            let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+            notificationRequests.append(request)
+            
+            notificationCenter.add(request) { error in
+                if let error = error {
+                    print("error: \(error)")
+                }
+            }
+            editAddedTimeComponents.insert(timeComponents)
+            return uuidString
         }
+        
+        
         print(#fileID, #function, #line, "- 에딧뷰컨에서 기존?과 추가된 시간이 담긴 배열: \(editAddedTimeComponents)")
         return notificationIds
         
@@ -340,7 +362,10 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
     
     @IBAction func btnEdited(_ sender: UIButton) {
         
+        print(#fileID, #function, #line, "- 에딧뷰컨 삭제되기 직전 존재하던 아이디들: \(existedNotiIds)")
         // 여기서 기존의 알림이 삭제가 되어야 함
+        PV.deleteNotification(existedNotiIds)
+        
         
         let title = editNameTextField.text ?? ""
         
