@@ -15,25 +15,19 @@ class PlusViewController: UIViewController, GADBannerViewDelegate {
     var bannerView: GADBannerView!
     
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var textFieldDatePicker: UITextField!
-    @IBOutlet weak var textFieldTimeMorningPicker: UITextField!
-    @IBOutlet weak var textFieldTimeDayPicker: UITextField!
-    @IBOutlet weak var textFieldTimeNightPicker: UITextField!
+
+    @IBOutlet weak var textFieldTimePicker: UITextField!
     
     @IBOutlet weak var plusBtn: UIButton!
     
-    @IBOutlet weak var dayDelButton: UIButton!
-    @IBOutlet weak var nightDelButton: UIButton!
     
     var plusDelegate: MedicineDelegate?
     
-    // 설정한 날짜가 지나면 그 데이터를 지우기 위한 날짜 값 저장하는 배열
-    var deleteDateComponents: [Int: DateComponents] = [:]
     
     // 시간 값 저장하는 배열
     var notificationTimeComponents: [DateComponents] = []
     
-    // 각 날짜 구성 요소에 대한 알림 요청 생성
+    // 각 시간 구성 요소에 대한 알림 요청 생성
     var notificationRequests: [UNNotificationRequest] = []
     var notificationIds: [String] = []
     
@@ -42,7 +36,6 @@ class PlusViewController: UIViewController, GADBannerViewDelegate {
     var hour = 0
     var minute = 0
     
-    let datePicker = UIDatePicker()
     let timePicker = UIDatePicker()
     
     /// 시간 추가하기 버튼 클릭 시 복용 시간 추가 기능 구현
@@ -70,13 +63,7 @@ class PlusViewController: UIViewController, GADBannerViewDelegate {
 
         // 키보드 return시 내려가게 하기 위해 델리겟 설정
         nameTextField.delegate = self
-        
-        textFieldTimeDayPicker.isHidden = true
-        dayDelButton.isHidden = true
-        textFieldTimeNightPicker.isHidden = true
-        nightDelButton.isHidden = true
-        
-        self.showDatePicker()
+
         self.showTimePicker()
         
         self.hideKeyboardWhenTappedAround()
@@ -137,7 +124,6 @@ class PlusViewController: UIViewController, GADBannerViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         if let destinationVC = segue.destination as? ViewController {
-            destinationVC.deleteDate = self.deleteDateComponents
             destinationVC.notiIds = self.notificationIds
         }
         if let destinationVC = segue.destination as? EditViewController {
@@ -148,24 +134,13 @@ class PlusViewController: UIViewController, GADBannerViewDelegate {
     // 시간을 입력해야만 저장 버튼 활성화되게끔 하는 함수
     func plusBtnEnabled() {
         plusBtn.isEnabled = false
-        textFieldTimeMorningPicker.addTarget(self, action: #selector(textFieldDidChange), for: .editingDidEnd)
+        textFieldTimePicker.addTarget(self, action: #selector(textFieldDidChange), for: .editingDidEnd)
     }
     
     @objc func textFieldDidChange() {
-        if textFieldTimeMorningPicker.text != "" {
+        if textFieldTimePicker.text != "" {
             plusBtn.isEnabled = true
         }
-    }
-    
-    /// 복용 기간 설정을 위한 데이트피커
-    func showDatePicker() {
-        datePicker.datePickerMode = .date
-        datePicker.preferredDatePickerStyle = .inline
-        
-        self.textFieldDatePicker.inputView = datePicker
-        
-        let dateToolbar = UIToolbar().dateToolbarPicker(select: #selector(dateDismissPicker))
-        self.textFieldDatePicker.inputAccessoryView = dateToolbar
     }
     
     /// 복용 시간 설정을 위한 데이트피커
@@ -176,37 +151,12 @@ class PlusViewController: UIViewController, GADBannerViewDelegate {
         timePicker.maximumDate = Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: Date())
         timePicker.addTarget(self, action: #selector(showTime(timePicker:)), for: .editingDidEnd)
         
-        textFieldTimeMorningPicker.inputView = timePicker
-        textFieldTimeDayPicker.inputView = timePicker
-        textFieldTimeNightPicker.inputView = timePicker
+        textFieldTimePicker.inputView = timePicker
         
         let timeToolbar = UIToolbar().TimetoolbarPicker(select: #selector(timeDismissPicker))
-        self.textFieldTimeMorningPicker.inputAccessoryView = timeToolbar
-        self.textFieldTimeDayPicker.inputAccessoryView = timeToolbar
-        self.textFieldTimeNightPicker.inputAccessoryView = timeToolbar
+        self.textFieldTimePicker.inputAccessoryView = timeToolbar
     }
-    
-    @objc func showDate(datePicker: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "M월 d일까지"
-        self.textFieldDatePicker.text = dateFormatter.string(from: datePicker.date)
-        
-        let date = datePicker.date
-        let year = Calendar.current.component(.year, from: date)
-        let month = Calendar.current.component(.month, from: date)
-        let day = Calendar.current.component(.day, from: date)
-        
-        var dateComponents = DateComponents()
-        dateComponents.calendar = Calendar.current
-        dateComponents.year = year
-        dateComponents.month = month
-        dateComponents.day = day
-        
-        // 날짜 값 배열에 넣기
-        let key = deleteDateComponents.count
-        deleteDateComponents[key] = dateComponents
 
-    }
     
     @objc func showTime(timePicker: UIDatePicker) {
         let formatter = DateFormatter()
@@ -227,53 +177,17 @@ class PlusViewController: UIViewController, GADBannerViewDelegate {
         notificationTimeComponents.append(timeComponents)
         
         // 텍스트필드 데이터 입력되면 보이게끔
-        if textFieldTimeMorningPicker.isEditing {
-            textFieldTimeMorningPicker.text = selectedTime
-        } else if textFieldTimeDayPicker.isEditing {
-            textFieldTimeDayPicker.text = selectedTime
-        } else if textFieldTimeNightPicker.isEditing {
-            textFieldTimeNightPicker.text = selectedTime
+        if textFieldTimePicker.isEditing {
+            textFieldTimePicker.text = selectedTime
         }
     }
     
-    @objc func dateDismissPicker() {
-        self.showDate(datePicker: datePicker)
-        view.endEditing(true)
-    }
     
     @objc func timeDismissPicker() {
         self.showTime(timePicker: timePicker)
         view.endEditing(true)
     }
     
-    
-    @IBAction func timeAdded(_ sender: UIButton) {
-        clickCount += 1
-        if clickCount == 1 {
-            textFieldTimeDayPicker.isHidden = false
-            dayDelButton.isHidden = false
-        } else {
-            textFieldTimeNightPicker.isHidden = false
-            nightDelButton.isHidden = false
-        }
-    }
-    
-    @IBAction func dayDelBtn(_ sender: UIButton) {
-        textFieldTimeDayPicker.isHidden = true
-        dayDelButton.isHidden = true
-        clickCount = 0
-    }
-    
-    @IBAction func nightDelBtn(_ sender: UIButton) {
-        textFieldTimeNightPicker.isHidden = true
-        nightDelButton.isHidden = true
-        // 2번째 시간 넣기 있으면 클릭카운트 1 , 2번째 시간 넣기 없으면 클릭카운트 0
-        if textFieldTimeDayPicker.isHidden == false {
-            clickCount = 1
-        } else {
-            clickCount = 0
-        }
-    }
     
     //MARK: - 로컬 노티피케이션 사용을 위한 함수
 
@@ -314,35 +228,24 @@ class PlusViewController: UIViewController, GADBannerViewDelegate {
     
     func deleteNotification(_ notiIds: [String]) {
         let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.removePendingNotificationRequests(withIdentifiers: notiIds)
-        notificationCenter.removeDeliveredNotifications(withIdentifiers: notiIds)
-        
+            notificationCenter.removePendingNotificationRequests(withIdentifiers: notiIds)
+            notificationCenter.removeDeliveredNotifications(withIdentifiers: notiIds)
     }
 
     @IBAction func btnAdded(_ sender: UIButton) {
         
         // 새로운 약 추가
         let title = nameTextField.text ?? ""
-        
-        // 복용 날짜 비어있으면 매일 출력 아니면 입력 날짜 출력
-        guard let dateInput = textFieldDatePicker.text else {
-            return
-        }
-        
-        let date = dateInput.isEmpty ? "매일" : dateInput
-        let morningTime = textFieldTimeMorningPicker.text ?? ""
-        let dayTime = textFieldTimeDayPicker.text ?? ""
-        let nightTime = textFieldTimeNightPicker.text ?? ""
+
+        let time = textFieldTimePicker.text ?? ""
         
         let scheduledNotiIds = notificationSet(title: title)
         
-        let newMedicine = MedicineData(title: title, date: date, morningTime: morningTime, dayTime: dayTime, nightTime: nightTime, notiIds: scheduledNotiIds)
-        
+        let newMedicine = MedicineData(title: title, time: time, notiIds: scheduledNotiIds)
+    
         self.plusDelegate?.addNewMedicine(newMedicine)
         
         self.dismiss(animated: true)
-        print(#fileID, #function, #line, "- 추가 노티리퀘스트: \(notificationRequests)")
-        print(#fileID, #function, #line, "- 플러스뷰컨에서 추가된 노티 아이디: \(notificationIds)")
         
     }
     

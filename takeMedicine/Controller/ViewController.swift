@@ -18,24 +18,30 @@ class ViewController: UIViewController {
     
     let PV = PlusViewController()
     
-    // 기간이 지난 날짜를 자동으로 삭제하기 위한 딕셔너리
-    var deleteDate: [Int : DateComponents] = [:]
-    var notiIds : [String] = []
+    var pastDateArray: [DateComponents] = []
+    var notiIds: [String] = []
     
-    @IBOutlet weak var navToPlusVCBtn: UIButton!
+    // 각 시간 구성 요소에 대한 알림 요청 생성
+    var notificationRequests: [UNNotificationRequest] = []
+    var notificationIds: [String] = []
+    
+    // 시간 값 저장하는 배열
+    var notificationTimeComponents: [DateComponents] = []
+    
+    var addedTimeComponents = Set<DateComponents>()
     
     @IBOutlet weak var medicineTableView: UITableView!
+    
     
     let medicineCell = MedicineTableViewCell()
     
     // 테이블뷰셀 클릭시 버튼 보임/숨김을 위한 행 번호 변수
     var selectedRows: Set<UUID> = []
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        pastDateDeleted()
-
         medicineTableView.dataSource = self
         medicineTableView.delegate = self
         
@@ -45,27 +51,6 @@ class ViewController: UIViewController {
         // 더미데이터를 이용하여 초기 화면 체크
         //        self.medicineDataList = MedicineData.getDummies()
     }
-    
-    // 지정한 날짜보다 기간이 지나면 자동으로 삭제해주는 함수
-//    func pastDateDeleted() {
-//
-//        let today = Date()
-//        let calendar = Calendar.current
-//        let dateKeys = Array(deleteDate.keys)
-//        let dateComponentsArray = Array(deleteDate.values)
-//        let dateArray = dateComponentsArray.compactMap { calendar.date(from: $0) }
-//
-//        for (index, date) in dateArray.enumerated() {
-//            if today > date {
-//                let key = dateKeys[index]
-//                deleteDate.removeValue(forKey: key)
-//                PV.deleteNotification(notiIds)
-//            }
-//        }
-//
-//        UserDefaultsManager.shared.clearMedicineList()
-//        medicineTableView.reloadData()
-//    }
 
     //MARK: - 메모리 연결
     // 서로의 메모리를 연결하기 위해 반드시 필요함⭐️
@@ -89,17 +74,48 @@ class ViewController: UIViewController {
             editDestinationVC.editMedicineData = editMedicineData
             
             editDestinationVC.prepareName = editMedicineData.title
-            editDestinationVC.prepareDate = editMedicineData.date
-            editDestinationVC.prepareMorningTime = editMedicineData.morningTime
-            editDestinationVC.prepareDayTime = editMedicineData.dayTime
-            editDestinationVC.prepareNightTime = editMedicineData.nightTime
+            editDestinationVC.prepareTime = editMedicineData.time
             
             let existedNotiIds = data.0
             editDestinationVC.existedNotiIds = existedNotiIds
+            
         }
         
     }
     
+    /// 로컬 노티피케이션 사용을 위한 함수
+    /// - Parameter title: 알림 이름
+    /// - Returns: 스케줄링 처리가 된 알림 ID들
+    func notificationSet(title: String) -> [String] {
+        let content = UNMutableNotificationContent()
+        content.title = "약 먹었니?"
+        content.body = "\(title)을 먹을 시간입니다💊"
+        content.sound = .default
+        
+        let notificationCenter = UNUserNotificationCenter.current()
+
+        notificationIds = notificationTimeComponents.compactMap { timeComponents in
+
+            let uuidString = UUID().uuidString
+
+            // 트리거 반복 이벤트 만들기
+            let trigger = UNCalendarNotificationTrigger(dateMatching: timeComponents, repeats: true)
+            // 요청 생성
+            let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+            notificationRequests.append(request)
+            print(#fileID, #function, #line, "- uuidString: \(uuidString)")
+
+            notificationCenter.add(request) { (error) in
+                if error != nil {
+                    print("error: \(error)")
+                }
+            }
+            // 추가된 시간대의 정보를 addedTimeComponents에 추가
+            addedTimeComponents.insert(timeComponents)
+            return uuidString
+        }
+        return notificationIds
+    }
     
     // 약 추가하기 VC 로드
     @IBAction func plusVCLoaded(_ sender: UIButton) {
@@ -109,7 +125,6 @@ class ViewController: UIViewController {
     }
     
 }
-
 
 //MARK: - 데이터 소스 관련
 extension ViewController : UITableViewDataSource {
@@ -129,7 +144,6 @@ extension ViewController : UITableViewDataSource {
         
         let cellData = array[indexPath.row]
         
-        
         /// MedicineTableVeiwCell에 configureCell에서 업데이트를 해주기 때문에 뷰컨에서 다시 데이터를 받아올 필요 없이 configureCell만 호출해주면 됨
         //        cell.medicineName?.text = cellData.title
         //        cell.medicineDate?.text = cellData.date
@@ -147,11 +161,7 @@ extension ViewController : UITableViewDataSource {
             
             guard let self = self else { return }
             
-            // 수정 전 기존 알림 데이터 삭제 -> 여기서 삭제하면 안 되고 수정하기 버튼을 눌렀을 때 기존 알림 삭제가 되어야 함
-//            PV.deleteNotification(array[indexPath.row].notiIds)
-            
             let data = (medicineData: selectedMedicineData, indexPath: indexPath)
-//            self.performSegue(withIdentifier: "EditViewController", sender: data)
 
             let existedNotiIds = array[indexPath.row].notiIds
             self.performSegue(withIdentifier: "EditViewController", sender: (existedNotiIds, data))
@@ -177,7 +187,6 @@ extension ViewController : UITableViewDataSource {
             let itemToBeDeleted = currentList[indexPath.row]
             
             // 데이터 삭제
-//            self.medicineDataManager.deleteMedicine(index: indexPath.row)
             self.medicineDataManager.deleteMedicineWithUUID(uuid: itemToBeDeleted.id)
             self.medicineTableView.reloadData()
         }
@@ -197,8 +206,10 @@ extension ViewController : UITableViewDelegate {
         // 테이블뷰셀 선택시 버튼 보여주기/숨기기
         if selectedRows.contains(selectedData.id) {
             selectedRows.remove(selectedData.id)
+            
         } else {
             selectedRows.insert(selectedData.id)
+            
         }
         
         tableView.reloadRows(at: [indexPath], with: .automatic)
@@ -217,19 +228,18 @@ extension ViewController: MedicineDelegate {
         medicineTableView.reloadData()
     }
     
-    // 고쳐야 하는 부분 후보 1.
     func update(uuid: UUID, _ medicineData: MedicineData) {
         
         // 1. 현재 해당 아이디를 가진 데이터 찾기
-        guard let foundMedicineData: MedicineData = medicineDataManager.getMedicineData().first(where: { $0.id == uuid }) else { return }
-
-        // 2. 해당하는 데이터의 알림 [ID]
-        let notiIdsToBeDeleted: [String] = foundMedicineData.notiIds
+//        guard let foundMedicineData: MedicineData = medicineDataManager.getMedicineData().first(where: { $0.id == uuid }) else { return }
+//
+//        // 2. 해당하는 데이터의 알림 [ID]
+//        let notiIdsToBeDeleted: [String] = foundMedicineData.notiIds
         
-        print(#fileID, #function, #line, "- 뷰컨 처음에 생긴 기존 아이디: \(notiIdsToBeDeleted)")
 
         // 3. 기존 알림들 지우기
 //        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: notiIdsToBeDeleted)
+//        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: notiIdsToBeDeleted)
 
         
         // 4. 추가된 알림 등록하기
@@ -287,7 +297,7 @@ extension UIToolbar {
         timeToolbar.sizeToFit()
         
         let timeDoneBtn = UIBarButtonItem(title: "시간 선택", style: .done, target: self, action: select)
-        let timeSpaceBtn = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let timeSpaceBtn = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         
         timeToolbar.setItems([timeDoneBtn, timeSpaceBtn], animated: false)
         timeToolbar.isUserInteractionEnabled = true
