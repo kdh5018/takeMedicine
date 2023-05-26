@@ -58,7 +58,7 @@ class EditViewController: UIViewController, GADBannerViewDelegate {
         bannerView = GADBannerView(adSize: GADAdSizeBanner)
         
         // 광고 배너의 아이디 설정
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.adUnitID = "ca-app-pub-1792128295685766/9951063867"
         bannerView.rootViewController = self
         
         // 광고 로드
