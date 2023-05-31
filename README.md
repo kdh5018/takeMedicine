@@ -20,6 +20,7 @@ https://apps.apple.com/kr/app/%EC%95%BD%EB%A8%B9%EC%97%88%EB%8B%88/id6449581332
 ## 앱 주요 기술
 - 언어: Swift
 - UI 프레임워크: UIKit(Storyboard)
+- 디자인 패턴: MVC 패턴
 - 알림 구현: Local Notification
 - 데이터 저장 방식: UserDefaults
 
