@@ -3,7 +3,7 @@
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -13,19 +13,19 @@
         <!--View Controller-->
         <scene sceneID="C6x-dJ-LIS">
             <objects>
-                <viewController storyboardIdentifier="ViewController" id="695-tJ-YWJ" customClass="ViewController" customModule="takeMedicine" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="695-tJ-YWJ" customClass="ViewController" customModule="약먹었니_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DUU-rb-eAb">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="약먹었니?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sVS-mq-EKg">
-                                <rect key="frame" x="15" y="47" width="143" height="42.666666666666657"/>
-                                <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="35"/>
+                                <rect key="frame" x="14.999999999999993" y="47" width="122.33333333333331" height="36.666666666666657"/>
+                                <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kV3-6h-LPi">
-                                <rect key="frame" x="342.33333333333331" y="47" width="37.666666666666686" height="37.666666666666657"/>
+                                <rect key="frame" x="321.66666666666669" y="47" width="58.333333333333314" height="37.666666666666657"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="🦆 icon _Pills add_"/>
                                 <connections>
@@ -33,10 +33,10 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="BvZ-L7-duP">
-                                <rect key="frame" x="0.0" y="97" width="390" height="693"/>
+                                <rect key="frame" x="0.0" y="91" width="390" height="699"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="medicineCell" rowHeight="180" id="QIz-2a-yRN" customClass="MedicineTableViewCell" customModule="takeMedicine" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="medicineCell" rowHeight="180" id="QIz-2a-yRN" customClass="MedicineTableViewCell" customModule="약먹었니_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="390" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QIz-2a-yRN" id="QUJ-VK-AcL">
@@ -93,7 +93,7 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="rGf-bf-PfR" userLabel="BtnStackView">
                                                             <rect key="frame" x="0.0" y="115" width="330" height="45"/>
                                                             <subviews>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s2B-vZ-Js1" customClass="CustomButton" customModule="takeMedicine" customModuleProvider="target">
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s2B-vZ-Js1" customClass="CustomButton" customModule="약먹었니_" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="156" height="45"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="45" id="DTp-Cd-zlV"/>
@@ -110,7 +110,7 @@
                                                                         <segue destination="Z1N-Ke-za7" kind="show" identifier="EditViewController" id="A6L-2U-LYa"/>
                                                                     </connections>
                                                                 </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7L-CU-YSh" customClass="CustomButton" customModule="takeMedicine" customModuleProvider="target">
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7L-CU-YSh" customClass="CustomButton" customModule="약먹었니_" customModuleProvider="target">
                                                                     <rect key="frame" x="174" y="0.0" width="156" height="45"/>
                                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                     <state key="normal" image="🦆 icon _Delete_"/>
@@ -173,7 +173,7 @@
         <!--Edit View Controller-->
         <scene sceneID="aUK-X5-S9Z">
             <objects>
-                <viewController storyboardIdentifier="EditViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Z1N-Ke-za7" customClass="EditViewController" customModule="takeMedicine" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Z1N-Ke-za7" customClass="EditViewController" customModule="약먹었니_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8NG-WV-Vyw">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -239,7 +239,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="7ud-ld-niG">
                                 <rect key="frame" x="11" y="739" width="368" height="45"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tSZ-1r-uoP" customClass="CustomButton" customModule="takeMedicine" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tSZ-1r-uoP" customClass="CustomButton" customModule="약먹었니_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="175" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="VML-Dz-BNa"/>
@@ -257,7 +257,7 @@
                                             <action selector="btnEdited:" destination="Z1N-Ke-za7" eventType="touchUpInside" id="JHA-Am-KEB"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rma-v5-cY2" customClass="CustomButton" customModule="takeMedicine" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rma-v5-cY2" customClass="CustomButton" customModule="약먹었니_" customModuleProvider="target">
                                         <rect key="frame" x="193" y="0.0" width="175" height="45"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="🦆 emoji _cross mark_"/>
@@ -304,7 +304,7 @@
         <!--Plus View Controller-->
         <scene sceneID="EEI-tx-XwV">
             <objects>
-                <viewController storyboardIdentifier="PlusViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SW6-yj-G1N" customClass="PlusViewController" customModule="takeMedicine" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlusViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SW6-yj-G1N" customClass="PlusViewController" customModule="약먹었니_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gpu-Zn-O2x">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -362,7 +362,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="tfk-rO-WYW">
                                 <rect key="frame" x="11" y="705" width="368" height="45"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXQ-jn-2OM" customClass="CustomButton" customModule="takeMedicine" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXQ-jn-2OM" customClass="CustomButton" customModule="약먹었니_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="175" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="ZvZ-PM-Yee"/>
@@ -380,7 +380,7 @@
                                             <action selector="btnAdded:" destination="SW6-yj-G1N" eventType="touchUpInside" id="UZD-WP-XAL"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uHy-aP-eih" customClass="CustomButton" customModule="takeMedicine" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uHy-aP-eih" customClass="CustomButton" customModule="약먹었니_" customModuleProvider="target">
                                         <rect key="frame" x="193" y="0.0" width="175" height="45"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="🦆 emoji _cross mark_"/>

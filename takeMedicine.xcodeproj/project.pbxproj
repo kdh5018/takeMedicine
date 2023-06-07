@@ -26,13 +26,13 @@
 
 /* Begin PBXFileReference section */
 		3CC8C48E61C113EDE95FEE38 /* Pods-takeMedicine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-takeMedicine.debug.xcconfig"; path = "Target Support Files/Pods-takeMedicine/Pods-takeMedicine.debug.xcconfig"; sourceTree = "<group>"; };
-		762EFE162993728F009E55D1 /* takeMedicine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = takeMedicine.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7601C9DC2A276896006C526D /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ko; path = ko.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7601C9DD2A276896006C526D /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ko; path = ko.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		762EFE162993728F009E55D1 /* 약먹었니?.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "약먹었니?.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		762EFE192993728F009E55D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		762EFE1B2993728F009E55D1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		762EFE1D2993728F009E55D1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		762EFE202993728F009E55D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		762EFE2229937290009E55D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		762EFE2529937290009E55D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		762EFE2729937290009E55D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		763B29F629EE5BDE00860E3D /* takeMedicine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = takeMedicine.entitlements; sourceTree = "<group>"; };
 		764A9FC929D8032900084DFB /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 		762EFE172993728F009E55D1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				762EFE162993728F009E55D1 /* takeMedicine.app */,
+				762EFE162993728F009E55D1 /* 약먹었니?.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,7 +161,7 @@
 				76FA42722A0B53BB006A2AAA /* GoogleMobileAds */,
 			);
 			productName = takeMedicine;
-			productReference = 762EFE162993728F009E55D1 /* takeMedicine.app */;
+			productReference = 762EFE162993728F009E55D1 /* 약먹었니?.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -181,11 +181,10 @@
 			};
 			buildConfigurationList = 762EFE112993728F009E55D1 /* Build configuration list for PBXProject "takeMedicine" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
-				Base,
+				ko,
 			);
 			mainGroup = 762EFE0D2993728F009E55D1;
 			packageReferences = (
@@ -262,7 +261,7 @@
 		762EFE1F2993728F009E55D1 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				762EFE202993728F009E55D1 /* Base */,
+				7601C9DC2A276896006C526D /* ko */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -270,7 +269,7 @@
 		762EFE2429937290009E55D1 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				762EFE2529937290009E55D1 /* Base */,
+				7601C9DD2A276896006C526D /* ko */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -420,7 +419,7 @@
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rlaehgns745.mediApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "약먹었니?";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -457,7 +456,7 @@
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rlaehgns745.mediApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "약먹었니?";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
